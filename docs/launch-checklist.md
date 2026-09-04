@@ -77,4 +77,7 @@ Public form kaldırıldığı için Upstash artık lansman zorunluluğu değil.
 Public form ve KVKK/gizlilik sayfaları kaldırıldı (`/kvkk-aydinlatma-metni` ve `/gizlilik` → `/iletisim`). Site kişisel veri toplamaz; iletişim WhatsApp / telefon.
 
 - [ ] WhatsApp sohbetleri akademi telefonunda yönetiliyor
+- [ ] Admin → Takip: WhatsApp’tan yazan kişi elle ekleniyor
+- [ ] Durum + not + sonraki takip tarihi kaydediliyor
+- [ ] Kayıt satırından `wa.me` ve `tel:` açılıyor
 - [ ] Analitik / çerez banner kapalı kaldı

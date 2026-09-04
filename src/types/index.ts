@@ -82,10 +82,17 @@ export interface Faq {
   updated_at: string;
 }
 
+export type LeadSourceChannel =
+  | "whatsapp"
+  | "phone"
+  | "instagram"
+  | "walk_in"
+  | "other";
+
 export interface Application {
   id: string;
   student_name: string;
-  student_age: number;
+  student_age: number | null;
   parent_name: string | null;
   phone: string;
   email: string | null;
@@ -96,6 +103,7 @@ export interface Application {
   message: string | null;
   status: ApplicationStatus;
   source_page: string | null;
+  source_channel: LeadSourceChannel;
   utm_source: string | null;
   utm_medium: string | null;
   utm_campaign: string | null;

@@ -10,6 +10,7 @@ Uygulama sırası (fresh DB, signup kapalı, her dosya BEGIN/COMMIT):
 5. `005_policy_refinements.sql`
 6. `006_storage_and_constraints.sql`
 7. `007_data_api_grants.sql`
+8. `008_whatsapp_crm.sql`
 
 Sonra:
 

@@ -17,6 +17,7 @@ export async function getApplicationsAdmin(): Promise<Application[]> {
   return ((data ?? []) as Array<Record<string, unknown>>).map((row) => ({
     ...row,
     program_name: (row.program as { name: string } | null)?.name ?? null,
+    source_channel: row.source_channel ?? "whatsapp",
   })) as Application[];
 }
 
@@ -36,6 +37,7 @@ export async function getApplicationById(id: string): Promise<Application | null
   return {
     ...row,
     program_name: (row.program as { name: string } | null)?.name ?? null,
+    source_channel: row.source_channel ?? "whatsapp",
   } as Application;
 }
 

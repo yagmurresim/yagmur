@@ -137,7 +137,7 @@ src/
     ui/                Button, FormField, StatusBadge
   features/
     admin/             Admin bileşenleri (sidebar, form, CRM actions)
-    application/       Başvuru formu
+    admin/             Takip CRM, program ve SSS formları
     contact/           İletişim formu
     faq/               SSS accordion
     home/              Homepage section'ları
@@ -184,12 +184,12 @@ docs/
 |---|---|
 | `/admin/login` | Giriş |
 | `/admin` | Genel bakış |
-| `/admin/basvurular` | Başvurular CRM |
-| `/admin/basvurular/[id]` | Başvuru detayı |
+| `/admin/basvurular` | WhatsApp / telefon takip CRM |
+| `/admin/basvurular/yeni` | Elle kayıt ekle |
+| `/admin/basvurular/[id]` | Kayıt detayı, not, takip tarihi |
 | `/admin/egitimler` | Program CRUD |
 | `/admin/egitmenler` | Eğitmen CRUD |
 | `/admin/sss` | SSS CRUD |
-| `/admin/mesajlar` | İletişim mesajları |
 | `/admin/medya` | Medya yönetimi |
 | `/admin/ayarlar` | Site ayarları |
 

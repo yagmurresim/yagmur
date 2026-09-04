@@ -18,12 +18,43 @@ const applicationStatusSchema = z.enum([
   "CLOSED",
 ]);
 const noteSchema = z.string().trim().min(1).max(2000);
+const sourceChannelSchema = z.enum([
+  "whatsapp",
+  "phone",
+  "instagram",
+  "walk_in",
+  "other",
+]);
+
+function toIsoDateTime(v: unknown): string | null {
+  if (typeof v !== "string" || v.trim() === "") return null;
+  const d = new Date(v);
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toISOString();
+}
+
 const optionalUrl = z.preprocess(
   emptyToNull,
   z.string().url().nullable().optional()
 );
 const optionalNullableString = (max: number) =>
   z.preprocess(emptyToNull, z.string().max(max).nullable().optional());
+
+const LeadWriteSchema = z.object({
+  student_name: z.string().trim().min(2).max(120),
+  student_age: z.preprocess((v) => {
+    if (v === "" || v === null || v === undefined) return null;
+    const n = typeof v === "number" ? v : Number(v);
+    return Number.isFinite(n) ? n : null;
+  }, z.number().int().min(4).max(100).nullable().optional()),
+  parent_name: optionalNullableString(120),
+  phone: z.string().trim().min(10).max(30),
+  email: optionalNullableString(120),
+  program_id: z.preprocess(emptyToNull, z.string().uuid().nullable().optional()),
+  message: optionalNullableString(2000),
+  source_channel: sourceChannelSchema.default("whatsapp"),
+  next_action_at: z.preprocess(toIsoDateTime, z.string().nullable().optional()),
+});
 
 const SiteSettingsSchema = z.object({
   brand_name: z.string().min(1).max(120).optional(),
@@ -119,6 +150,17 @@ export async function updateApplicationStatus(
     .maybeSingle();
 
   requireRow(data, error, "updateApplicationStatus");
+
+  if (parsedStatus === "CONTACTED") {
+    await supabase
+      .from("applications")
+      .update({ last_contacted_at: new Date().toISOString() })
+      .eq("id", id);
+  }
+
+  revalidatePath("/admin/basvurular");
+  revalidatePath(`/admin/basvurular/${id}`);
+  revalidatePath("/admin");
 }
 
 export async function addApplicationNote(
@@ -141,6 +183,88 @@ export async function addApplicationNote(
     .maybeSingle();
 
   requireRow(data, error, "addApplicationNote");
+  revalidatePath(`/admin/basvurular/${id}`);
+}
+
+export async function createLead(
+  data: z.infer<typeof LeadWriteSchema>
+): Promise<string> {
+  await requireAdmin();
+  const parsed = LeadWriteSchema.parse(data);
+  const supabase = await createClient();
+  const now = new Date().toISOString();
+
+  const { data: created, error } = await supabase
+    .from("applications")
+    .insert({
+      student_name: parsed.student_name,
+      student_age: parsed.student_age ?? null,
+      parent_name: parsed.parent_name ?? null,
+      phone: parsed.phone,
+      email: parsed.email ?? null,
+      program_id: parsed.program_id ?? null,
+      message: parsed.message ?? null,
+      source_channel: parsed.source_channel,
+      source_page: "admin",
+      status: "NEW",
+      kvkk_consent: true,
+      kvkk_version: "staff-1.0",
+      consented_at: now,
+      next_action_at: parsed.next_action_at ?? null,
+    })
+    .select("id")
+    .maybeSingle();
+
+  const row = requireRow(created, error, "createLead") as { id: string };
+  revalidatePath("/admin/basvurular");
+  revalidatePath("/admin");
+  return row.id;
+}
+
+export async function updateLeadFollowUp(
+  applicationId: string,
+  nextActionAt: string | null
+): Promise<void> {
+  await requireAdmin();
+  const id = uuidSchema.parse(applicationId);
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("applications")
+    .update({
+      next_action_at: nextActionAt,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("id", id)
+    .select("id")
+    .maybeSingle();
+
+  requireRow(data, error, "updateLeadFollowUp");
+  revalidatePath("/admin/basvurular");
+  revalidatePath(`/admin/basvurular/${id}`);
+}
+
+export async function markLeadContacted(applicationId: string): Promise<void> {
+  await requireAdmin();
+  const id = uuidSchema.parse(applicationId);
+  const supabase = await createClient();
+  const now = new Date().toISOString();
+
+  const { data, error } = await supabase
+    .from("applications")
+    .update({
+      status: "CONTACTED",
+      last_contacted_at: now,
+      updated_at: now,
+    })
+    .eq("id", id)
+    .select("id")
+    .maybeSingle();
+
+  requireRow(data, error, "markLeadContacted");
+  revalidatePath("/admin/basvurular");
+  revalidatePath(`/admin/basvurular/${id}`);
+  revalidatePath("/admin");
 }
 
 export async function updateSiteSettings(

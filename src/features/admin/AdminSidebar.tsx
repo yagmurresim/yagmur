@@ -6,7 +6,6 @@ import {
   LayoutDashboard,
   BookOpen,
   Users,
-  MessageSquare,
   Image,
   Settings,
   LogOut,
@@ -14,15 +13,15 @@ import {
   HelpCircle,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Logo } from "@/components/brand/Logo";
 import { createClient } from "@/lib/supabase/client";
 
 const NAV_ITEMS = [
   { label: "Genel Bakış", href: "/admin", icon: LayoutDashboard, exact: true },
-  { label: "Başvurular", href: "/admin/basvurular", icon: GraduationCap },
+  { label: "Takip", href: "/admin/basvurular", icon: GraduationCap },
   { label: "Eğitimler", href: "/admin/egitimler", icon: BookOpen },
   { label: "Eğitmenler", href: "/admin/egitmenler", icon: Users },
   { label: "SSS", href: "/admin/sss", icon: HelpCircle },
-  { label: "Mesajlar", href: "/admin/mesajlar", icon: MessageSquare },
   { label: "Medya", href: "/admin/medya", icon: Image },
   { label: "Ayarlar", href: "/admin/ayarlar", icon: Settings },
 ];
@@ -46,9 +45,9 @@ export function AdminSidebar({ userEmail }: AdminSidebarProps) {
     <>
       {/* Desktop sidebar */}
       <aside className="fixed left-0 top-0 bottom-0 w-64 bg-white border-r border-line flex flex-col z-40 hidden lg:flex">
-        <div className="p-6 border-b border-line">
-          <h1 className="font-display text-base text-ink">Yağmur Sanat</h1>
-          <p className="text-xs text-ink-muted">Yönetim Paneli</p>
+        <div className="p-5 border-b border-line">
+          <Logo className="mb-1" />
+          <p className="text-xs text-ink-muted mt-2">Yönetim paneli</p>
         </div>
 
         <nav className="flex-1 p-4 overflow-y-auto" aria-label="Admin navigasyon">

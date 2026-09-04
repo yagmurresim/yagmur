@@ -42,6 +42,35 @@ export function applicationStatusLabel(status: string): {
   return map[status] ?? { label: status, color: "gray" };
 }
 
+export function leadSourceLabel(channel: string | null | undefined): string {
+  const map: Record<string, string> = {
+    whatsapp: "WhatsApp",
+    phone: "Telefon",
+    instagram: "Instagram",
+    walk_in: "Yüz yüze",
+    other: "Diğer",
+  };
+  return map[channel ?? ""] ?? "WhatsApp";
+}
+
+export function formatDateShort(dateStr: string): string {
+  try {
+    return new Intl.DateTimeFormat("tr-TR", {
+      day: "numeric",
+      month: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+    }).format(new Date(dateStr));
+  } catch {
+    return dateStr;
+  }
+}
+
+export function isOverdue(dateStr: string | null | undefined): boolean {
+  if (!dateStr) return false;
+  return new Date(dateStr).getTime() < Date.now();
+}
+
 export function formatDate(dateStr: string): string {
   try {
     return new Intl.DateTimeFormat("tr-TR", {

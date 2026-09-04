@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { GraduationCap, MessageSquare, CheckCircle, Clock, BookOpen, Settings } from "lucide-react";
+import { GraduationCap, CheckCircle, Clock, BookOpen, Settings, Plus } from "lucide-react";
 import { getApplicationStats } from "@/server/queries/applications";
 
 export const metadata: Metadata = { title: "Genel Bakış" };
@@ -88,15 +88,15 @@ export default async function AdminDashboardPage() {
       </div>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <StatCard label="Yeni Başvuru" value={stats.NEW} icon={GraduationCap} color="violet" href="/admin/basvurular?status=NEW" />
+        <StatCard label="Yeni" value={stats.NEW} icon={GraduationCap} color="violet" href="/admin/basvurular?status=NEW" />
         <StatCard label="İletişime Geçildi" value={stats.CONTACTED} icon={Clock} color="blue" href="/admin/basvurular?status=CONTACTED" />
         <StatCard label="Tanışma Dersi" value={stats.INTRO_PLANNED} icon={Clock} color="orange" href="/admin/basvurular?status=INTRO_PLANNED" />
         <StatCard label="Kayıt Oldu" value={stats.ENROLLED} icon={CheckCircle} color="green" href="/admin/basvurular?status=ENROLLED" />
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
-        <QuickLink href="/admin/basvurular" title="Başvuruları Yönet" description="Tüm başvuruları gör, durumlarını güncelle." icon={GraduationCap} />
-        <QuickLink href="/admin/mesajlar" title="İletişim Mesajları" description="Siteden gelen iletişim formlarını gör." icon={MessageSquare} />
+        <QuickLink href="/admin/basvurular" title="Takip" description="Kayıt ekle, WhatsApp at, durum ve not tut." icon={GraduationCap} />
+        <QuickLink href="/admin/basvurular/yeni" title="Yeni kayıt" description="Ayrı form: eğitim, yaş, takip tarihi." icon={Plus} />
         <QuickLink href="/admin/egitimler" title="Eğitimleri Düzenle" description="Program içeriklerini yönet." icon={BookOpen} />
         <QuickLink href="/admin/ayarlar" title="Site Ayarları" description="İletişim bilgileri ve genel ayarlar." icon={Settings} />
       </div>

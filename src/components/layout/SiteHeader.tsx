@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/brand/Logo";
 import { introWhatsAppUrl } from "@/lib/contact";
 import type { SiteSettings } from "@/types";
 
@@ -103,19 +104,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex flex-col leading-none"
-            aria-label={`${settings.brand_name} - Ana Sayfa`}
-          >
-            <span className="font-display text-lg text-ink tracking-tight">
-              Yağmur Sanat
-            </span>
-            <span className="text-[11px] font-medium text-ink-muted tracking-widest uppercase">
-              Akademisi
-            </span>
-          </Link>
+          <Logo />
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Ana navigasyon">

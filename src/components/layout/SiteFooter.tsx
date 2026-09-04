@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Phone, Instagram, MapPin, MessageCircle } from "lucide-react";
+import { Logo } from "@/components/brand/Logo";
 import { buildWhatsAppUrl, buildInstagramUrl, buildMapsUrl } from "@/lib/utils";
 import type { SiteSettings } from "@/types";
 
@@ -30,14 +31,7 @@ export function SiteFooter({ settings }: SiteFooterProps) {
         <div className="grid lg:grid-cols-12 gap-12 py-16 lg:py-20">
           {/* Brand */}
           <div className="lg:col-span-4">
-            <Link href="/" aria-label={`${settings.brand_name} - Ana Sayfa`}>
-              <span className="font-display text-2xl text-white tracking-tight block">
-                Yağmur Sanat
-              </span>
-              <span className="text-[11px] font-medium text-white/50 tracking-widest uppercase">
-                Akademisi
-              </span>
-            </Link>
+            <Logo variant="white" />
 
             {settings.legal_name && (
               <p className="mt-4 text-xs text-white/40 leading-relaxed">
