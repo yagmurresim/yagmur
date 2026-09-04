@@ -11,7 +11,7 @@ interface WhatsAppCtaProps {
 
 export function WhatsAppCta({
   programName,
-  label = "WhatsApp'tan Yazın",
+  label = "Ücretsiz Tanışma Dersi Oluşturun",
   size = "lg",
   variant = "primary",
   className,

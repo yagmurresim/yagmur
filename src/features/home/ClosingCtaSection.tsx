@@ -27,7 +27,7 @@ export function ClosingCtaSection() {
               Ücretsiz tanışma dersi için WhatsApp&apos;tan yazın. Akademi
               ekibi sizinle iletişime geçsin.
             </p>
-            <WhatsAppCta size="xl" variant="magenta" label="WhatsApp'tan Yazın" />
+            <WhatsAppCta size="xl" variant="magenta" />
           </div>
         </div>
       </div>

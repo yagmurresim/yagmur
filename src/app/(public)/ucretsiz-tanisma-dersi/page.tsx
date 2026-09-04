@@ -38,7 +38,7 @@ export default function UcretsizTanismaDersiPage() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3">
-          <WhatsAppCta size="xl" label="WhatsApp'tan Yazın" />
+          <WhatsAppCta size="xl" />
           <Button asChild size="xl" variant="secondary">
             <a href={academyTelUrl()}>
               <Phone size={16} aria-hidden="true" />

@@ -66,7 +66,7 @@ export function ProcessSection() {
         </div>
 
         <div className="mt-12 flex flex-col sm:flex-row sm:items-center gap-4">
-          <WhatsAppCta size="lg" label="WhatsApp'tan Yazın" />
+          <WhatsAppCta size="lg" />
           <p className="text-sm text-ink-muted">
             Bu bir anında rezervasyon sistemi değildir.
           </p>

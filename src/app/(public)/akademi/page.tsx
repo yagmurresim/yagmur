@@ -151,7 +151,7 @@ export default function AkademiPage() {
           <p className="text-ink-muted mb-8">
             WhatsApp&apos;tan yazın. Akademi ekibi sizinle iletişime geçsin.
           </p>
-          <WhatsAppCta size="xl" label="WhatsApp'tan Yazın" />
+          <WhatsAppCta size="xl" />
         </div>
       </section>
     </>

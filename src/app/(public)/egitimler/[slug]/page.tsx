@@ -162,7 +162,7 @@ export default async function ProgramDetailPage({ params }: Props) {
               </p>
 
               <div className="flex flex-wrap gap-3">
-                <WhatsAppCta size="xl" programName={program.name} label="WhatsApp'tan Yazın" />
+                <WhatsAppCta size="xl" programName={program.name} />
                 <Button asChild size="xl" variant="secondary">
                   <Link href="/egitimler">
                     <ArrowLeft size={16} aria-hidden="true" />
@@ -282,7 +282,7 @@ export default async function ProgramDetailPage({ params }: Props) {
           <p className="text-ink-muted mb-8">
             WhatsApp&apos;tan yazın. Akademi ekibi sizinle iletişime geçsin.
           </p>
-          <WhatsAppCta size="xl" programName={program.name} label="WhatsApp'tan Yazın" />
+          <WhatsAppCta size="xl" programName={program.name} />
         </div>
       </section>
     </>

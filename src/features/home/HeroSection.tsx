@@ -85,7 +85,7 @@ export function HeroSection({ settings }: HeroSectionProps) {
               transition={{ duration: 0.5, delay: 0.45 }}
               className="flex flex-wrap gap-3"
             >
-              <WhatsAppCta size="xl" label="WhatsApp'tan Yazın" />
+              <WhatsAppCta size="xl" />
               <Button asChild size="xl" variant="secondary">
                 <Link href="/egitimler">
                   Eğitimleri Keşfet

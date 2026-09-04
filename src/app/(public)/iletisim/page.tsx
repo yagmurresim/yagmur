@@ -120,7 +120,7 @@ export default async function IletisimPage() {
             </a>
           </div>
 
-          <WhatsAppCta size="xl" label="WhatsApp'tan Yazın" />
+          <WhatsAppCta size="xl" />
         </div>
       </section>
     </>

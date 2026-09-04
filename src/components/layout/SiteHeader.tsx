@@ -140,7 +140,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
           <div className="hidden lg:block">
             <Button asChild variant="primary" size="sm">
               <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                WhatsApp&apos;tan Yazın
+                Ücretsiz Tanışma Dersi Oluşturun
               </a>
             </Button>
           </div>
@@ -194,7 +194,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
 
             <Button asChild variant="primary" size="lg" className="w-full">
               <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                WhatsApp&apos;tan Yazın
+                Ücretsiz Tanışma Dersi Oluşturun
               </a>
             </Button>
           </motion.div>

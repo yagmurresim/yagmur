@@ -83,7 +83,7 @@ export default async function EgitimlerPage() {
             <p className="text-ink-muted max-w-[400px]">
               Hangi eğitimi seçeceğinizden emin değil misiniz? Önce tanışalım.
             </p>
-            <WhatsAppCta size="lg" className="mt-2" label="WhatsApp'tan Yazın" />
+            <WhatsAppCta size="lg" className="mt-2" />
           </div>
         </div>
       </section>

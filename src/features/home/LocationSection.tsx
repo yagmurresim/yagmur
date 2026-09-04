@@ -61,7 +61,7 @@ export function LocationSection({ settings, mapsUrl, whatsappUrl }: LocationSect
               <Button asChild variant="secondary" size="md">
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
                   <MessageCircle size={16} aria-hidden="true" />
-                  WhatsApp&apos;tan Yaz
+                  Ücretsiz Tanışma Dersi Oluşturun
                 </a>
               </Button>
               <Button asChild variant="ghost" size="md">
