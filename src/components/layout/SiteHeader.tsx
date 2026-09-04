@@ -103,7 +103,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
       )}
     >
       <div className="max-w-[1320px] mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           <Logo />
 
           {/* Desktop nav */}
@@ -161,7 +161,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 bg-paper z-40 flex flex-col px-6 pt-8 pb-16 overflow-y-auto lg:hidden"
+            className="fixed inset-0 top-20 bg-paper z-40 flex flex-col px-6 pt-8 pb-16 overflow-y-auto lg:hidden"
           >
             <nav aria-label="Mobil navigasyon" className="flex flex-col gap-1 mb-8">
               {NAV_LINKS.map((link) => (

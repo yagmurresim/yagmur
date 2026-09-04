@@ -20,11 +20,11 @@ export function Logo({ className, variant = "default" }: LogoProps) {
       <Image
         src="/brand/logo.png"
         alt="Özel Yağmur Sanat Akademisi"
-        width={180}
-        height={120}
+        width={240}
+        height={160}
         priority
         className={cn(
-          "h-9 w-auto lg:h-11 object-contain",
+          "h-14 w-auto lg:h-[4.5rem] object-contain",
           variant === "white" && "brightness-0 invert"
         )}
       />
