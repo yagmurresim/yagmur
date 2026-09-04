@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme {
+  /* ─── Color tokens ─────────────────────────────────────────── */
+  --color-paper: #FBF9F7;
+  --color-paper-alt: #F4EFF4;
+  --color-ink: #271B2C;
+  --color-ink-muted: #6F6872;
+  --color-plum: #3B164C;
+  --color-violet: #7841A0;
+  --color-magenta: #D63177;
+  --color-rose: #ED5A8B;
+  --color-lavender: #C5A7DF;
+  --color-line: #E8E0E8;
+  --color-white: #FFFFFF;
+
+  /* ─── Font families ────────────────────────────────────────── */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-ibm-plex-sans), system-ui, sans-serif;
+
+  /* ─── Border radius ────────────────────────────────────────── */
+  --radius-brand: 8px;
+
+  /* ─── Spacing extras ───────────────────────────────────────── */
+  --spacing-section: clamp(4rem, 8vw, 8rem);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Skip link */
+  .skip-link {
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-plum focus:text-white focus:px-4 focus:py-2 focus:rounded-[6px] focus:text-sm focus:font-medium;
+  }
+
+  /* Focus ring */
+  *:focus-visible {
+    outline: 2px solid var(--color-violet);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  /* Prose improvements */
+  .prose-brand {
+    & p { @apply text-ink-muted leading-relaxed; }
+    & strong { @apply text-ink font-semibold; }
+    & a { @apply text-plum underline underline-offset-2 hover:text-violet; }
+  }
+}
+
+/* Admin layout reset */
+.admin-layout {
+  min-height: 100svh;
+  background-color: var(--color-paper-alt);
+}
