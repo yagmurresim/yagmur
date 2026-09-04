@@ -1,28 +1,25 @@
 import { Button } from "@/components/ui/Button";
-import { introWhatsAppUrl } from "@/lib/contact";
+import { CTA_LABEL, programWhatsappUrl, whatsappUrl } from "@/content/site";
 
 interface WhatsAppCtaProps {
   programName?: string;
   label?: string;
   size?: "sm" | "md" | "lg" | "xl";
-  variant?: "primary" | "secondary" | "magenta";
+  variant?: "primary" | "secondary" | "gold" | "outlineLight";
   className?: string;
 }
 
 export function WhatsAppCta({
   programName,
-  label = "Ücretsiz Tanışma Dersi Oluşturun",
+  label = CTA_LABEL,
   size = "lg",
   variant = "primary",
   className,
 }: WhatsAppCtaProps) {
+  const href = programName ? programWhatsappUrl(programName) : whatsappUrl();
   return (
     <Button asChild size={size} variant={variant} className={className}>
-      <a
-        href={introWhatsAppUrl(programName)}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={href} target="_blank" rel="noopener noreferrer">
         {label}
       </a>
     </Button>

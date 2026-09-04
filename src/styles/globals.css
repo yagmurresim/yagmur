@@ -1,28 +1,39 @@
 @import "tailwindcss";
 
 @theme {
-  /* ─── Color tokens ─────────────────────────────────────────── */
-  --color-paper: #FBF9F7;
-  --color-paper-alt: #F4EFF4;
-  --color-ink: #271B2C;
-  --color-ink-muted: #6F6872;
-  --color-plum: #3B164C;
-  --color-violet: #7841A0;
-  --color-magenta: #D63177;
-  --color-rose: #ED5A8B;
-  --color-lavender: #C5A7DF;
-  --color-line: #E8E0E8;
-  --color-white: #FFFFFF;
+  /* ─── Brand palette (from the logo) ─────────────────────────── */
+  --color-paper: #fbf9f7;
+  --color-paper-alt: #f4eff4;
+  --color-ink: #2a082f;
+  --color-ink-muted: #6f6872;
+  --color-plum: #3b164c;
+  --color-gold: #c4a35a;
+  --color-bronze: #a42818;
+  --color-line: #e8e0e8;
+  --color-white: #ffffff;
 
-  /* ─── Font families ────────────────────────────────────────── */
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-body: var(--font-ibm-plex-sans), system-ui, sans-serif;
+  /* Legacy tokens kept only for the admin panel */
+  --color-violet: #7841a0;
+  --color-magenta: #d63177;
+  --color-rose: #ed5a8b;
+  --color-lavender: #c5a7df;
 
-  /* ─── Border radius ────────────────────────────────────────── */
-  --radius-brand: 8px;
+  /* ─── Semantic aliases ─────────────────────────────────────── */
+  --color-background: var(--color-paper);
+  --color-foreground: var(--color-ink);
 
-  /* ─── Spacing extras ───────────────────────────────────────── */
-  --spacing-section: clamp(4rem, 8vw, 8rem);
+  /* ─── Fonts ────────────────────────────────────────────────── */
+  --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+  --font-sans: var(--font-ibm-plex-sans), "IBM Plex Sans", system-ui, sans-serif;
+  --font-display: var(--font-serif);
+  --font-body: var(--font-sans);
+
+  /* ─── Radius ───────────────────────────────────────────────── */
+  --radius: 0.125rem;
+  --radius-brand: 2px;
+
+  /* ─── Layout ───────────────────────────────────────────────── */
+  --spacing-section: clamp(5rem, 10vw, 9rem);
 }
 
 @layer base {
@@ -33,24 +44,25 @@
   html {
     background-color: var(--color-paper);
     color: var(--color-ink);
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Skip link */
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-gold) 35%, transparent);
+    color: var(--color-ink);
+  }
+
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-plum focus:text-white focus:px-4 focus:py-2 focus:rounded-[6px] focus:text-sm focus:font-medium;
+    @apply sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-plum focus:text-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium;
   }
 
-  /* Focus ring */
   *:focus-visible {
-    outline: 2px solid var(--color-violet);
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline: 2px solid var(--color-gold);
+    outline-offset: 3px;
   }
 
-  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -65,19 +77,34 @@
 
 @layer components {
   .font-display {
-    font-family: var(--font-display);
+    font-family: var(--font-serif);
     font-optical-sizing: auto;
+    font-feature-settings: "liga", "kern";
   }
 
   .font-body {
-    font-family: var(--font-body);
+    font-family: var(--font-sans);
   }
 
-  /* Prose improvements */
+  /* 11px gold uppercase label */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    line-height: 1;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+    font-weight: 500;
+  }
+
+  .container-x {
+    @apply mx-auto w-full max-w-[1320px] px-6 lg:px-12;
+  }
+
   .prose-brand {
     & p { @apply text-ink-muted leading-relaxed; }
     & strong { @apply text-ink font-semibold; }
-    & a { @apply text-plum underline underline-offset-2 hover:text-violet; }
+    & a { @apply text-plum underline underline-offset-2 hover:text-gold; }
   }
 }
 

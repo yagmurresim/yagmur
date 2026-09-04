@@ -8,21 +8,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/brand/Logo";
-import { introWhatsAppUrl } from "@/lib/contact";
-import type { SiteSettings } from "@/types";
+import {
+  NAV_LINKS,
+  CTA_LABEL,
+  whatsappUrl,
+  BRAND,
+  TEL_URL,
+  ADDRESS_FULL,
+} from "@/content/site";
 
-const NAV_LINKS = [
-  { href: "/akademi", label: "Akademi" },
-  { href: "/egitimler", label: "Eğitimler" },
-  { href: "/sss", label: "SSS" },
-  { href: "/iletisim", label: "İletişim" },
-];
-
-interface SiteHeaderProps {
-  settings: SiteSettings;
-}
-
-export function SiteHeader({ settings }: SiteHeaderProps) {
+export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -33,26 +28,22 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Body scroll lock when menu open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
       document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
+    };
   }, [menuOpen]);
 
-  // Escape key closes menu and returns focus to trigger button
   useEffect(() => {
     if (!menuOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -65,7 +56,6 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen, closeMenu]);
 
-  // Focus trap inside mobile menu
   useEffect(() => {
     if (!menuOpen || !menuRef.current) return;
     const focusable = menuRef.current.querySelectorAll<HTMLElement>(
@@ -73,72 +63,67 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
     );
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
-    // Move initial focus into menu
     first?.focus();
     const trap = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return;
-      if (e.shiftKey) {
-        if (document.activeElement === first) {
-          e.preventDefault();
-          last?.focus();
-        }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
-        }
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
       }
     };
     document.addEventListener("keydown", trap);
     return () => document.removeEventListener("keydown", trap);
   }, [menuOpen]);
 
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-paper/95 backdrop-blur-md border-b border-line shadow-sm"
-          : "bg-transparent"
+        "fixed top-0 left-0 right-0 z-50 transition-[background-color,border-color] duration-300",
+        scrolled || menuOpen
+          ? "bg-paper/95 backdrop-blur-sm border-b border-line"
+          : "bg-transparent border-b border-transparent"
       )}
     >
-      <div className="max-w-[1320px] mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <div className="container-x">
+        <div className="flex items-center justify-between h-20 lg:h-24">
           <Logo />
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Ana navigasyon">
+          <nav className="hidden lg:flex items-center gap-10" aria-label="Ana navigasyon">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors",
-                  pathname.startsWith(link.href)
-                    ? "text-plum"
-                    : "text-ink-muted hover:text-ink"
+                  "relative text-[14px] tracking-[0.02em] transition-colors py-1",
+                  "after:absolute after:left-0 after:-bottom-0.5 after:h-px after:bg-gold after:transition-[width] after:duration-300",
+                  isActive(link.href)
+                    ? "text-ink after:w-full"
+                    : "text-ink-muted hover:text-ink after:w-0 hover:after:w-full"
                 )}
-                aria-current={pathname.startsWith(link.href) ? "page" : undefined}
+                aria-current={isActive(link.href) ? "page" : undefined}
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <Button asChild variant="primary" size="sm">
-              <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                Ücretsiz Tanışma Dersi Oluşturun
+            <Button asChild variant="primary" size="md">
+              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
+                {CTA_LABEL}
               </a>
             </Button>
           </div>
 
-          {/* Mobile menu button */}
           <button
             ref={menuButtonRef}
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="lg:hidden text-ink p-2 -mr-2"
+            className="lg:hidden text-ink p-2 -mr-2 relative z-50"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
@@ -148,7 +133,6 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -157,35 +141,59 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Navigasyon menüsü"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-16 bg-paper z-40 flex flex-col px-6 pt-8 pb-16 overflow-y-auto lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 top-20 bg-paper z-40 flex flex-col lg:hidden overflow-y-auto"
           >
-            <nav aria-label="Mobil navigasyon" className="flex flex-col gap-1 mb-8">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "text-xl font-display py-3 border-b border-line transition-colors",
-                    pathname.startsWith(link.href)
-                      ? "text-plum"
-                      : "text-ink hover:text-plum"
-                  )}
-                  aria-current={pathname.startsWith(link.href) ? "page" : undefined}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
+            <div className="container-x flex flex-col flex-1 pt-10 pb-12">
+              <nav aria-label="Mobil navigasyon" className="flex flex-col">
+                {NAV_LINKS.map((link, i) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "flex items-baseline justify-between font-display text-[2.5rem] leading-none py-5 border-b border-line transition-colors",
+                      isActive(link.href) ? "text-plum" : "text-ink hover:text-plum"
+                    )}
+                    aria-current={isActive(link.href) ? "page" : undefined}
+                  >
+                    <span>{link.label}</span>
+                    <span className="eyebrow" aria-hidden="true">
+                      0{i + 1}
+                    </span>
+                  </Link>
+                ))}
+              </nav>
 
-            <Button asChild variant="primary" size="lg" className="w-full">
-              <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                Ücretsiz Tanışma Dersi Oluşturun
-              </a>
-            </Button>
+              <div className="mt-10 flex flex-col gap-4">
+                <Button asChild variant="primary" size="xl" className="w-full">
+                  <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
+                    {CTA_LABEL}
+                  </a>
+                </Button>
+                <a
+                  href={TEL_URL}
+                  className="text-center text-[15px] text-ink-muted hover:text-ink transition-colors"
+                >
+                  {BRAND.phoneDisplay}
+                </a>
+              </div>
+
+              <div className="mt-auto pt-12 flex flex-col gap-2 text-sm text-ink-muted">
+                <p className="eyebrow mb-2">Karşıyaka, İzmir</p>
+                <p>{ADDRESS_FULL}</p>
+                <a
+                  href={BRAND.instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-ink transition-colors"
+                >
+                  {BRAND.instagramHandle}
+                </a>
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

@@ -3,97 +3,90 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 
-export function BrandLine() {
+/**
+ * A single continuous gold line that begins as a brush stroke and resolves
+ * into a treble clef — the one piece of motion on the site.
+ */
+export function BrandLine({ className }: { className?: string }) {
   const pathRef = useRef<SVGPathElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const path = pathRef.current;
-    if (!path || shouldReduceMotion) return;
+    if (!path) return;
 
     const length = path.getTotalLength();
     path.style.strokeDasharray = `${length}`;
-    path.style.strokeDashoffset = `${length}`;
 
+    if (shouldReduceMotion) {
+      path.style.strokeDashoffset = "0";
+      path.style.opacity = "1";
+      return;
+    }
+
+    path.style.strokeDashoffset = `${length}`;
     const animation = path.animate(
       [
-        { strokeDashoffset: length, opacity: 0.2 },
-        { strokeDashoffset: 0, opacity: 0.7 },
+        { strokeDashoffset: length, opacity: 0 },
+        { strokeDashoffset: length, opacity: 1, offset: 0.05 },
+        { strokeDashoffset: 0, opacity: 1 },
       ],
       {
-        duration: 2200,
-        easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        duration: 2800,
+        easing: "cubic-bezier(0.65, 0, 0.35, 1)",
         fill: "forwards",
-        delay: 400,
+        delay: 500,
       }
     );
-
     return () => animation.cancel();
   }, [shouldReduceMotion]);
 
   return (
     <svg
-      viewBox="0 0 500 700"
+      viewBox="0 0 520 760"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full max-w-[480px] max-h-[640px]"
+      className={className}
       aria-hidden="true"
     >
-      {/* Decorative compositional circles */}
-      <circle cx="380" cy="180" r="120" fill="var(--color-lavender)" opacity="0.12" />
-      <circle cx="140" cy="520" r="80" fill="var(--color-rose)" opacity="0.08" />
-
-      {/* Brand line — fırçadan müziğe */}
-      <path
-        ref={pathRef}
-        d="M 80 600
-           C 120 560, 180 480, 200 400
-           C 220 320, 160 280, 200 220
-           C 240 160, 340 180, 360 140
-           C 380 100, 350 60, 320 80
-           C 290 100, 280 160, 300 200
-           C 320 240, 380 220, 400 260
-           C 420 300, 380 360, 340 380
-           C 300 400, 240 380, 220 420
-           C 200 460, 240 520, 260 560
-           C 280 600, 260 660, 220 680"
-        stroke="url(#brandGradient)"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-
-      {/* Musical staff lines — subtle */}
-      {[200, 220, 240, 260, 280].map((y, i) => (
+      {/* Faint staff — five hairlines */}
+      {[300, 330, 360, 390, 420].map((y) => (
         <line
-          key={i}
-          x1="300"
+          key={y}
+          x1="60"
           y1={y}
           x2="460"
           y2={y}
           stroke="var(--color-plum)"
-          strokeWidth="1"
-          opacity="0.08"
+          strokeWidth="0.75"
+          opacity="0.12"
         />
       ))}
 
-      {/* Music note dots */}
-      <circle cx="340" cy="218" r="5" fill="var(--color-plum)" opacity="0.15" />
-      <circle cx="380" cy="232" r="4" fill="var(--color-violet)" opacity="0.12" />
-      <circle cx="420" cy="210" r="3.5" fill="var(--color-magenta)" opacity="0.1" />
+      {/* Brush → clef, one line */}
+      <path
+        ref={pathRef}
+        d="M 40 720
+           C 90 690, 130 640, 150 580
+           C 172 512, 160 470, 200 440
+           C 236 412, 300 420, 310 380
+           C 322 332, 250 300, 236 260
+           C 224 224, 250 190, 276 160
+           C 302 130, 318 90, 300 64
+           C 282 40, 250 60, 246 100
+           C 240 160, 258 240, 268 330
+           C 278 420, 290 500, 292 570
+           C 294 620, 270 650, 240 640
+           C 210 632, 214 596, 246 592"
+        stroke="var(--color-gold)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        opacity="0"
+      />
 
-      {/* Palette dots — painterly feel */}
-      <circle cx="160" cy="420" r="8" fill="var(--color-magenta)" opacity="0.15" />
-      <circle cx="140" cy="440" r="5" fill="var(--color-rose)" opacity="0.12" />
-      <circle cx="180" cy="445" r="4" fill="var(--color-violet)" opacity="0.1" />
-
-      <defs>
-        <linearGradient id="brandGradient" x1="80" y1="600" x2="220" y2="80" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="var(--color-plum)" />
-          <stop offset="50%" stopColor="var(--color-violet)" />
-          <stop offset="100%" stopColor="var(--color-magenta)" />
-        </linearGradient>
-      </defs>
+      {/* Terminal — the clef's dot */}
+      <circle cx="246" cy="592" r="6" fill="var(--color-plum)" opacity="0.9" />
     </svg>
   );
 }
