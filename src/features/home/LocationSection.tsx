@@ -20,9 +20,9 @@ export function LocationSection({ settings, mapsUrl }: LocationSectionProps) {
             id="location-heading"
             className="font-display text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.95] text-ink"
           >
-            Karşıyaka,
+            Karşıyaka’da,
             <br />
-            Girne üstü.
+            Yeni Girne’de.
           </h2>
           <address className="mt-8 not-italic">
             <p className="text-[17px] leading-relaxed text-ink">

@@ -20,7 +20,7 @@ export default async function AdminSaatlerPage() {
         <div>
           <h1 className="font-display text-3xl text-ink">Tanışma saatleri</h1>
           <p className="mt-1 text-ink-muted">
-            Haftalık ızgara: grup 10–12 / 13–15 / 15–17 / 18–20, birebir müzik 10–20. Sitede iki hafta görünür.
+            Haftalık ızgara: grup 10–12 / 13–15 / 15–17 / 18–20, birebir müzik 10–20. Sitede bu ay görünür.
           </p>
         </div>
         <Link

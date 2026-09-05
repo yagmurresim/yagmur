@@ -51,14 +51,15 @@ export default function AkademiPage() {
             id="akademi-heading"
             className="font-display max-w-[14ch] text-[clamp(3.2rem,8vw,7rem)] leading-[0.9] tracking-[-0.03em]"
           >
-            Burası bir akademi.
+            Karşıyaka’da
             <br />
-            <em className="italic text-plum">Resim ve müzik.</em>
+            <em className="italic text-plum">resim ve müzik.</em>
           </h1>
           <p className="mt-8 max-w-[54ch] text-[18px] leading-relaxed text-ink-muted">
-            Yağmur Sanat Akademisi, Karşıyaka’da resim ve müzik eğitimi verir.
-            4 yaşındaki çocuk da gelir, yetişkin de. Dersler MEB onaylıdır;
-            bitince resmî sertifika alınır. Kayıt bir formla değil, bir konuşmayla başlar.
+            Yağmur Sanat Akademisi Karşıyaka’da resim, piyano, keman ve gitar
+            eğitimi verir. 4 yaşındaki çocuk da gelir, yetişkin de. Dersler MEB
+            onaylıdır; programı bitirene resmî sertifika verilir. İlk adım ücretsiz
+            tanışma dersidir.
           </p>
         </div>
       </section>
@@ -131,14 +132,13 @@ export default function AkademiPage() {
           </h2>
           <div className="flex flex-col gap-5 text-[17px] leading-relaxed text-ink-muted lg:col-span-7">
             <p>
-              Sitede form yok. WhatsApp’tan yazın veya arayın: yaş, hangi eğitim,
-              mümkünse uygun günler. Akademi ekibi döner, ücretsiz bir tanışma dersi
-              ayarlar. O derste akademi görülür, hoca tanınır, tempo konuşulur.
-              Kayıt o konuşmadan sonra isterseniz yapılır.
+              Siteden ücretsiz tanışma dersi saati seçin veya WhatsApp’tan yazın:
+              yaş ve hangi eğitim yeterli. Akademi teyit eder. O derste akademiyi
+              ve hocayı görürsünüz. Kayıt o dersten sonra, isterseniz yapılır.
             </p>
             <p>
-              Tanışma dersi bir satış görüşmesi değildir. Gelmek zorunda da değilsiniz —
-              bakıp “şimdilik değil” demek yeter.
+              Tanışma dersi ücretli bir deneme paketi değildir. Gelmek zorunda da
+              değilsiniz — bakıp “şimdilik değil” demek yeter.
             </p>
           </div>
         </div>
@@ -173,7 +173,7 @@ export default function AkademiPage() {
       <section className="bg-paper px-6 py-24 lg:py-28">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] text-ink">
-            Kapı açık.
+            Ücretsiz tanışma dersi.
           </h2>
           <p className="mt-4 max-w-[44ch] text-[17px] leading-relaxed text-ink-muted">
             Açık saati seçin veya WhatsApp’tan yazın. Yaşınızı ve hangi eğitimi

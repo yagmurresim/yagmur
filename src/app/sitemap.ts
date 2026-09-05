@@ -45,10 +45,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  const programRoutes: MetadataRoute.Sitemap = programs.map((program) => ({
-    url: `${SITE_URL}/egitimler/${program.slug}`,
-    lastModified: new Date(program.updated_at),
-    changeFrequency: "weekly",
+  const slugs = new Set([
+    "resim-kursu",
+    "piyano-kursu",
+    "keman-kursu",
+    "gitar-kursu",
+    ...programs.map((p) => p.slug),
+  ]);
+  const programRoutes: MetadataRoute.Sitemap = [...slugs].map((slug) => ({
+    url: `${SITE_URL}/egitimler/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
     priority: 0.85,
   }));
 

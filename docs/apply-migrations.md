@@ -16,6 +16,7 @@ Signup kapalı tutun. SQL Editor’da her dosyayı ayrı çalıştırın; bir ö
 8. `008_whatsapp_crm.sql` — staff lead kaydı: yaş opsiyonel, kaynak kanalı, takip indeksi
 9. `009_intro_slots.sql` — haftalık tanışma saati ızgarası + `applications.intro_slot_id`
 10. `010_intro_grid_seed.sql` — her gün grup (2 saat) ve birebir müzik (1 saat) ızgarası
+11. `011_intro_month_horizon.sql` — rezervasyon bu ayla sınırlı; geçmiş günler kapalı
 
 Sonra:
 

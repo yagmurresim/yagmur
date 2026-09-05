@@ -7,7 +7,7 @@ const SEED_FAQS: Faq[] = [
     id: "1",
     question: "Ücretsiz tanışma dersi nedir?",
     answer:
-      "Akademiyi ve hocayı görmeniz için ilk ders. Siteden açık saati seçebilir veya WhatsApp’tan yazabilirsiniz. Satış görüşmesi değildir — gelip “şimdilik değil” demek de bir cevap.",
+      "Akademiyi ve hocayı görmeniz için ücretsiz ilk ders. Siteden açık saati seçebilir veya WhatsApp’tan yazabilirsiniz. Beğenmezseniz kayıt olmazsınız.",
     sort_order: 1,
     status: "published",
     program_id: null,
@@ -64,9 +64,9 @@ export function FaqPreviewSection({ faqs }: FaqPreviewSectionProps) {
             id="faq-preview-heading"
             className="font-display text-[clamp(2.2rem,4vw,3.6rem)] leading-[0.95] text-ink"
           >
-            Sormadan
+            Sık sorulan
             <br />
-            gelmeyin.
+            sorular.
           </h2>
           <Link
             href="/sss"

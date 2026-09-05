@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import { getPublishedPrograms, getProgramBySlug } from "@/server/queries/programs";
 import { buildProgramMetadata } from "@/lib/seo";
@@ -119,8 +119,8 @@ const PROGRAM_INTROS: Record<
   }
 > = {
   "resim-kursu": {
-    heading: "Görmek, sonra çizmek.",
-    body: "Resim dersi grup halinde yapılır. Çocuk da gelir, yetişkin de; masalar yaşa ve seviyeye göre ayrılır. İlk iş “güzel resim” üretmek değildir — görmeyi öğrenmek, sonra onu kâğıda veya tuvale geçirmektir.",
+    heading: "Karşıyaka’da grup resim dersi",
+    body: "Resim dersi grup halinde yapılır. Çocuk da gelir, yetişkin de; masalar yaşa ve seviyeye göre ayrılır. İlk iş “güzel resim” üretmek değildir: görmeyi öğrenmek, sonra onu kâğıda veya tuvale geçirmektir.",
     approach:
       "Derslerde kurşun kalem, kömür, suluboya ve akrilik dönüşümlü kullanılır. Kompozisyon, oran, ışık ve doku yavaş yavaş eklenir. Hoca her masada durur; grubun temposu ortak, her elinki ayrıdır. Dönem sonunda seçilen işler sergiye çıkar.",
     who: "Hiç tutmamış olan 4 yaşındaki çocuk da gelir, lise portföyü hazırlayan da, iş çıkışı resim yapmak isteyen yetişkin de. Güzel sanatlar lisesi veya fakültesine girecekler için sınav tekniği ve portföy, dersin içinde desteklenir — ayrı bir paket satılmaz.",
@@ -135,7 +135,7 @@ const PROGRAM_INTROS: Record<
     prep: "Güzel sanatlar lise ve fakülte sınavlarına hazırlanan öğrenciler için modelden çizim, leke, kompozisyon ve portföy düzeni dersin parçasıdır. Ayrı bir “hazırlık sınıfı” yoktur; hoca o öğrencinin hedefine göre masadaki işi yönlendirir.",
   },
   "piyano-kursu": {
-    heading: "Tek öğrenci, tek klavye.",
+    heading: "Birebir piyano dersi",
     body: "Piyano dersi birebir yapılır. Hoca o günün temposuna, elin büyüklüğüne ve kulağın durumuna göre gider. Yeni başlayanlar nota ve duruştan; devam edenler repertuvar, pedallar ve yorumdan ilerler.",
     approach:
       "İlk aylar el duruşu, ritim ve basit ezgilerdir. Sonra iki elin bağımsızlığı, gam, arpej ve kısa parçalar gelir. “Hızlı çalmak” hedef değildir; temiz basmak, dinlemek ve parçayı bitirmek hedeftir. Dönem sonunda isteyen konserde çalar.",
@@ -149,7 +149,7 @@ const PROGRAM_INTROS: Record<
     ],
   },
   "keman-kursu": {
-    heading: "Yay omza oturunca.",
+    heading: "Birebir veya grup keman dersi",
     body: "Keman, duruş ve kulak işidir. Ders birebir veya küçük grup olarak açılır. Yeni başlayan yay tutuşu, çene ve sol elle tanışır; devam edenler pozisyon, titreme ve ifade üzerine çalışır.",
     approach:
       "İlk iş enstrümanı vücuda yerleştirmektir — omuz, çene, sol el, yay. Ses temizlenmeden parça şişirilmez. Grup dersinde birlikte çalmak, birebirde ise ayrıntı öne çıkar. Hangisinin size uyduğu tanışma dersinde konuşulur.",
@@ -163,7 +163,7 @@ const PROGRAM_INTROS: Record<
     ],
   },
   "gitar-kursu": {
-    heading: "Akor, sonra şarkı.",
+    heading: "Birebir veya grup gitar dersi",
     body: "Gitar dersi birebir veya grup olarak yapılır. Akustik veya elektro — hangisini istediğiniz tanışma dersinde netleşir. Yeni başlayan akor ve ritme; devam edenler parmak stili, solo ve repertuvara gider.",
     approach:
       "İlk iş sol elin basması, sağ elin ritmi tutmasıdır. Nota okuma isteyene öğretilir; herkesin yolu nota üzerinden geçmek zorunda değildir. Grupta birlikte çalmak, birebirde ise sizin parçanız. Dönem sonunda isteyen sahnede çalar.",
@@ -183,7 +183,7 @@ export default async function ProgramDetailPage({ params }: Props) {
   const { slug } = await params;
   const program = (await getProgramBySlug(slug)) ?? FALLBACK_PROGRAMS[slug];
 
-  if (!program) notFound();
+  if (!program) redirect("/egitimler");
 
   const localKeyword = LOCAL_KEYWORDS[slug] ?? `${program.name} kursu`;
   const intro = PROGRAM_INTROS[slug] ?? {
@@ -266,7 +266,7 @@ export default async function ProgramDetailPage({ params }: Props) {
             {program.name}
           </h1>
           <p className="mt-8 max-w-[48ch] text-[18px] leading-relaxed text-ink-muted">
-            {program.short_description ?? intro.body}
+            {intro.body || program.short_description}
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Button asChild size="xl">
@@ -326,7 +326,7 @@ export default async function ProgramDetailPage({ params }: Props) {
       <section className="bg-paper px-6 py-24">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] text-ink">
-            {program.name} eğitimine bakın.
+            {program.name} için tanışma dersi.
           </h2>
           <p className="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
             Açık saati seçin veya WhatsApp’tan yazın. Yaş ve {program.name.toLowerCase()}

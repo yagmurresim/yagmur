@@ -5,7 +5,7 @@ import { z } from "zod";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { checkApplicationRateLimit, getClientIP } from "@/lib/security/rate-limit";
 import { notifyAcademy } from "@/lib/notify";
-import { formatSlotWhen, ageBandLabel, nextOccurrences } from "@/lib/intro-slots";
+import { formatSlotWhen, ageBandLabel, occurrencesInCurrentMonth } from "@/lib/intro-slots";
 import { INTRO_KVKK_VERSION } from "@/lib/kvkk";
 
 const BookingSchema = z.object({
@@ -31,7 +31,7 @@ const RPC_ERRORS: Record<string, string> = {
   age_mismatch: "Bu saat seçilen yaş için değil.",
   capacity_full: "Bu saat doldu. Başka bir saat seçin.",
   invalid_occurrence: "Seçilen saat geçersiz.",
-  invalid_student_age: "Yaş gerekli.",
+  invalid_student_age: "Yaş 4–80 arası olmalı.",
   invalid_student_name: "Ad soyad gerekli.",
   invalid_phone: "Telefon gerekli.",
   kvkk_consent_required: "KVKK onayı gerekli.",
@@ -77,7 +77,7 @@ export async function bookIntroLesson(input: unknown): Promise<BookIntroResult> 
     return { ok: false, error: "Bu saat artık açık değil." };
   }
 
-  const allowed = nextOccurrences(slot.weekday, slot.start_time, 2).some(
+  const allowed = occurrencesInCurrentMonth(slot.weekday, slot.start_time).some(
     (d) => d.toISOString() === startsAt.toISOString()
   );
   if (!allowed) {

@@ -60,9 +60,9 @@ export default async function EgitimlerPage() {
             id="egitimler-heading"
             className="font-display max-w-[12ch] text-[clamp(3.2rem,8vw,7rem)] leading-[0.9] tracking-[-0.03em]"
           >
-            Dört eğitim.
+            Resim, piyano,
             <br />
-            <em className="italic text-plum">Bir akademi.</em>
+            <em className="italic text-plum">keman, gitar.</em>
           </h1>
           <p className="mt-8 max-w-[52ch] text-[17px] leading-relaxed text-ink-muted">
             Resim grup, piyano birebir, keman ve gitar ikisi birden. Hepsi MEB onaylı,
@@ -111,7 +111,7 @@ export default async function EgitimlerPage() {
       <section className="bg-paper px-6 py-24">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] text-ink">
-            Kararsızsanız gelin bakın.
+            Hangisi size uyar, tanışma dersinde görülür.
           </h2>
           <p className="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
             Açık saati seçin veya WhatsApp’tan yazın. Ücretsiz tanışma dersi

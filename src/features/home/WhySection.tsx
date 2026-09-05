@@ -5,7 +5,7 @@ const WHY_ITEMS = [
   },
   {
     title: "Eğitmen kadrosu",
-    body: "Alanında çalışan hocalar, her öğrenciye ayrı tempo.",
+    body: "Dersi veren hocalar kendi alanında çalışır. Tempo öğrenciye göre ayarlanır.",
   },
   {
     title: "Sergi ve konser",
@@ -26,11 +26,9 @@ export function WhySection() {
             id="why-heading"
             className="font-display text-[clamp(2.4rem,5vw,4.6rem)] leading-[0.95] text-ink"
           >
-            Akademi.
+            Neden
             <br />
-            Eğitim.
-            <br />
-            <em className="italic text-plum">Disiplin.</em>
+            <em className="italic text-plum">Yağmur Sanat.</em>
           </h2>
         </div>
         <ul className="flex flex-col lg:col-span-7">

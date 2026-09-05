@@ -22,14 +22,13 @@ export default async function UcretsizTanismaDersiPage() {
             id="apply-heading"
             className="font-display max-w-[14ch] text-[clamp(3rem,8vw,6.8rem)] leading-[0.9] tracking-[-0.03em]"
           >
-            Saat seçin.
+            Ücretsiz
             <br />
-            <em className="italic text-plum">Ya da yazın.</em>
+            <em className="italic text-plum">tanışma dersi.</em>
           </h1>
           <p className="mt-8 max-w-[52ch] text-[18px] leading-relaxed text-ink-muted">
-            Ücretsiz tanışma dersi, akademiyi ve hocayı görmeniz içindir.
-            Aşağıdaki ızgaradan yaşınıza uyan saati seçin. Uyan saat yoksa
-            WhatsApp yeter — form doldurmak zorunda değilsiniz.
+            Akademiyi ve hocayı görmek için ilk ders ücretsizdir. Aşağıdan
+            eğitiminizi ve saati seçin. Uygun saat yoksa WhatsApp’tan yazın.
           </p>
         </div>
       </section>

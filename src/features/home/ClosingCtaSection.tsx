@@ -18,12 +18,12 @@ export function ClosingCtaSection() {
           id="cta-heading"
           className="font-display max-w-[12ch] text-[clamp(3rem,8vw,7rem)] leading-[0.9] tracking-[-0.03em]"
         >
-          Kapı açık.
+          Ücretsiz
           <br />
-          Saat seçmeniz yeter.
+          tanışma dersi.
         </h2>
         <p className="mt-8 max-w-[42ch] text-[17px] text-ivory/70">
-          Ücretsiz tanışma dersi. Açık saati seçin; uymuyorsa WhatsApp’tan yazın.
+          Resim, piyano, keman veya gitar. Açık saati seçin; uymuyorsa WhatsApp’tan yazın.
         </p>
         <div className="mt-10">
           <Button asChild size="xl" variant="inverse">

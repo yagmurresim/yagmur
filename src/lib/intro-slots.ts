@@ -91,22 +91,54 @@ function istanbulDate(y: number, m: number, d: number, hh: number, mm: number): 
   return new Date(`${y}-${pad(m)}-${pad(d)}T${pad(hh)}:${pad(mm)}:00+03:00`);
 }
 
-export function nextOccurrences(
-  weekday: number,
-  startTime: string,
-  count = 2
-): Date[] {
-  const now = new Date();
-  const today = istanbulParts(now);
-  const [hh, mm] = formatTime(startTime).split(":").map(Number);
-  const results: Date[] = [];
-  const startOffset = (weekday - today.weekday + 7) % 7;
+export function istanbulToday() {
+  return istanbulParts(new Date());
+}
 
-  for (let week = 0; results.length < count && week < 8; week++) {
-    const cursor = istanbulDate(today.y, today.m, today.d + startOffset + week * 7, hh, mm);
+export function daysInIstanbulMonth(year: number, month: number): number {
+  return new Date(year, month, 0).getDate();
+}
+
+export function currentMonthLabel(): string {
+  return new Intl.DateTimeFormat("tr-TR", {
+    month: "long",
+    year: "numeric",
+    timeZone: "Europe/Istanbul",
+  }).format(new Date());
+}
+
+export function istanbulDateKey(d: Date): string {
+  const p = istanbulParts(d);
+  return `${p.y}-${pad(p.m)}-${pad(p.d)}`;
+}
+
+export function monthEndHorizon(): Date {
+  const t = istanbulToday();
+  const last = daysInIstanbulMonth(t.y, t.m);
+  return istanbulDate(t.y, t.m, last, 23, 59);
+}
+
+export function occurrencesInCurrentMonth(weekday: number, startTime: string): Date[] {
+  const now = new Date();
+  const today = istanbulToday();
+  const [hh, mm] = formatTime(startTime).split(":").map(Number);
+  const last = daysInIstanbulMonth(today.y, today.m);
+  const results: Date[] = [];
+
+  for (let day = 1; day <= last; day++) {
+    const cursor = istanbulDate(today.y, today.m, day, hh, mm);
+    if (istanbulParts(cursor).weekday !== weekday) continue;
     if (cursor.getTime() <= now.getTime() + 60 * 60 * 1000) continue;
     results.push(cursor);
   }
 
   return results;
+}
+
+export function nextOccurrences(
+  weekday: number,
+  startTime: string,
+  _count = 2
+): Date[] {
+  return occurrencesInCurrentMonth(weekday, startTime);
 }

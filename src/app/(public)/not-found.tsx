@@ -8,9 +8,9 @@ export default function NotFound() {
         <p className="font-display text-[clamp(5rem,18vw,12rem)] leading-none text-plum/25" aria-hidden="true">
           404
         </p>
-        <h1 className="font-display mt-4 text-4xl">Bu sayfa yok.</h1>
+        <h1 className="font-display mt-4 text-4xl">Sayfa bulunamadı.</h1>
         <p className="mt-3 max-w-[36ch] text-ink-muted">
-          Aradığınız sayfa yok ya da taşındı.
+          Bu adres yok ya da taşındı. Ana sayfadan veya eğitimlerden devam edin.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild variant="primary" size="lg">

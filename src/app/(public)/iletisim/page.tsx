@@ -31,9 +31,9 @@ export default async function IletisimPage() {
             id="iletisim-heading"
             className="font-display max-w-[12ch] text-[clamp(3.2rem,8vw,7rem)] leading-[0.9]"
           >
-            Yazın, arayın
+            WhatsApp, telefon
             <br />
-            <em className="italic text-plum">veya gelin.</em>
+            <em className="italic text-plum">veya adres.</em>
           </h1>
           <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
             Form yok. WhatsApp en kolayı: yaşınızı ve aklınızdaki eğitimi yazın,

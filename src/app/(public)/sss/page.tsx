@@ -39,7 +39,7 @@ const SEED_FAQS = [
     id: "s3",
     question: "Ücretsiz tanışma dersi nedir?",
     answer:
-      "Akademiyi ve hocayı görmeniz için ilk ders. Siteden açık saati seçebilir veya WhatsApp’tan yazabilirsiniz. Satış görüşmesi değildir. Gelip “şimdilik değil” demek de bir cevap.",
+      "Akademiyi ve hocayı görmeniz için ücretsiz ilk ders. Siteden açık saati seçebilir veya WhatsApp’tan yazabilirsiniz. Beğenmezseniz kayıt olmazsınız.",
     sort_order: 3,
     status: "published" as const,
     program_id: null,
@@ -155,9 +155,9 @@ export default async function SssPage() {
             id="sss-heading"
             className="font-display max-w-[12ch] text-[clamp(3rem,7vw,6.2rem)] leading-[0.9]"
           >
-            Sormadan
+            Sık sorulan
             <br />
-            gelmeyin.
+            sorular.
           </h1>
           <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
             Yaş, ücret, enstrüman, MEB, kayıt. Aklınızdaki burada yoksa WhatsApp yeter —
@@ -175,7 +175,7 @@ export default async function SssPage() {
       <section className="bg-paper px-6 pb-24 lg:pb-32">
         <div className="mx-auto max-w-[820px]">
           <h2 className="font-display text-[clamp(1.8rem,3vw,2.6rem)] text-ink">
-            Cevap yetmediyse yazın.
+            Burada yoksa sorun.
           </h2>
           <p className="mt-3 max-w-[44ch] text-[16px] text-ink-muted">
             Açık saati seçin veya yazın. Yaş ve hangi eğitim — gerisini konuşuruz.

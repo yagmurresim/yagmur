@@ -38,9 +38,9 @@ export function HeroSection({ settings }: HeroSectionProps) {
             keşfet.
           </h1>
 
-          <p className="mt-8 max-w-[42ch] text-[17px] leading-relaxed text-ink-muted lg:text-[18px]">
-            Karşıyaka’da MEB onaylı sanat akademisi. Resim, piyano, keman ve gitar;
-            4 yaştan yetişkine. Ücretsiz tanışma dersi — form yok, yazmanız yeter.
+          <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-ink-muted lg:text-[18px]">
+            Karşıyaka’da resim, piyano, keman ve gitar. MEB onaylı kurs, 4 yaştan
+            yetişkine. Ücretsiz tanışma dersi için siteden saat seçin veya yazın.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">

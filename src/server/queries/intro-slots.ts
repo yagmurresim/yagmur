@@ -1,6 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { nextOccurrences } from "@/lib/intro-slots";
+import { monthEndHorizon, occurrencesInCurrentMonth } from "@/lib/intro-slots";
 import type { IntroOccurrence, IntroSlot } from "@/types";
 
 function mapSlot(row: Record<string, unknown>): IntroSlot {
@@ -59,8 +59,7 @@ export async function getOpenIntroOccurrences(): Promise<IntroOccurrence[]> {
   }
 
   const slots = ((data ?? []) as Array<Record<string, unknown>>).map(mapSlot);
-  const horizon = new Date();
-  horizon.setDate(horizon.getDate() + 16);
+  const horizon = monthEndHorizon();
 
   const { data: bookings } = await supabase
     .from("applications")
@@ -80,7 +79,7 @@ export async function getOpenIntroOccurrences(): Promise<IntroOccurrence[]> {
 
   const occurrences: IntroOccurrence[] = [];
   for (const slot of slots) {
-    for (const starts of nextOccurrences(slot.weekday, slot.start_time, 2)) {
+    for (const starts of occurrencesInCurrentMonth(slot.weekday, slot.start_time)) {
       const iso = starts.toISOString();
       const remaining = slot.capacity - (taken.get(`${slot.id}|${iso}`) ?? 0);
       if (remaining <= 0) continue;

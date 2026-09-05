@@ -12,7 +12,7 @@ const STEPS = [
   },
   {
     title: "Akademi teyit eder",
-    body: "Kayıt Takip’e düşer. İlk ders ücretsiz tanışmadır.",
+    body: "Başvurunuz bize düşer. İlk ders ücretsizdir; kayıt o dersten sonra, isterseniz.",
   },
 ];
 
@@ -24,9 +24,9 @@ export function ProcessSection() {
           id="process-heading"
           className="font-display mb-16 max-w-[14ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95] text-ink"
         >
-          Tanışma dersi
+          Ücretsiz tanışma
           <br />
-          üç adımlık iş.
+          dersi nasıl olur.
         </h2>
 
         <ol className="grid gap-12 md:grid-cols-3 md:gap-8">
