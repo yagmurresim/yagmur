@@ -23,6 +23,7 @@ const sourceChannelSchema = z.enum([
   "phone",
   "instagram",
   "walk_in",
+  "web",
   "other",
 ]);
 
@@ -453,4 +454,84 @@ export async function deleteInstructor(id: string): Promise<void> {
     .maybeSingle();
   requireRow(data, error, "deleteInstructor");
   revalidatePath("/egitmenler", "layout");
+}
+
+const IntroSlotWriteSchema = z.object({
+  program_id: z.string().uuid(),
+  weekday: z.coerce.number().int().min(1).max(7),
+  start_time: z.string().regex(/^\d{2}:\d{2}$/),
+  duration_minutes: z.coerce.number().int().min(15).max(180).default(45),
+  age_min: z.coerce.number().int().min(4).max(80),
+  age_max: z.preprocess((v) => {
+    if (v === "" || v === null || v === undefined) return null;
+    const n = typeof v === "number" ? v : Number(v);
+    return Number.isFinite(n) ? n : null;
+  }, z.number().int().min(4).max(80).nullable()),
+  capacity: z.coerce.number().int().min(1).max(20).default(1),
+  active: z.boolean().default(true),
+  notes: optionalNullableString(300),
+}).refine(
+  (d) => d.age_max == null || d.age_min <= d.age_max,
+  { message: "Yaş aralığı ters.", path: ["age_max"] }
+);
+
+export async function createIntroSlot(
+  data: z.infer<typeof IntroSlotWriteSchema>
+): Promise<string> {
+  await requireAdmin();
+  const parsed = IntroSlotWriteSchema.parse(data);
+  const supabase = await createClient();
+  const { data: row, error } = await supabase
+    .from("intro_slots")
+    .insert({
+      program_id: parsed.program_id,
+      weekday: parsed.weekday,
+      start_time: parsed.start_time,
+      duration_minutes: parsed.duration_minutes,
+      age_min: parsed.age_min,
+      age_max: parsed.age_max,
+      capacity: parsed.capacity,
+      active: parsed.active,
+      notes: parsed.notes ?? null,
+    })
+    .select("id")
+    .maybeSingle();
+  const created = requireRow(row, error, "createIntroSlot") as { id: string };
+  revalidatePath("/admin/saatler");
+  revalidatePath("/ucretsiz-tanisma-dersi");
+  return created.id;
+}
+
+export async function updateIntroSlot(
+  id: string,
+  data: z.infer<typeof IntroSlotWriteSchema>
+): Promise<void> {
+  await requireAdmin();
+  const slotId = uuidSchema.parse(id);
+  const parsed = IntroSlotWriteSchema.parse(data);
+  const supabase = await createClient();
+  const { data: row, error } = await supabase
+    .from("intro_slots")
+    .update({ ...parsed, updated_at: new Date().toISOString() })
+    .eq("id", slotId)
+    .select("id")
+    .maybeSingle();
+  requireRow(row, error, "updateIntroSlot");
+  revalidatePath("/admin/saatler");
+  revalidatePath("/ucretsiz-tanisma-dersi");
+}
+
+export async function deleteIntroSlot(id: string): Promise<void> {
+  await requireAdmin();
+  const slotId = uuidSchema.parse(id);
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("intro_slots")
+    .update({ active: false, updated_at: new Date().toISOString() })
+    .eq("id", slotId)
+    .select("id")
+    .maybeSingle();
+  requireRow(data, error, "deleteIntroSlot");
+  revalidatePath("/admin/saatler");
+  revalidatePath("/ucretsiz-tanisma-dersi");
 }

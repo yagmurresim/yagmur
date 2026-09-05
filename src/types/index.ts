@@ -87,6 +87,7 @@ export type LeadSourceChannel =
   | "phone"
   | "instagram"
   | "walk_in"
+  | "web"
   | "other";
 
 export interface Application {
@@ -113,9 +114,34 @@ export interface Application {
   assigned_to: string | null;
   last_contacted_at: string | null;
   next_action_at: string | null;
+  intro_slot_id: string | null;
+  intro_occurrence_at: string | null;
   created_at: string;
   updated_at: string;
   program_name?: string;
+}
+
+export interface IntroSlot {
+  id: string;
+  program_id: string;
+  weekday: number;
+  start_time: string;
+  duration_minutes: number;
+  age_min: number;
+  age_max: number | null;
+  capacity: number;
+  active: boolean;
+  notes: string | null;
+  created_at: string;
+  updated_at: string;
+  program_name?: string;
+  program_slug?: string;
+}
+
+export interface IntroOccurrence {
+  slot: IntroSlot;
+  startsAt: string;
+  remaining: number;
 }
 
 export interface ApplicationNote {

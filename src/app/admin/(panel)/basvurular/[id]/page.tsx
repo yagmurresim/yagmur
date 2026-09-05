@@ -73,6 +73,15 @@ export default async function ApplicationDetailPage({ params }: Props) {
               <InfoRow label="Telefon" value={application.phone} />
               {application.email && <InfoRow label="E-posta" value={application.email} />}
               <InfoRow label="Eğitim" value={application.program_name ?? "—"} />
+              {(application.intro_occurrence_at ?? application.next_action_at) &&
+                application.intro_slot_id && (
+                <InfoRow
+                  label="Tanışma saati"
+                  value={formatDateShort(
+                    application.intro_occurrence_at ?? application.next_action_at!
+                  )}
+                />
+              )}
               <InfoRow label="Kaynak" value={leadSourceLabel(application.source_channel)} />
               {application.message && (
                 <div className="col-span-2">

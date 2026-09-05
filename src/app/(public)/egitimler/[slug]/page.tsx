@@ -35,20 +35,21 @@ const LOCAL_KEYWORDS: Record<string, string> = {
   "gitar-kursu": "Karşıyaka gitar kursu",
 };
 
-const FALLBACK_PROGRAMS: Record<
-  string,
-  {
-    id: string;
-    name: string;
-    slug: string;
-    short_description: string;
-    lesson_formats: string[];
-    intro: string | null;
-    approach: string | null;
-    learning_outcomes: string[] | null;
-    preparation_information: string | null;
-  }
-> = {
+type FallbackProgram = {
+  id: string;
+  name: string;
+  slug: string;
+  short_description: string;
+  lesson_formats: string[];
+  intro: string | null;
+  approach: string | null;
+  learning_outcomes: string[] | null;
+  preparation_information: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
+};
+
+const FALLBACK_PROGRAMS: Record<string, FallbackProgram> = {
   "resim-kursu": {
     id: "resim-kursu",
     name: "Resim",
@@ -60,6 +61,8 @@ const FALLBACK_PROGRAMS: Record<
     approach: null,
     learning_outcomes: null,
     preparation_information: null,
+    seo_title: null,
+    seo_description: null,
   },
   "piyano-kursu": {
     id: "piyano-kursu",
@@ -72,6 +75,8 @@ const FALLBACK_PROGRAMS: Record<
     approach: null,
     learning_outcomes: null,
     preparation_information: null,
+    seo_title: null,
+    seo_description: null,
   },
   "keman-kursu": {
     id: "keman-kursu",
@@ -84,6 +89,8 @@ const FALLBACK_PROGRAMS: Record<
     approach: null,
     learning_outcomes: null,
     preparation_information: null,
+    seo_title: null,
+    seo_description: null,
   },
   "gitar-kursu": {
     id: "gitar-kursu",
@@ -96,6 +103,8 @@ const FALLBACK_PROGRAMS: Record<
     approach: null,
     learning_outcomes: null,
     preparation_information: null,
+    seo_title: null,
+    seo_description: null,
   },
 };
 

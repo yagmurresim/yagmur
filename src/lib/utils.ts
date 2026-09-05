@@ -48,6 +48,7 @@ export function leadSourceLabel(channel: string | null | undefined): string {
     phone: "Telefon",
     instagram: "Instagram",
     walk_in: "Yüz yüze",
+    web: "Site",
     other: "Diğer",
   };
   return map[channel ?? ""] ?? "WhatsApp";

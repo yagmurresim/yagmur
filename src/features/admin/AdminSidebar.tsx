@@ -11,6 +11,7 @@ import {
   LogOut,
   GraduationCap,
   HelpCircle,
+  CalendarClock,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/brand/Logo";
@@ -19,6 +20,7 @@ import { createClient } from "@/lib/supabase/client";
 const NAV_ITEMS = [
   { label: "Genel Bakış", href: "/admin", icon: LayoutDashboard, exact: true },
   { label: "Takip", href: "/admin/basvurular", icon: GraduationCap },
+  { label: "Saatler", href: "/admin/saatler", icon: CalendarClock },
   { label: "Eğitimler", href: "/admin/egitimler", icon: BookOpen },
   { label: "Eğitmenler", href: "/admin/egitmenler", icon: Users },
   { label: "SSS", href: "/admin/sss", icon: HelpCircle },

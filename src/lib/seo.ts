@@ -44,7 +44,9 @@ export function buildMetadata({
   };
 }
 
-export function buildProgramMetadata(program: Program): Metadata {
+export function buildProgramMetadata(
+  program: Pick<Program, "slug" | "name" | "seo_title" | "seo_description" | "short_description">
+): Metadata {
   const SLUG_TITLES: Record<string, string> = {
     "resim-kursu": "Karşıyaka Resim Kursu | Yağmur Sanat Akademisi",
     "piyano-kursu": "Karşıyaka Piyano Kursu | Yağmur Sanat Akademisi",

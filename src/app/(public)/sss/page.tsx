@@ -38,7 +38,7 @@ const SEED_FAQS = [
     id: "s3",
     question: "Ücretsiz tanışma dersi nedir?",
     answer:
-      "Akademiyi ve hocayı görmeniz için ilk ders. Form yok. WhatsApp veya telefon yeter; ekip sizinle saat ayarlar. Bu bir satış görüşmesi değildir. Gelip “şimdilik değil” demek de bir cevap.",
+      "Akademiyi ve hocayı görmeniz için ilk ders. Siteden açık saati seçebilir veya WhatsApp’tan yazabilirsiniz. Satış görüşmesi değildir. Gelip “şimdilik değil” demek de bir cevap.",
     sort_order: 3,
     status: "published" as const,
     program_id: null,
