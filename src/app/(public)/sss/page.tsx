@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/Button";
 export const metadata: Metadata = buildMetadata({
   title: "Sık Sorulan Sorular | Yağmur Sanat Akademisi",
   description:
-    "Yağmur Sanat Akademisi SSS: eğitimler, yaş, MEB onayı, ücret, tanışma dersi, enstrüman ve Karşıyaka adresi.",
+    "Yağmur Sanat Akademisi SSS: eğitimler, yaş, MEB onayı, ücret, ücretsiz tanışma dersi, enstrüman ve Karşıyaka adresi.",
   canonical: "/sss",
 });
 
@@ -17,7 +17,7 @@ const SEED_FAQS = [
     id: "s1",
     question: "Hangi eğitimler var?",
     answer:
-      "Dört eğitim: resim, piyano, keman ve gitar. Resim grup dersidir. Piyano birebir. Keman ve gitar hem birebir hem grup olarak açılır. Hangisinin size uyduğu tanışma dersinde konuşulur.",
+      "Resim, piyano, keman ve gitar. Resim grup dersidir, piyano birebirdir. Keman ve gitar hem birebir hem grup olarak açılır. Hangisinin size uyduğu tanışma dersinde konuşulur.",
     sort_order: 1,
     status: "published" as const,
     program_id: null,
@@ -28,7 +28,7 @@ const SEED_FAQS = [
     id: "s2",
     question: "Kaç yaşında başlanır?",
     answer:
-      "4 yaşından yetişkine. Küçük çocuklarda ders süresi ve tempo yaşa göre kısalır; yetişkinlerde parça seçimi daha kişisel olur. Gruplar yaşa ve seviyeye göre ayrılır — 4 yaş ile 40 yaş aynı masada oturmaz.",
+      "4 yaşından yetişkine. Küçük çocuklarda ders süresi ve tempo yaşa göre kısalır; yetişkinlerde parça seçimi daha kişisel olur. Gruplar yaşa ve seviyeye göre ayrılır: 4 yaş ile 40 yaş aynı masada oturmaz.",
     sort_order: 2,
     status: "published" as const,
     program_id: null,
@@ -155,13 +155,11 @@ export default async function SssPage() {
             id="sss-heading"
             className="font-display max-w-[12ch] text-[clamp(3rem,7vw,6.2rem)] leading-[0.9]"
           >
-            Sık sorulan
-            <br />
-            sorular.
+            Sık sorulan sorular
           </h1>
           <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
-            Yaş, ücret, enstrüman, MEB, kayıt. Aklınızdaki burada yoksa WhatsApp yeter —
-            ekip kısa cevaplar.
+            Yaş, ücret, enstrüman, MEB onayı, kayıt. Aradığınız burada yoksa
+            WhatsApp’tan yazın; ekip kısa cevaplar.
           </p>
         </div>
       </section>
@@ -175,10 +173,11 @@ export default async function SssPage() {
       <section className="bg-paper px-6 pb-24 lg:pb-32">
         <div className="mx-auto max-w-[820px]">
           <h2 className="font-display text-[clamp(1.8rem,3vw,2.6rem)] text-ink">
-            Burada yoksa sorun.
+            Aradığınız burada yoksa sorun
           </h2>
           <p className="mt-3 max-w-[44ch] text-[16px] text-ink-muted">
-            Açık saati seçin veya yazın. Yaş ve hangi eğitim — gerisini konuşuruz.
+            Takvimden açık bir saat seçin veya WhatsApp’tan yazın. Yaş ve hangi
+            eğitim yeterli; gerisini konuşuruz.
           </p>
           <div className="mt-8">
             <Button asChild size="lg">

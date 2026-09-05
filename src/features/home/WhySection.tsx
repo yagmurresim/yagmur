@@ -1,19 +1,19 @@
 const WHY_ITEMS = [
   {
-    title: "MEB onaylı kurs",
-    body: "Eğitim ve sertifika resmî geçerliliğe sahip.",
+    title: "MEB onaylı kurs, resmî sertifika",
+    body: "Yağmur Sanat Akademisi Millî Eğitim Bakanlığı onaylı bir kurstur. Programı tamamlayanlara resmî sertifika verilir.",
   },
   {
-    title: "Eğitmen kadrosu",
-    body: "Dersi veren hocalar kendi alanında çalışır. Tempo öğrenciye göre ayarlanır.",
+    title: "Dersi kendi alanında çalışan hoca verir",
+    body: "Tempo, parça ve malzeme öğrenciye göre ayarlanır. Gruplar yaşa ve seviyeye göre ayrılır.",
   },
   {
-    title: "Sergi ve konser",
-    body: "Dönem sonunda resim sergisi, müzik konseri — dersin parçası.",
+    title: "Dönem sonunda sergi ve konser",
+    body: "Resim öğrencilerinin işi sergiye çıkar, müzik öğrencileri konserde çalar. Çıkmak teşvik edilir; zorlanmaz.",
   },
   {
-    title: "Güzel sanatlar hazırlığı",
-    body: "Lise ve fakülte sınavı için portföy ve teknik destek.",
+    title: "Güzel sanatlar sınavı dersin içinde",
+    body: "Lise veya fakülte sınavına girecek resim öğrencisine portföy ve sınav tekniği, ayrı paket olmadan verilir.",
   },
 ];
 
@@ -26,9 +26,9 @@ export function WhySection() {
             id="why-heading"
             className="font-display text-[clamp(2.4rem,5vw,4.6rem)] leading-[0.95] text-ink"
           >
-            Neden
+            Karşıyaka’da
             <br />
-            <em className="italic text-plum">Yağmur Sanat.</em>
+            <em className="italic text-plum">MEB onaylı kurs.</em>
           </h2>
         </div>
         <ul className="flex flex-col lg:col-span-7">

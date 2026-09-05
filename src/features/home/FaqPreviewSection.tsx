@@ -29,7 +29,7 @@ const SEED_FAQS: Faq[] = [
     id: "3",
     question: "Dersler nasıl işler?",
     answer:
-      "Resim grup dersi, piyano birebir. Keman ve gitar hem birebir hem grup. Hangisi size uyar, tanışma dersinde konuşulur.",
+      "Resim grup dersidir, piyano birebirdir. Keman ve gitar hem birebir hem grup olarak açılır. Hangisinin size uyduğu tanışma dersinde konuşulur.",
     sort_order: 3,
     status: "published",
     program_id: null,
@@ -64,9 +64,7 @@ export function FaqPreviewSection({ faqs }: FaqPreviewSectionProps) {
             id="faq-preview-heading"
             className="font-display text-[clamp(2.2rem,4vw,3.6rem)] leading-[0.95] text-ink"
           >
-            Sık sorulan
-            <br />
-            sorular.
+            Sık sorulan sorular
           </h2>
           <Link
             href="/sss"

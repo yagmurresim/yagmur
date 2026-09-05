@@ -14,12 +14,12 @@ import { ClosingCtaSection } from "@/features/home/ClosingCtaSection";
 export const metadata = {
   title: "Yağmur Sanat Akademisi | Karşıyaka Resim ve Müzik Kursu",
   description:
-    "Karşıyaka'da resim, piyano, keman ve gitar eğitimi. MEB onaylı kurs. 4 yaştan yetişkinlere. Sanatla kendini keşfet.",
+    "Karşıyaka İmbatlı’da resim, piyano, keman ve gitar kursu. MEB onaylı. 4 yaşından yetişkine, ücretsiz tanışma dersi.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Yağmur Sanat Akademisi | Karşıyaka Resim ve Müzik Kursu",
     description:
-      "Karşıyaka'da resim, piyano, keman ve gitar eğitimi. MEB onaylı kurs. 4 yaştan yetişkinlere.",
+      "Karşıyaka İmbatlı’da resim, piyano, keman ve gitar kursu. MEB onaylı. 4 yaşından yetişkine.",
     locale: "tr_TR",
     type: "website",
   },

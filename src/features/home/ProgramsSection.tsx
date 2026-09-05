@@ -9,21 +9,21 @@ const FALLBACK_PROGRAMS: Pick<Program, "id" | "name" | "slug" | "short_descripti
     name: "Resim",
     slug: "resim-kursu",
     short_description:
-      "Grup dersinde gözlem, renk ve kompozisyon. Güzel sanatlar hazırlığı dersin içinde.",
+      "Grup dersi. Gözlem, renk, kompozisyon. Güzel sanatlar sınavına hazırlık dersin içinde.",
     lesson_formats: ["group"],
   },
   {
     id: "2",
     name: "Piyano",
     slug: "piyano-kursu",
-    short_description: "Birebir ders. Nota, dokunuş, tempo öğrenciye göre. Dönem sonunda konser.",
+    short_description: "Birebir ders. Nota, dokunuş, tempo öğrenciye göre ayarlanır. Dönem sonunda konser.",
     lesson_formats: ["individual"],
   },
   {
     id: "3",
     name: "Keman",
     slug: "keman-kursu",
-    short_description: "Yay, postür, kulak. Birebir veya grup. Yeni başlayan da gelir.",
+    short_description: "Yay, duruş, kulak. Birebir veya grup. Yeni başlayan da devam eden de gelir.",
     lesson_formats: ["individual", "group"],
   },
   {
@@ -50,7 +50,7 @@ export function ProgramsSection({ programs }: ProgramsSectionProps) {
             id="programs-heading"
             className="font-display max-w-[12ch] text-[clamp(2.6rem,6vw,5.5rem)] leading-[0.95] text-ink"
           >
-            Dört eğitim.
+            Resim, piyano, keman ve gitar.
           </h2>
         </div>
       </div>

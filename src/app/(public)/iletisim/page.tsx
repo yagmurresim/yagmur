@@ -33,12 +33,13 @@ export default async function IletisimPage() {
           >
             WhatsApp, telefon
             <br />
-            <em className="italic text-plum">veya adres.</em>
+            <em className="italic text-plum">veya adres</em>
           </h1>
           <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
-            Form yok. WhatsApp en kolayı: yaşınızı ve aklınızdaki eğitimi yazın,
-            ekip döner. Telefon da olur. Kapıya uğramadan önce yazmanızı isteriz —
-            ders saatlerinde akademi dolu olabilir.
+            Sitede iletişim formu yok. En kolayı WhatsApp: yaşınızı ve aklınızdaki
+            eğitimi (resim, piyano, keman, gitar) yazın, ekip döner. Telefon da
+            olur. Kapıya uğramadan önce yazmanızı isteriz — ders saatlerinde
+            akademi dolu olabilir.
           </p>
           <div className="mt-10">
             <WhatsAppCta size="xl" />
@@ -81,7 +82,7 @@ export default async function IletisimPage() {
                   {settings.instagram_handle}
                 </a>
                 <p className="mt-2 text-[14px] text-ink-muted">
-                  Atölye, sergi ve konserden kareler.
+                  Ders, sergi ve konserden kareler.
                 </p>
               </li>
               <li className="border-y border-line py-6">

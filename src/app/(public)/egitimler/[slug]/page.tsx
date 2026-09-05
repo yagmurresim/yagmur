@@ -54,7 +54,7 @@ const FALLBACK_PROGRAMS: Record<string, FallbackProgram> = {
     name: "Resim",
     slug: "resim-kursu",
     short_description:
-      "Grup dersinde gözlem, renk ve kompozisyon. 4 yaştan yetişkine; güzel sanatlar hazırlığı dersin içinde.",
+      "Grup dersi. Gözlem, renk, kompozisyon. 4 yaşından yetişkine; güzel sanatlar sınavına hazırlık dersin içinde.",
     lesson_formats: ["group"],
     intro: null,
     approach: null,
@@ -68,7 +68,7 @@ const FALLBACK_PROGRAMS: Record<string, FallbackProgram> = {
     name: "Piyano",
     slug: "piyano-kursu",
     short_description:
-      "Birebir ders. Nota okumadan dokunuşa, temposu öğrenciye göre. Dönem sonunda konser.",
+      "Birebir ders. Nota, dokunuş, tempo öğrenciye göre ayarlanır. Dönem sonunda konser.",
     lesson_formats: ["individual"],
     intro: null,
     approach: null,
@@ -82,7 +82,7 @@ const FALLBACK_PROGRAMS: Record<string, FallbackProgram> = {
     name: "Keman",
     slug: "keman-kursu",
     short_description:
-      "Yay, postür, kulak. Birebir veya grup. Yeni başlayan da gelir, devam eden de.",
+      "Yay, duruş, kulak. Birebir veya grup. Yeni başlayan da devam eden de gelir.",
     lesson_formats: ["individual", "group"],
     intro: null,
     approach: null,
@@ -96,7 +96,7 @@ const FALLBACK_PROGRAMS: Record<string, FallbackProgram> = {
     name: "Gitar",
     slug: "gitar-kursu",
     short_description:
-      "Akor, ritim, parmak. Akustik veya elektro. Birebir ya da grup — seviyenize göre.",
+      "Akor, ritim, parmak. Akustik veya elektro. Birebir veya grup, seviyeye göre.",
     lesson_formats: ["individual", "group"],
     intro: null,
     approach: null,
@@ -120,53 +120,53 @@ const PROGRAM_INTROS: Record<
 > = {
   "resim-kursu": {
     heading: "Karşıyaka’da grup resim dersi",
-    body: "Resim dersi grup halinde yapılır. Çocuk da gelir, yetişkin de; masalar yaşa ve seviyeye göre ayrılır. İlk iş “güzel resim” üretmek değildir: görmeyi öğrenmek, sonra onu kâğıda veya tuvale geçirmektir.",
+    body: "Resim dersi grup halinde yapılır. Çocuk da yetişkin de gelir; masalar yaşa ve seviyeye göre ayrılır. İlk iş “güzel resim” üretmek değildir: görmeyi öğrenmek, sonra onu kâğıda veya tuvale geçirmektir.",
     approach:
       "Derslerde kurşun kalem, kömür, suluboya ve akrilik dönüşümlü kullanılır. Kompozisyon, oran, ışık ve doku yavaş yavaş eklenir. Hoca her masada durur; grubun temposu ortak, her elinki ayrıdır. Dönem sonunda seçilen işler sergiye çıkar.",
-    who: "Hiç tutmamış olan 4 yaşındaki çocuk da gelir, lise portföyü hazırlayan da, iş çıkışı resim yapmak isteyen yetişkin de. Güzel sanatlar lisesi veya fakültesine girecekler için sınav tekniği ve portföy, dersin içinde desteklenir — ayrı bir paket satılmaz.",
+    who: "Hiç fırça tutmamış 4 yaşındaki çocuk da gelir, lise portföyü hazırlayan da, iş çıkışı resim yapmak isteyen yetişkin de. Güzel sanatlar lisesi veya fakültesine girecekler için sınav tekniği ve portföy, dersin içinde desteklenir. Ayrı bir paket satılmaz.",
     details: [
       "Grup dersi",
-      "4 yaştan yetişkine",
+      "4 yaşından yetişkine",
       "MEB onaylı program, resmî sertifika",
       "Gözlem, renk, kompozisyon",
-      "Güzel sanatlar hazırlığı (ihtiyaç olana)",
+      "Güzel sanatlar sınavına hazırlık (ihtiyaç olana)",
       "Dönem sonu sergi",
     ],
-    prep: "Güzel sanatlar lise ve fakülte sınavlarına hazırlanan öğrenciler için modelden çizim, leke, kompozisyon ve portföy düzeni dersin parçasıdır. Ayrı bir “hazırlık sınıfı” yoktur; hoca o öğrencinin hedefine göre masadaki işi yönlendirir.",
+    prep: "Güzel sanatlar lise ve fakülte sınavlarına hazırlanan öğrenciler için modelden çizim, leke, kompozisyon ve portföy düzeni dersin parçasıdır. Ayrı bir hazırlık sınıfı yoktur; hoca o öğrencinin hedefine göre masadaki işi yönlendirir.",
   },
   "piyano-kursu": {
-    heading: "Birebir piyano dersi",
-    body: "Piyano dersi birebir yapılır. Hoca o günün temposuna, elin büyüklüğüne ve kulağın durumuna göre gider. Yeni başlayanlar nota ve duruştan; devam edenler repertuvar, pedallar ve yorumdan ilerler.",
+    heading: "Karşıyaka’da birebir piyano dersi",
+    body: "Piyano dersi birebir yapılır. Hoca o günün temposuna, elin büyüklüğüne ve kulağın durumuna göre gider. Yeni başlayanlar nota ve duruştan; devam edenler repertuvar, pedal ve yorumdan ilerler.",
     approach:
-      "İlk aylar el duruşu, ritim ve basit ezgilerdir. Sonra iki elin bağımsızlığı, gam, arpej ve kısa parçalar gelir. “Hızlı çalmak” hedef değildir; temiz basmak, dinlemek ve parçayı bitirmek hedeftir. Dönem sonunda isteyen konserde çalar.",
-    who: "4–6 yaş arası oyunla tanışan çocuklar, okul çağında düzenli çalışanlar ve yetişkinlikte sıfırdan başlayanlar. Yetişkin öğrencide tempo daha yavaş, parça seçimi daha kişisel olur — utanç yok, tempo sizin.",
+      "İlk aylar el duruşu, ritim ve basit ezgilerdir. Sonra iki elin bağımsızlığı, gam, arpej ve kısa parçalar gelir. Hedef hızlı çalmak değil; temiz basmak, dinlemek ve parçayı bitirmektir. Dönem sonunda isteyen konserde çalar.",
+    who: "4–6 yaşında oyunla tanışan çocuklar, okul çağında düzenli çalışanlar ve yetişkinlikte sıfırdan başlayanlar. Yetişkin öğrencide tempo daha yavaş, parça seçimi daha kişisel olur.",
     details: [
       "Birebir ders",
-      "4 yaştan yetişkine",
+      "4 yaşından yetişkine",
       "MEB onaylı program, resmî sertifika",
       "Nota, teknik, yorum",
       "Dönem sonu konser",
     ],
   },
   "keman-kursu": {
-    heading: "Birebir veya grup keman dersi",
-    body: "Keman, duruş ve kulak işidir. Ders birebir veya küçük grup olarak açılır. Yeni başlayan yay tutuşu, çene ve sol elle tanışır; devam edenler pozisyon, titreme ve ifade üzerine çalışır.",
+    heading: "Karşıyaka’da birebir veya grup keman dersi",
+    body: "Keman, duruş ve kulak işidir. Ders birebir veya küçük grup olarak açılır. Yeni başlayan yay tutuşu, çene ve sol elle tanışır; devam edenler pozisyon, titreşim ve ifade üzerine çalışır.",
     approach:
-      "İlk iş enstrümanı vücuda yerleştirmektir — omuz, çene, sol el, yay. Ses temizlenmeden parça şişirilmez. Grup dersinde birlikte çalmak, birebirde ise ayrıntı öne çıkar. Hangisinin size uyduğu tanışma dersinde konuşulur.",
-    who: "Çocuklar genelde 5–6 yaş civarında başlar; yetişkin de gelir. Enstrümanı olmayanlar için ilk dönemde ne alınacağı akademide konuşulur — hemen mağazaya koşulmaz.",
+      "İlk iş enstrümanı vücuda yerleştirmektir: omuz, çene, sol el, yay. Ses temizlenmeden parça şişirilmez. Grup dersinde birlikte çalmak, birebirde ayrıntı öne çıkar. Hangisinin size uyduğu tanışma dersinde konuşulur.",
+    who: "Çocuklar genelde 5–6 yaş civarında başlar; yetişkin de gelir. Enstrümanı olmayanlar için ilk dönemde ne alınacağı akademide konuşulur — tanışma dersinden önce mağazaya gitmeniz gerekmez.",
     details: [
       "Birebir ve grup",
       "Her seviye",
       "MEB onaylı program, resmî sertifika",
-      "Yay, postür, kulak",
+      "Yay, duruş, kulak",
       "Dönem sonu konser",
     ],
   },
   "gitar-kursu": {
-    heading: "Birebir veya grup gitar dersi",
+    heading: "Karşıyaka’da birebir veya grup gitar dersi",
     body: "Gitar dersi birebir veya grup olarak yapılır. Akustik veya elektro — hangisini istediğiniz tanışma dersinde netleşir. Yeni başlayan akor ve ritme; devam edenler parmak stili, solo ve repertuvara gider.",
     approach:
-      "İlk iş sol elin basması, sağ elin ritmi tutmasıdır. Nota okuma isteyene öğretilir; herkesin yolu nota üzerinden geçmek zorunda değildir. Grupta birlikte çalmak, birebirde ise sizin parçanız. Dönem sonunda isteyen sahnede çalar.",
+      "İlk iş sol elin basması, sağ elin ritmi tutmasıdır. Nota okuma isteyene öğretilir; herkesin yolu nota üzerinden geçmek zorunda değildir. Grupta birlikte çalmak, birebirde sizin parçanız. Dönem sonunda isteyen sahnede çalar.",
     who: "Çocuk, genç, yetişkin. Kendi şarkısını çalmak isteyen de gelir, düzenli teknik isteyen de. Enstrümanı olmayanlara ilk gitarı seçerken yardımcı olunur.",
     details: [
       "Birebir ve grup",
@@ -326,11 +326,12 @@ export default async function ProgramDetailPage({ params }: Props) {
       <section className="bg-paper px-6 py-24">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-[clamp(2.2rem,4vw,3.6rem)] text-ink">
-            {program.name} için tanışma dersi.
+            {program.name} için ücretsiz tanışma dersi
           </h2>
           <p className="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
-            Açık saati seçin veya WhatsApp’tan yazın. Yaş ve {program.name.toLowerCase()}
-            demeniz yeter. İlk ders ücretsiz tanışmadır.
+            Takvimden açık bir saat seçin veya WhatsApp’tan yazın. Yaşınızı ve{" "}
+            {program.name.toLowerCase()} demeniz yeter. İlk ders ücretsizdir;
+            kayıt o dersten sonra, isterseniz.
           </p>
           <div className="mt-8">
             <Button asChild size="xl">

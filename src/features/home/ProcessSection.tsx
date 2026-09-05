@@ -4,15 +4,15 @@ import { Button } from "@/components/ui/Button";
 const STEPS = [
   {
     title: "Eğitimi seçin",
-    body: "Resim, piyano, keman veya gitar — kendiniz ya da çocuğunuz için.",
+    body: "Resim, piyano, keman veya gitar. Kendiniz ya da çocuğunuz için.",
   },
   {
-    title: "Saati seçin",
-    body: "Açık ızgaradan yaşınıza uyan saati seçin. Uymuyorsa WhatsApp’tan yazın.",
+    title: "Bu aydan bir saat seçin",
+    body: "Takvimde yaşınıza uyan açık saati işaretleyin. Uymuyorsa WhatsApp’tan yazın.",
   },
   {
     title: "Akademi teyit eder",
-    body: "Başvurunuz bize düşer. İlk ders ücretsizdir; kayıt o dersten sonra, isterseniz.",
+    body: "Başvurunuz bize düşer; sizi arar veya yazarız. İlk ders ücretsizdir. Kayıt o dersten sonra, isterseniz.",
   },
 ];
 
@@ -22,11 +22,9 @@ export function ProcessSection() {
       <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
         <h2
           id="process-heading"
-          className="font-display mb-16 max-w-[14ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95] text-ink"
+          className="font-display mb-16 max-w-[18ch] text-[clamp(2.4rem,5vw,4.4rem)] leading-[0.95] text-ink"
         >
-          Ücretsiz tanışma
-          <br />
-          dersi nasıl olur.
+          Ücretsiz tanışma dersi üç adımda
         </h2>
 
         <ol className="grid gap-12 md:grid-cols-3 md:gap-8">

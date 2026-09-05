@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/Button";
 export const metadata: Metadata = buildMetadata({
   title: "Eğitimler | Yağmur Sanat Akademisi",
   description:
-    "Karşıyaka’da resim, piyano, keman ve gitar eğitimleri. MEB onaylı. Grup ve birebir. 4 yaştan yetişkine, ücretsiz tanışma dersi.",
+    "Karşıyaka İmbatlı’da resim, piyano, keman ve gitar kursu. MEB onaylı. Grup ve birebir. 4 yaşından yetişkine, ücretsiz tanışma dersi.",
   canonical: "/egitimler",
 });
 
@@ -19,7 +19,7 @@ const FALLBACK = [
     slug: "resim-kursu",
     name: "Resim",
     short_description:
-      "Grup dersinde gözlem, renk ve kompozisyon. 4 yaştan yetişkine; güzel sanatlar hazırlığı dersin içinde.",
+      "Grup dersi. Gözlem, renk, kompozisyon. 4 yaşından yetişkine; güzel sanatlar sınavına hazırlık dersin içinde.",
     lesson_formats: ["group"],
   },
   {
@@ -27,7 +27,7 @@ const FALLBACK = [
     slug: "piyano-kursu",
     name: "Piyano",
     short_description:
-      "Birebir ders. Nota okumadan dokunuşa, temposu öğrenciye göre. Dönem sonunda konser.",
+      "Birebir ders. Nota, dokunuş, tempo öğrenciye göre ayarlanır. Dönem sonunda konser.",
     lesson_formats: ["individual"],
   },
   {
@@ -35,7 +35,7 @@ const FALLBACK = [
     slug: "keman-kursu",
     name: "Keman",
     short_description:
-      "Yay, postür, kulak. Birebir veya grup. Yeni başlayan da gelir, devam eden de.",
+      "Yay, duruş, kulak. Birebir veya grup. Yeni başlayan da devam eden de gelir.",
     lesson_formats: ["individual", "group"],
   },
   {
@@ -43,7 +43,7 @@ const FALLBACK = [
     slug: "gitar-kursu",
     name: "Gitar",
     short_description:
-      "Akor, ritim, parmak. Akustik veya elektro. Birebir ya da grup — seviyenize göre.",
+      "Akor, ritim, parmak. Akustik veya elektro. Birebir veya grup, seviyeye göre.",
     lesson_formats: ["individual", "group"],
   },
 ];
@@ -62,12 +62,13 @@ export default async function EgitimlerPage() {
           >
             Resim, piyano,
             <br />
-            <em className="italic text-plum">keman, gitar.</em>
+            <em className="italic text-plum">keman ve gitar.</em>
           </h1>
           <p className="mt-8 max-w-[52ch] text-[17px] leading-relaxed text-ink-muted">
-            Resim grup, piyano birebir, keman ve gitar ikisi birden. Hepsi MEB onaylı,
-            hepsi 4 yaştan yetişkine. Hangisinin size uyduğunu tanışma dersinde görürsünüz —
-            önce akademiye bakın, kayıt sonra.
+            Resim grup dersidir, piyano birebirdir; keman ve gitar ikisi birden
+            açılır. Dört eğitim de MEB onaylıdır, 4 yaşından yetişkine. Hangisinin
+            size uyduğunu ücretsiz tanışma dersinde görürsünüz — kayıt o dersten
+            sonra, isterseniz.
           </p>
         </div>
       </section>
@@ -111,11 +112,11 @@ export default async function EgitimlerPage() {
       <section className="bg-paper px-6 py-24">
         <div className="mx-auto max-w-[1400px]">
           <h2 className="font-display text-[clamp(2rem,4vw,3.2rem)] text-ink">
-            Hangisi size uyar, tanışma dersinde görülür.
+            Hangisinin size uyduğunu tanışma dersinde görürsünüz
           </h2>
           <p className="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
-            Açık saati seçin veya WhatsApp’tan yazın. Ücretsiz tanışma dersi
-            ayarlanır. Beğenmezseniz kayıt olmazsınız — o da bir cevap.
+            Takvimden açık bir saat seçin veya WhatsApp’tan yazın. İlk ders
+            ücretsizdir. Uymadığını düşünürseniz kayıt olmazsınız.
           </p>
           <div className="mt-8">
             <Button asChild size="lg">

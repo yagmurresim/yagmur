@@ -229,10 +229,10 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
   if (done) {
     return (
       <div className="rounded-[16px] border border-line bg-white p-8">
-        <h2 className="font-display text-3xl text-ink">Aldık.</h2>
+        <h2 className="font-display text-3xl text-ink">Tanışma dersiniz not edildi</h2>
         <p className="mt-3 max-w-[46ch] text-[16px] leading-relaxed text-ink-muted">
-          Tanışma dersi not edildi. Akademi sizi arar veya WhatsApp’tan yazar —
-          saati teyit etmek için. Gelmeden bir şey ödemeniz gerekmez.
+          Akademi sizi arar veya WhatsApp’tan yazar, saati teyit etmek için.
+          Gelmeden bir şey ödemeniz gerekmez.
         </p>
         <p className="mt-5 text-[15px] leading-relaxed text-ink">
           İmbatlı Mahallesi, Yeni Girne No:205/B
@@ -267,7 +267,7 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
       {step === "program" && (
         <fieldset>
           <legend className="mb-1 font-display text-2xl text-ink">
-            Tanışma dersi için eğitiminizi seçin
+            Hangi eğitimi denemek istiyorsunuz
           </legend>
           <p className="mb-4 text-sm text-ink-muted">Resim, piyano, keman veya gitar.</p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">

@@ -20,9 +20,9 @@ export function LocationSection({ settings, mapsUrl }: LocationSectionProps) {
             id="location-heading"
             className="font-display text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.95] text-ink"
           >
-            Karşıyaka’da,
+            İmbatlı Mahallesi,
             <br />
-            Yeni Girne’de.
+            Yeni Girne Caddesi
           </h2>
           <address className="mt-8 not-italic">
             <p className="text-[17px] leading-relaxed text-ink">
@@ -31,7 +31,8 @@ export function LocationSection({ settings, mapsUrl }: LocationSectionProps) {
               {settings.district} / {settings.city}
             </p>
             <p className="mt-4 text-[16px] text-ink-muted">
-              Yeni Girne hattı, İmbatlı. Gelmeden yazın — ders saatlerinde akademi dolu olabilir.
+              Girne hattı üzerinde. Ders saatlerinde akademi dolu olabilir;
+              gelmeden yazmanızı isteriz.
             </p>
             <p className="mt-4">
               <a

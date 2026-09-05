@@ -24,11 +24,12 @@ export default async function UcretsizTanismaDersiPage() {
           >
             Ücretsiz
             <br />
-            <em className="italic text-plum">tanışma dersi.</em>
+            <em className="italic text-plum">tanışma dersi</em>
           </h1>
           <p className="mt-8 max-w-[52ch] text-[18px] leading-relaxed text-ink-muted">
             Akademiyi ve hocayı görmek için ilk ders ücretsizdir. Aşağıdan
-            eğitiminizi ve saati seçin. Uygun saat yoksa WhatsApp’tan yazın.
+            eğitiminizi ve bu aydan bir saat seçin. Uygun saat yoksa WhatsApp’tan
+            yazın. Kayıt o dersten sonra, isterseniz.
           </p>
         </div>
       </section>
@@ -52,17 +53,18 @@ export default async function UcretsizTanismaDersiPage() {
           </div>
 
           <aside className="lg:col-span-4 lg:col-start-9">
-            <h2 className="font-display text-2xl text-ink">O derste ne olur</h2>
+            <h2 className="font-display text-2xl text-ink">Tanışma dersinde ne olur</h2>
             <p className="mt-4 text-[16px] leading-relaxed text-ink-muted">
-              Hoca tanışır. Siz veya çocuğunuz ne kadar süre çalışabileceğinizi,
-              evde enstrüman olup olmadığını konuşursunuz. Amaç kayıt almak
-              değil, uyum var mı bakmaktır. Beğenmezseniz kapı aynı şekilde kapanır.
+              Hoca sizinle veya çocuğunuzla tanışır. Ne kadar süre çalışabileceğinizi,
+              evde enstrüman olup olmadığını konuşursunuz. Amaç hemen kayıt almak
+              değil, uyum var mı bakmaktır. Uymadığını düşünürseniz kayıt olmazsınız.
             </p>
             <p className="mt-6 text-[16px] leading-relaxed text-ink-muted">
-              İmbatlı Mahallesi, Yeni Girne No:205/B, Karşıyaka. Gelmeden teyit bekleyin.
+              İmbatlı Mahallesi, Yeni Girne No:205/B, Karşıyaka. Gelmeden teyit
+              bekleyin — ders saatlerinde kapı dolu olabilir.
             </p>
             <p className="mt-6 text-[16px] leading-relaxed text-ink-muted">
-              Saat uymadıysa:
+              Saat uymadıysa WhatsApp’tan yazın:
             </p>
             <div className="mt-4">
               <WhatsAppCta size="md" variant="secondary" />
