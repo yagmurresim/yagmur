@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
 import { getSiteSettings, getDefaultSettings } from "@/server/queries/settings";
 import { buildMetadata } from "@/lib/seo";
 import { buildInstagramUrl, buildMapsUrl } from "@/lib/utils";
@@ -9,7 +8,7 @@ import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
 export const metadata: Metadata = buildMetadata({
   title: "İletişim | Yağmur Sanat Akademisi",
   description:
-    "Yağmur Sanat Akademisi ile iletişime geçin. Telefon, WhatsApp, Instagram. Karşıyaka / İzmir.",
+    "Yağmur Sanat Akademisi iletişim: WhatsApp, telefon, Instagram. İmbatlı Mahallesi, Yeni Girne No: 205/B, Karşıyaka / İzmir.",
   canonical: "/iletisim",
 });
 
@@ -19,108 +18,99 @@ export default async function IletisimPage() {
   const instagramUrl = buildInstagramUrl(settings.instagram_handle);
   const mapsUrl =
     settings.maps_url ??
-    buildMapsUrl(
-      `${settings.address_line}, ${settings.district}, ${settings.city}`
-    );
+    buildMapsUrl(`${settings.address_line}, ${settings.district}, ${settings.city}`);
+  const embedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
+    `${settings.address_line}, ${settings.district}, ${settings.city}`
+  )}&z=16&output=embed`;
 
   return (
     <>
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-20" aria-labelledby="iletisim-heading">
-        <div className="max-w-[1320px] mx-auto px-6 lg:px-12">
-          <p className="text-sm font-medium text-violet tracking-widest uppercase mb-4">
-            İletişim
-          </p>
+      <section className="bg-paper pt-32 pb-16 text-ink lg:pt-44 lg:pb-20" aria-labelledby="iletisim-heading">
+        <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
           <h1
             id="iletisim-heading"
-            className="font-display text-[clamp(2.8rem,5vw,5rem)] tracking-tight text-ink"
+            className="font-display max-w-[12ch] text-[clamp(3.2rem,8vw,7rem)] leading-[0.9]"
           >
-            Hemen ulaşın.
+            Yazın, arayın
+            <br />
+            <em className="italic text-plum">veya gelin.</em>
           </h1>
+          <p className="mt-8 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
+            Form yok. WhatsApp en kolayı: yaşınızı ve aklınızdaki eğitimi yazın,
+            ekip döner. Telefon da olur. Kapıya uğramadan önce yazmanızı isteriz —
+            ders saatlerinde akademi dolu olabilir.
+          </p>
+          <div className="mt-10">
+            <WhatsAppCta size="xl" />
+          </div>
         </div>
       </section>
 
-      <section className="pb-24 lg:pb-32" aria-label="İletişim bilgileri">
-        <div className="max-w-[720px] mx-auto px-6 lg:px-12">
-          <p className="text-[17px] text-ink-muted leading-relaxed mb-10">
-            Form yok. WhatsApp&apos;tan yazın veya arayın; ekibimiz size döner.
-          </p>
-
-          <div className="flex flex-col gap-6 mb-10">
-            <a
-              href={academyTelUrl()}
-              className="group flex items-center gap-4 p-5 rounded-[10px] border border-line bg-white hover:border-plum transition-colors"
-              aria-label={`Telefon: ${settings.phone_display}`}
-            >
-              <div className="w-10 h-10 rounded-[8px] bg-plum/8 flex items-center justify-center text-plum shrink-0">
-                <Phone size={18} aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-xs text-ink-muted mb-0.5">Telefon</p>
-                <p className="text-[15px] font-medium text-ink group-hover:text-plum transition-colors">
+      <section className="bg-paper" aria-label="İletişim bilgileri">
+        <div className="grid lg:grid-cols-2">
+          <div className="flex flex-col justify-center px-6 py-16 lg:px-16">
+            <ul className="flex max-w-[480px] flex-col">
+              <li className="border-t border-line py-6">
+                <p className="text-[13px] text-ink-muted">Telefon</p>
+                <a href={academyTelUrl()} className="font-display mt-1 block text-3xl text-ink hover:text-plum">
                   {settings.phone_display}
+                </a>
+              </li>
+              <li className="border-t border-line py-6">
+                <p className="text-[13px] text-ink-muted">WhatsApp</p>
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-display mt-1 block text-3xl text-ink hover:text-plum"
+                >
+                  Mesaj gönder
+                </a>
+                <p className="mt-2 text-[14px] text-ink-muted">
+                  Yaş ve eğitim yeterli. Form doldurmanız gerekmez.
                 </p>
-              </div>
-            </a>
-
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-4 p-5 rounded-[10px] border border-line bg-white hover:border-plum transition-colors"
-              aria-label="WhatsApp ile yaz"
-            >
-              <div className="w-10 h-10 rounded-[8px] bg-plum/8 flex items-center justify-center text-plum shrink-0">
-                <MessageCircle size={18} aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-xs text-ink-muted mb-0.5">WhatsApp</p>
-                <p className="text-[15px] font-medium text-ink group-hover:text-plum transition-colors">
-                  {settings.phone_display}
-                </p>
-              </div>
-            </a>
-
-            <a
-              href={instagramUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-4 p-5 rounded-[10px] border border-line bg-white hover:border-plum transition-colors"
-              aria-label={`Instagram: ${settings.instagram_handle}`}
-            >
-              <div className="w-10 h-10 rounded-[8px] bg-plum/8 flex items-center justify-center text-plum shrink-0">
-                <Instagram size={18} aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-xs text-ink-muted mb-0.5">Instagram</p>
-                <p className="text-[15px] font-medium text-ink group-hover:text-plum transition-colors">
+              </li>
+              <li className="border-t border-line py-6">
+                <p className="text-[13px] text-ink-muted">Instagram</p>
+                <a
+                  href={instagramUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-display mt-1 block text-3xl text-ink hover:text-plum"
+                >
                   {settings.instagram_handle}
+                </a>
+                <p className="mt-2 text-[14px] text-ink-muted">
+                  Atölye, sergi ve konserden kareler.
                 </p>
-              </div>
-            </a>
-
-            <a
-              href={mapsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-start gap-4 p-5 rounded-[10px] border border-line bg-white hover:border-plum transition-colors"
-              aria-label="Adres ve yol tarifi"
-            >
-              <div className="w-10 h-10 rounded-[8px] bg-plum/8 flex items-center justify-center text-plum shrink-0 mt-0.5">
-                <MapPin size={18} aria-hidden="true" />
-              </div>
-              <div>
-                <p className="text-xs text-ink-muted mb-0.5">Adres</p>
-                <p className="text-[15px] font-medium text-ink group-hover:text-plum transition-colors">
+              </li>
+              <li className="border-y border-line py-6">
+                <p className="text-[13px] text-ink-muted">Adres</p>
+                <a
+                  href={mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block text-[17px] leading-relaxed text-ink hover:text-plum"
+                >
                   {settings.address_line}
-                </p>
-                <p className="text-sm text-ink-muted">
+                  <br />
                   {settings.district} / {settings.city}
+                </a>
+                <p className="mt-2 text-[14px] text-ink-muted">
+                  Yeni Girne hattı, İmbatlı. Gelmeden yazın.
                 </p>
-              </div>
-            </a>
+              </li>
+            </ul>
           </div>
-
-          <WhatsAppCta size="xl" />
+          <div className="min-h-[360px]">
+            <iframe
+              title="Yağmur Sanat Akademisi konumu"
+              src={embedSrc}
+              className="h-full min-h-[360px] w-full border-0 grayscale"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
         </div>
       </section>
     </>

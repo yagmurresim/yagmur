@@ -19,7 +19,7 @@ export const FormField = React.forwardRef<HTMLInputElement, FormFieldProps>(
         <label htmlFor={fieldId} className="text-sm font-medium text-ink">
           {label}
           {required && (
-            <span className="text-magenta ml-0.5" aria-hidden="true">*</span>
+            <span className="text-plum ml-0.5" aria-hidden="true">*</span>
           )}
         </label>
         {hint && !error && (
@@ -65,7 +65,7 @@ export const TextareaField = React.forwardRef<HTMLTextAreaElement, TextareaField
       <div className="flex flex-col gap-1.5">
         <label htmlFor={fieldId} className="text-sm font-medium text-ink">
           {label}
-          {required && <span className="text-magenta ml-0.5" aria-hidden="true">*</span>}
+          {required && <span className="text-plum ml-0.5" aria-hidden="true">*</span>}
           {hint && <span className="text-ink-muted font-normal ml-1.5 text-xs">{hint}</span>}
         </label>
         <textarea

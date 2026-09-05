@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Sans } from "next/font/google";
+import { Instrument_Serif, Figtree } from "next/font/google";
 import { Toaster } from "sonner";
 import "@/styles/globals.css";
 
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
+const instrument = Instrument_Serif({
+  subsets: ["latin", "latin-ext"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
   display: "swap",
-  axes: ["SOFT", "WONK", "opsz"],
 });
 
-const ibmPlexSans = IBM_Plex_Sans({
-  subsets: ["latin"],
-  variable: "--font-ibm-plex-sans",
+const figtree = Figtree({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-sans",
   weight: ["400", "500", "600"],
   display: "swap",
 });
@@ -20,6 +21,9 @@ const ibmPlexSans = IBM_Plex_Sans({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
+  other: {
+    "theme-color": "#f7f3ea",
+  },
   metadataBase: new URL(SITE_URL),
   title: {
     template: "%s | Yağmur Sanat Akademisi",
@@ -39,8 +43,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="tr" className={`${fraunces.variable} ${ibmPlexSans.variable}`}>
-      <body>
+    <html
+      lang="tr"
+      className={`${instrument.variable} ${figtree.variable}`}
+      style={{ backgroundColor: "#f7f3ea" }}
+    >
+      <body className="studio-ground" style={{ backgroundColor: "#f7f3ea" }}>
         <a href="#main-content" className="skip-link">
           İçeriğe geç
         </a>

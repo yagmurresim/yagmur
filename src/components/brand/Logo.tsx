@@ -24,7 +24,7 @@ export function Logo({ className, variant = "default" }: LogoProps) {
         height={160}
         priority
         className={cn(
-          "h-14 w-auto lg:h-[4.5rem] object-contain",
+          "h-16 w-auto lg:h-[5.5rem] object-contain",
           variant === "white" && "brightness-0 invert"
         )}
       />

@@ -4,20 +4,22 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none",
+  "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-[color,background-color,box-shadow,transform] duration-200 ease-out focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 select-none active:translate-y-px",
   {
     variants: {
       variant: {
         primary:
-          "bg-plum text-white hover:bg-violet rounded-[8px]",
+          "bg-plum text-ivory shadow-[0_1px_0_rgba(42,24,48,0.08),0_8px_20px_rgba(59,22,76,0.12)] hover:bg-violet hover:shadow-[0_10px_28px_rgba(59,22,76,0.18)] hover:-translate-y-px",
         secondary:
-          "bg-transparent text-ink border border-line hover:border-plum hover:text-plum rounded-[8px]",
-        ghost:
-          "bg-transparent text-ink-muted hover:text-ink rounded-[8px]",
+          "bg-ivory/80 text-ink ring-1 ring-ink/10 shadow-[0_1px_0_rgba(42,24,48,0.04)] backdrop-blur-sm hover:bg-ivory hover:ring-ink/18 hover:-translate-y-px",
+        ghost: "bg-transparent text-ink-muted hover:text-ink hover:bg-ink/5",
+        inverse:
+          "bg-ivory text-plum shadow-[0_8px_20px_rgba(17,8,15,0.12)] hover:bg-white hover:-translate-y-px",
+        outlineIvory:
+          "bg-ivory/80 text-ink ring-1 ring-ink/10 backdrop-blur-sm hover:bg-ivory hover:ring-ink/18",
         magenta:
-          "bg-magenta text-white hover:bg-rose rounded-[8px]",
-        destructive:
-          "bg-red-600 text-white hover:bg-red-700 rounded-[8px]",
+          "bg-plum text-ivory shadow-[0_8px_20px_rgba(59,22,76,0.12)] hover:bg-violet hover:-translate-y-px",
+        destructive: "bg-red-600 text-white hover:bg-red-700",
       },
       size: {
         sm: "h-9 px-4 text-sm",
@@ -65,7 +67,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             </svg>
             <span>Gönderiliyor…</span>
           </>
-        ) : children}
+        ) : (
+          children
+        )}
       </Comp>
     );
   }

@@ -5,13 +5,13 @@ interface WhatsAppCtaProps {
   programName?: string;
   label?: string;
   size?: "sm" | "md" | "lg" | "xl";
-  variant?: "primary" | "secondary" | "magenta";
+  variant?: "primary" | "secondary" | "magenta" | "inverse" | "outlineIvory";
   className?: string;
 }
 
 export function WhatsAppCta({
   programName,
-  label = "Ücretsiz Tanışma Dersi Oluşturun",
+  label = "WhatsApp'tan yazın",
   size = "lg",
   variant = "primary",
   className,

@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import type { Faq } from "@/types";
 
 interface FaqAccordionProps {
@@ -27,19 +26,17 @@ export function FaqAccordion({ faqs }: FaqAccordionProps) {
                 onClick={() => setOpen(isOpen ? null : faq.id)}
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex items-center justify-between w-full py-6 text-left gap-6 group"
+                className="group flex w-full items-baseline justify-between gap-6 py-6 text-left"
               >
-                <span className="font-display text-[18px] text-ink group-hover:text-plum transition-colors">
+                <span className="font-display text-[1.35rem] leading-snug text-ink group-hover:text-plum">
                   {faq.question}
                 </span>
-                <motion.span
-                  animate={{ rotate: isOpen ? 180 : 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="shrink-0 text-ink-muted group-hover:text-plum transition-colors"
+                <span
+                  className="font-display shrink-0 text-2xl leading-none text-plum"
                   aria-hidden="true"
                 >
-                  <ChevronDown size={20} />
-                </motion.span>
+                  {isOpen ? "–" : "+"}
+                </span>
               </button>
             </h2>
             <AnimatePresence initial={false}>
@@ -51,10 +48,10 @@ export function FaqAccordion({ faqs }: FaqAccordionProps) {
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.25, ease: "easeInOut" }}
+                  transition={{ duration: 0.22, ease: "easeOut" }}
                   className="overflow-hidden"
                 >
-                  <p className="pb-6 text-[16px] text-ink-muted leading-relaxed max-w-[65ch]">
+                  <p className="max-w-[60ch] pb-6 text-[16px] text-ink-muted">
                     {faq.answer}
                   </p>
                 </motion.div>

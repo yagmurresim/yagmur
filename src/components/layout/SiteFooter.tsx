@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Phone, Instagram, MapPin, MessageCircle } from "lucide-react";
 import { Logo } from "@/components/brand/Logo";
 import { buildWhatsAppUrl, buildInstagramUrl, buildMapsUrl } from "@/lib/utils";
 import type { SiteSettings } from "@/types";
@@ -26,116 +25,66 @@ export function SiteFooter({ settings }: SiteFooterProps) {
     buildMapsUrl(`${settings.address_line}, ${settings.district}, ${settings.city}`);
 
   return (
-    <footer className="bg-ink text-white/80" aria-label="Site alt bilgisi">
-      <div className="max-w-[1320px] mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-12 py-16 lg:py-20">
-          {/* Brand */}
-          <div className="lg:col-span-4">
+    <footer className="bg-plum text-ivory/70" aria-label="Site alt bilgisi">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        <div className="grid gap-12 py-16 lg:grid-cols-12 lg:py-20">
+          <div className="lg:col-span-5">
             <Logo variant="white" />
-
             {settings.legal_name && (
-              <p className="mt-4 text-xs text-white/40 leading-relaxed">
+              <p className="mt-5 max-w-[36ch] text-xs leading-relaxed text-ivory/35">
                 {settings.legal_name}
               </p>
             )}
-
-            <div className="flex flex-col gap-2 mt-6 text-sm">
-              <a
-                href={`tel:${settings.phone_e164}`}
-                className="flex items-center gap-2 hover:text-white transition-colors"
-                aria-label={`Telefon: ${settings.phone_display}`}
-              >
-                <Phone size={14} aria-hidden="true" />
-                {settings.phone_display}
-              </a>
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-                aria-label="WhatsApp"
-              >
-                <MessageCircle size={14} aria-hidden="true" />
-                WhatsApp
-              </a>
-              <a
-                href={instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-                aria-label={`Instagram: ${settings.instagram_handle}`}
-              >
-                <Instagram size={14} aria-hidden="true" />
-                {settings.instagram_handle}
-              </a>
-              <a
-                href={mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-2 hover:text-white transition-colors mt-1"
-                aria-label="Adres ve yol tarifi"
-              >
-                <MapPin size={14} className="shrink-0 mt-0.5" aria-hidden="true" />
-                <span>
-                  {settings.address_line}
-                  <br />
-                  {settings.district} / {settings.city}
-                </span>
-              </a>
-            </div>
+            <p className="mt-6 max-w-[32ch] text-[15px] leading-relaxed text-ivory/55">
+              {settings.address_line}
+              <br />
+              {settings.district} / {settings.city}
+            </p>
           </div>
 
-          {/* Nav */}
           <div className="lg:col-span-3 lg:col-start-7">
-            <h2 className="text-xs font-medium text-white/40 tracking-widest uppercase mb-4">
-              Sayfalar
-            </h2>
-            <nav aria-label="Alt navigasyon">
-              <ul className="flex flex-col gap-2">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="text-sm hover:text-white transition-colors"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-          </div>
-
-          {/* Programs */}
-          <div className="lg:col-span-3">
-            <h2 className="text-xs font-medium text-white/40 tracking-widest uppercase mb-4">
-              Eğitimler
-            </h2>
-            <ul className="flex flex-col gap-2">
-              {[
-                { href: "/egitimler/resim-kursu", label: "Resim" },
-                { href: "/egitimler/piyano-kursu", label: "Piyano" },
-                { href: "/egitimler/keman-kursu", label: "Keman" },
-                { href: "/egitimler/gitar-kursu", label: "Gitar" },
-              ].map((link) => (
+            <ul className="flex flex-col gap-2.5">
+              {NAV_LINKS.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm hover:text-white transition-colors"
-                  >
+                  <Link href={link.href} className="text-sm text-ivory/70 hover:text-ivory">
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
+
+          <div className="lg:col-span-3">
+            <ul className="flex flex-col gap-2.5 text-sm">
+              <li>
+                <a href={`tel:${settings.phone_e164}`} className="hover:text-ivory">
+                  {settings.phone_display}
+                </a>
+              </li>
+              <li>
+                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="hover:text-ivory">
+                  WhatsApp
+                </a>
+              </li>
+              <li>
+                <a href={instagramUrl} target="_blank" rel="noopener noreferrer" className="hover:text-ivory">
+                  {settings.instagram_handle}
+                </a>
+              </li>
+              <li>
+                <a href={mapsUrl} target="_blank" rel="noopener noreferrer" className="hover:text-ivory">
+                  Yol tarifi
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="border-t border-white/10 py-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-xs text-white/30">
+        <div className="flex flex-col gap-3 border-t border-ivory/10 py-6 text-xs text-ivory/30 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {settings.brand_name}. Tüm hakları saklıdır.
+            © {new Date().getFullYear()} {settings.brand_name}
           </p>
+          <p>Karşıyaka, İzmir</p>
         </div>
       </div>
     </footer>

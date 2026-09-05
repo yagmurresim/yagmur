@@ -1,28 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  /* ─── Color tokens ─────────────────────────────────────────── */
-  --color-paper: #FBF9F7;
-  --color-paper-alt: #F4EFF4;
-  --color-ink: #271B2C;
-  --color-ink-muted: #6F6872;
-  --color-plum: #3B164C;
-  --color-violet: #7841A0;
-  --color-magenta: #D63177;
-  --color-rose: #ED5A8B;
-  --color-lavender: #C5A7DF;
-  --color-line: #E8E0E8;
-  --color-white: #FFFFFF;
+  --color-paper: #f7f3ea;
+  --color-paper-alt: #efe8dc;
+  --color-ink: #2a1830;
+  --color-ink-muted: #6e6270;
+  --color-plum: #3b164c;
+  --color-violet: #6e4a7c;
+  --color-magenta: #b85a72;
+  --color-rose: #c97a8c;
+  --color-lavender: #c4b0c8;
+  --color-line: #e6dfd2;
+  --color-white: #ffffff;
+  --color-night: #3b164c;
+  --color-ivory: #fbf8f2;
+  --color-gold: #a6845a;
 
-  /* ─── Font families ────────────────────────────────────────── */
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-body: var(--font-ibm-plex-sans), system-ui, sans-serif;
+  --font-display: var(--font-serif), "Iowan Old Style", Palatino, serif;
+  --font-body: var(--font-sans), system-ui, sans-serif;
 
-  /* ─── Border radius ────────────────────────────────────────── */
-  --radius-brand: 8px;
-
-  /* ─── Spacing extras ───────────────────────────────────────── */
-  --spacing-section: clamp(4rem, 8vw, 8rem);
+  --radius-brand: 999px;
 }
 
 @layer base {
@@ -30,27 +27,49 @@
     color-scheme: light;
   }
 
-  html {
-    background-color: var(--color-paper);
+  html,
+  body {
+    background-color: #f7f3ea;
     color: var(--color-ink);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Skip link */
+  body {
+    min-height: 100svh;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+  }
+
+  p,
+  li {
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background: var(--color-plum);
+    color: var(--color-ivory);
+  }
+
   .skip-link {
-    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-plum focus:text-white focus:px-4 focus:py-2 focus:rounded-[6px] focus:text-sm focus:font-medium;
+    @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[9999] focus:bg-plum focus:text-ivory focus:px-4 focus:py-2 focus:text-sm focus:font-medium;
   }
 
-  /* Focus ring */
   *:focus-visible {
-    outline: 2px solid var(--color-violet);
-    outline-offset: 2px;
-    border-radius: 4px;
+    outline: 2px solid var(--color-plum);
+    outline-offset: 3px;
   }
 
-  /* Reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -66,22 +85,42 @@
 @layer components {
   .font-display {
     font-family: var(--font-display);
-    font-optical-sizing: auto;
   }
 
   .font-body {
     font-family: var(--font-body);
   }
 
-  /* Prose improvements */
-  .prose-brand {
-    & p { @apply text-ink-muted leading-relaxed; }
-    & strong { @apply text-ink font-semibold; }
-    & a { @apply text-plum underline underline-offset-2 hover:text-violet; }
+  .studio-ground {
+    background-color: #f7f3ea;
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        rgba(188, 172, 142, 0.08) 0px,
+        rgba(188, 172, 142, 0.08) 1px,
+        transparent 1px,
+        transparent 5px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(204, 190, 162, 0.06) 0px,
+        rgba(204, 190, 162, 0.06) 1px,
+        transparent 1px,
+        transparent 5px
+      );
   }
 }
 
-/* Admin layout reset */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-alt);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-plum);
+}
+
 .admin-layout {
   min-height: 100svh;
   background-color: var(--color-paper-alt);

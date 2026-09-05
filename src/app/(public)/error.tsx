@@ -14,17 +14,15 @@ export default function Error({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-6">
-      <div className="text-center max-w-[420px]">
-        <h1 className="font-display text-3xl text-ink mb-4">
-          Bir şeyler ters gitti.
-        </h1>
-        <p className="text-ink-muted mb-8">
-          Beklenmedik bir hata oluştu. Lütfen tekrar deneyin.
-        </p>
-        <Button onClick={reset} variant="primary" size="lg">
-          Tekrar Dene
-        </Button>
+    <div className="flex min-h-[70vh] items-center bg-paper px-6">
+      <div className="mx-auto max-w-[1400px]">
+        <h1 className="font-display text-4xl text-ink">Bir şey tutmadı.</h1>
+        <p className="mt-3 max-w-[36ch] text-ink-muted">Beklenmedik bir hata. Yeniden deneyin.</p>
+        <div className="mt-8">
+          <Button onClick={reset} variant="primary" size="lg">
+            Tekrar dene
+          </Button>
+        </div>
       </div>
     </div>
   );

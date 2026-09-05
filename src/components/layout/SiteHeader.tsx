@@ -22,7 +22,7 @@ interface SiteHeaderProps {
   settings: SiteSettings;
 }
 
-export function SiteHeader({ settings }: SiteHeaderProps) {
+export function SiteHeader({ settings: _settings }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
@@ -32,27 +32,23 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
   const closeMenu = useCallback(() => setMenuOpen(false), []);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 24);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu on route change
   useEffect(() => {
     setMenuOpen(false);
   }, [pathname]);
 
-  // Body scroll lock when menu open
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
       document.body.style.overflow = "";
-    }
-    return () => { document.body.style.overflow = ""; };
+    };
   }, [menuOpen]);
 
-  // Escape key closes menu and returns focus to trigger button
   useEffect(() => {
     if (!menuOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -65,7 +61,6 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [menuOpen, closeMenu]);
 
-  // Focus trap inside mobile menu
   useEffect(() => {
     if (!menuOpen || !menuRef.current) return;
     const focusable = menuRef.current.querySelectorAll<HTMLElement>(
@@ -73,7 +68,6 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
     );
     const first = focusable[0];
     const last = focusable[focusable.length - 1];
-    // Move initial focus into menu
     first?.focus();
     const trap = (e: KeyboardEvent) => {
       if (e.key !== "Tab") return;
@@ -82,11 +76,9 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
           e.preventDefault();
           last?.focus();
         }
-      } else {
-        if (document.activeElement === last) {
-          e.preventDefault();
-          first?.focus();
-        }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first?.focus();
       }
     };
     document.addEventListener("keydown", trap);
@@ -96,27 +88,24 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-paper/95 backdrop-blur-md border-b border-line shadow-sm"
-          : "bg-transparent"
+        "fixed top-0 right-0 left-0 z-50 border-b border-line/80 transition-colors duration-300",
+        scrolled || menuOpen ? "bg-paper/92 backdrop-blur-md" : "bg-transparent"
       )}
     >
-      <div className="max-w-[1320px] mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between h-20 lg:h-24">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-12">
+        <div className="flex h-[5.5rem] items-center justify-between lg:h-[6.5rem]">
           <Logo />
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-8" aria-label="Ana navigasyon">
+          <nav className="hidden items-center gap-2 lg:flex" aria-label="Ana navigasyon">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors",
+                  "rounded-full px-4 py-2 text-[16px] font-medium transition-colors",
                   pathname.startsWith(link.href)
-                    ? "text-plum"
-                    : "text-ink-muted hover:text-ink"
+                    ? "bg-ink/5 text-ink"
+                    : "text-ink-muted hover:bg-ink/5 hover:text-ink"
                 )}
                 aria-current={pathname.startsWith(link.href) ? "page" : undefined}
               >
@@ -125,20 +114,18 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
             ))}
           </nav>
 
-          {/* Desktop CTA */}
           <div className="hidden lg:block">
-            <Button asChild variant="primary" size="sm">
+            <Button asChild variant="primary" size="lg">
               <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                Ücretsiz Tanışma Dersi Oluşturun
+                Tanışma dersi
               </a>
             </Button>
           </div>
 
-          {/* Mobile menu button */}
           <button
             ref={menuButtonRef}
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="lg:hidden text-ink p-2 -mr-2"
+            className="p-2 -mr-2 text-ink lg:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
@@ -148,7 +135,6 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -157,22 +143,20 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Navigasyon menüsü"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 top-20 bg-paper z-40 flex flex-col px-6 pt-8 pb-16 overflow-y-auto lg:hidden"
+            className="fixed inset-0 top-[5.5rem] z-40 flex flex-col overflow-y-auto bg-paper px-6 pt-10 pb-16 lg:hidden"
           >
-            <nav aria-label="Mobil navigasyon" className="flex flex-col gap-1 mb-8">
+            <nav aria-label="Mobil navigasyon" className="mb-10 flex flex-col">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    "text-xl font-display py-3 border-b border-line transition-colors",
-                    pathname.startsWith(link.href)
-                      ? "text-plum"
-                      : "text-ink hover:text-plum"
+                    "font-display border-b border-line py-4 text-3xl",
+                    pathname.startsWith(link.href) ? "text-plum" : "text-ink"
                   )}
                   aria-current={pathname.startsWith(link.href) ? "page" : undefined}
                 >
@@ -183,7 +167,7 @@ export function SiteHeader({ settings }: SiteHeaderProps) {
 
             <Button asChild variant="primary" size="lg" className="w-full">
               <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                Ücretsiz Tanışma Dersi Oluşturun
+                Tanışma dersi
               </a>
             </Button>
           </motion.div>

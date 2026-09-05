@@ -1,6 +1,4 @@
-import { Phone, MapPin, Instagram, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { buildInstagramUrl } from "@/lib/utils";
 import type { SiteSettings } from "@/types";
 
 interface LocationSectionProps {
@@ -9,95 +7,57 @@ interface LocationSectionProps {
   whatsappUrl: string;
 }
 
-export function LocationSection({ settings, mapsUrl, whatsappUrl }: LocationSectionProps) {
-  const instagramUrl = buildInstagramUrl(settings.instagram_handle);
+export function LocationSection({ settings, mapsUrl }: LocationSectionProps) {
+  const embedSrc = `https://maps.google.com/maps?q=${encodeURIComponent(
+    `${settings.address_line}, ${settings.district}, ${settings.city}`
+  )}&z=16&output=embed`;
 
   return (
-    <section
-      className="py-24 lg:py-32 bg-paper-alt"
-      aria-labelledby="location-heading"
-    >
-      <div className="max-w-[1320px] mx-auto px-6 lg:px-12">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-          <div className="lg:col-span-5">
-            <p className="text-sm font-medium text-violet tracking-widest uppercase mb-4">
-              Neredeyiz?
-            </p>
-            <h2
-              id="location-heading"
-              className="font-display text-[clamp(2rem,3.5vw,3.5rem)] tracking-tight text-ink mb-6"
-            >
-              Karşıyaka,
-              <br />
-              İzmir.
-            </h2>
-
-            <address className="not-italic flex flex-col gap-3 mb-8">
-              <div className="flex items-start gap-3 text-ink-muted">
-                <MapPin size={18} className="shrink-0 mt-0.5 text-plum" aria-hidden="true" />
-                <span className="text-[15px]">
-                  {settings.address_line},<br />
-                  {settings.district} / {settings.city}
-                </span>
-              </div>
-              <div className="flex items-center gap-3 text-ink-muted">
-                <Phone size={18} className="shrink-0 text-plum" aria-hidden="true" />
-                <a
-                  href={`tel:${settings.phone_e164}`}
-                  className="text-[15px] hover:text-plum transition-colors"
-                >
-                  {settings.phone_display}
-                </a>
-              </div>
-            </address>
-
-            <div className="flex flex-wrap gap-3">
-              <Button asChild variant="primary" size="md">
-                <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
-                  <MapPin size={16} aria-hidden="true" />
-                  Yol Tarifi Al
-                </a>
-              </Button>
-              <Button asChild variant="secondary" size="md">
-                <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle size={16} aria-hidden="true" />
-                  Ücretsiz Tanışma Dersi Oluşturun
-                </a>
-              </Button>
-              <Button asChild variant="ghost" size="md">
-                <a href={instagramUrl} target="_blank" rel="noopener noreferrer">
-                  <Instagram size={16} aria-hidden="true" />
-                  {settings.instagram_handle}
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          {/* Map placeholder */}
-          <div
-            className="lg:col-span-7 rounded-[12px] overflow-hidden border border-line"
-            aria-label="Akademi konumu haritası"
+    <section className="bg-paper" aria-labelledby="location-heading">
+      <div className="grid lg:grid-cols-2">
+        <div className="flex flex-col justify-center px-6 py-20 lg:px-16 lg:py-28">
+          <h2
+            id="location-heading"
+            className="font-display text-[clamp(2.6rem,5vw,4.8rem)] leading-[0.95] text-ink"
           >
-            <div className="aspect-[4/3] bg-lavender/10 flex flex-col items-center justify-center gap-4 p-8">
-              <MapPin size={40} className="text-plum/30" aria-hidden="true" />
-              <div className="text-center">
-                <p className="font-display text-lg text-ink/70">
-                  {settings.brand_name}
-                </p>
-                <p className="text-sm text-ink-muted mt-1">
-                  {settings.address_line}, {settings.district} / {settings.city}
-                </p>
-              </div>
+            Karşıyaka,
+            <br />
+            Girne üstü.
+          </h2>
+          <address className="mt-8 not-italic">
+            <p className="text-[17px] leading-relaxed text-ink">
+              {settings.address_line}
+              <br />
+              {settings.district} / {settings.city}
+            </p>
+            <p className="mt-4 text-[16px] text-ink-muted">
+              Yeni Girne hattı, İmbatlı. Gelmeden yazın — ders saatlerinde akademi dolu olabilir.
+            </p>
+            <p className="mt-4">
               <a
-                href={mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium text-plum hover:text-violet transition-colors underline underline-offset-4"
+                href={`tel:${settings.phone_e164}`}
+                className="text-[17px] text-ink hover:text-plum"
               >
-                Google Maps&apos;te aç →
+                {settings.phone_display}
               </a>
-            </div>
+            </p>
+          </address>
+          <div className="mt-10">
+            <Button asChild variant="primary" size="lg">
+              <a href={mapsUrl} target="_blank" rel="noopener noreferrer">
+                Yol tarifi
+              </a>
+            </Button>
           </div>
+        </div>
+        <div className="min-h-[380px] lg:min-h-full">
+          <iframe
+            title="Yağmur Sanat Akademisi konumu"
+            src={embedSrc}
+            className="h-full min-h-[380px] w-full border-0 grayscale contrast-[1.05]"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
       </div>
     </section>
