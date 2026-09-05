@@ -7,7 +7,7 @@ const SEED_FAQS: Faq[] = [
     id: "1",
     question: "Ücretsiz tanışma dersi nedir?",
     answer:
-      "Akademiyi ve hocayı görmeniz için ilk ders. Form yok. WhatsApp yeter; ekip saat ayarlar. Satış görüşmesi değildir — gelip “şimdilik değil” demek de bir cevap.",
+      "Akademiyi ve hocayı görmeniz için ilk ders. Siteden açık saati seçebilir veya WhatsApp’tan yazabilirsiniz. Satış görüşmesi değildir — gelip “şimdilik değil” demek de bir cevap.",
     sort_order: 1,
     status: "published",
     program_id: null,

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { getPublishedFaqs } from "@/server/queries/faqs";
 import { buildMetadata } from "@/lib/seo";
+import Link from "next/link";
 import { FaqAccordion } from "@/features/faq/FaqAccordion";
-import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = buildMetadata({
   title: "Sık Sorulan Sorular | Yağmur Sanat Akademisi",
@@ -49,7 +50,7 @@ const SEED_FAQS = [
     id: "s4",
     question: "Kayıt nasıl yapılır?",
     answer:
-      "Sitede online kayıt yok. Tanışma dersinden sonra isterseniz akademi ekibi kayıt adımlarını anlatır. Anında rezervasyon, otomatik ödeme veya form yoktur — insan konuşması vardır.",
+      "Sitede ücretli kayıt yok. Tanışma dersi için açık saati seçebilir veya WhatsApp’tan yazabilirsiniz. Kayıt o dersten sonra, isterseniz. Otomatik ödeme yoktur.",
     sort_order: 4,
     status: "published" as const,
     program_id: null,
@@ -177,10 +178,12 @@ export default async function SssPage() {
             Cevap yetmediyse yazın.
           </h2>
           <p className="mt-3 max-w-[44ch] text-[16px] text-ink-muted">
-            Form yok. Yaş ve hangi eğitim — gerisini konuşuruz.
+            Açık saati seçin veya yazın. Yaş ve hangi eğitim — gerisini konuşuruz.
           </p>
           <div className="mt-8">
-            <WhatsAppCta size="lg" />
+            <Button asChild size="lg">
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+            </Button>
           </div>
         </div>
       </section>

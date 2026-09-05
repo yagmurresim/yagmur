@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { StudioCanvas } from "@/components/brand/StudioCanvas";
 import { StudioScene } from "@/components/brand/StudioScene";
-import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
 import { Button } from "@/components/ui/Button";
 import type { SiteSettings } from "@/types";
 
@@ -45,7 +44,9 @@ export function HeroSection({ settings }: HeroSectionProps) {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <WhatsAppCta size="xl" />
+            <Button asChild size="xl">
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+            </Button>
             <Button asChild size="xl" variant="secondary">
               <Link href="/egitimler">Eğitimler</Link>
             </Button>

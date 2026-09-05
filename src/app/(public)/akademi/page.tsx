@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
+import { Button } from "@/components/ui/Button";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -176,11 +176,13 @@ export default function AkademiPage() {
             Kapı açık.
           </h2>
           <p className="mt-4 max-w-[44ch] text-[17px] leading-relaxed text-ink-muted">
-            WhatsApp’tan yazın. Yaşınızı ve hangi eğitimi düşündüğünüzü söylemeniz yeter.
-            Akademi ekibi sizinle konuşsun.
+            Açık saati seçin veya WhatsApp’tan yazın. Yaşınızı ve hangi eğitimi
+            düşündüğünüzü söylemeniz yeter.
           </p>
           <div className="mt-8">
-            <WhatsAppCta size="xl" />
+            <Button asChild size="xl">
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+            </Button>
           </div>
         </div>
       </section>

@@ -152,7 +152,10 @@ export default async function AdminTakipPage({ searchParams }: Props) {
                       </p>
                     </td>
                     <td className="px-4 py-3 text-ink-muted hidden sm:table-cell">
-                      {app.program_name ?? "—"}
+                      <p>{app.program_name ?? "—"}</p>
+                      {app.message?.startsWith("Tanışma:") && (
+                        <p className="mt-0.5 text-xs">{app.message.replace(/^Tanışma:\s*/, "")}</p>
+                      )}
                     </td>
                     <td className="px-4 py-3">
                       <LeadRowActions

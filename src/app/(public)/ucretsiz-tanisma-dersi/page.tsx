@@ -60,6 +60,9 @@ export default async function UcretsizTanismaDersiPage() {
               değil, uyum var mı bakmaktır. Beğenmezseniz kapı aynı şekilde kapanır.
             </p>
             <p className="mt-6 text-[16px] leading-relaxed text-ink-muted">
+              İmbatlı Mahallesi, Yeni Girne No:205/B, Karşıyaka. Gelmeden teyit bekleyin.
+            </p>
+            <p className="mt-6 text-[16px] leading-relaxed text-ink-muted">
               Saat uymadıysa:
             </p>
             <div className="mt-4">

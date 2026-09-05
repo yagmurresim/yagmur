@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/brand/Logo";
-import { introWhatsAppUrl } from "@/lib/contact";
 import type { SiteSettings } from "@/types";
 
 const NAV_LINKS = [
@@ -86,6 +85,7 @@ export function SiteHeader({ settings: _settings }: SiteHeaderProps) {
   }, [menuOpen]);
 
   return (
+    <>
     <header
       className={cn(
         "fixed top-0 right-0 left-0 z-50 border-b border-line/80 transition-colors duration-300",
@@ -116,16 +116,15 @@ export function SiteHeader({ settings: _settings }: SiteHeaderProps) {
 
           <div className="hidden lg:block">
             <Button asChild variant="primary" size="lg">
-              <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                Tanışma dersi
-              </a>
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
             </Button>
           </div>
 
           <button
             ref={menuButtonRef}
+            type="button"
             onClick={() => setMenuOpen((prev) => !prev)}
-            className="p-2 -mr-2 text-ink lg:hidden"
+            className="relative z-[60] p-2 -mr-2 text-ink lg:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
             aria-label={menuOpen ? "Menüyü kapat" : "Menüyü aç"}
@@ -134,7 +133,7 @@ export function SiteHeader({ settings: _settings }: SiteHeaderProps) {
           </button>
         </div>
       </div>
-
+    </header>
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -166,13 +165,11 @@ export function SiteHeader({ settings: _settings }: SiteHeaderProps) {
             </nav>
 
             <Button asChild variant="primary" size="lg" className="w-full">
-              <a href={introWhatsAppUrl()} target="_blank" rel="noopener noreferrer">
-                Tanışma dersi
-              </a>
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
             </Button>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

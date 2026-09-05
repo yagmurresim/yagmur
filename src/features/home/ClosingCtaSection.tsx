@@ -1,4 +1,5 @@
-import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 export function ClosingCtaSection() {
   return (
@@ -19,13 +20,15 @@ export function ClosingCtaSection() {
         >
           Kapı açık.
           <br />
-          Yazmanız yeter.
+          Saat seçmeniz yeter.
         </h2>
         <p className="mt-8 max-w-[42ch] text-[17px] text-ivory/70">
-          Ücretsiz tanışma dersi. Yaşınızı ve aklınızdaki eğitimi yazın — akademi ekibi döner.
+          Ücretsiz tanışma dersi. Açık saati seçin; uymuyorsa WhatsApp’tan yazın.
         </p>
         <div className="mt-10">
-          <WhatsAppCta size="xl" variant="inverse" />
+          <Button asChild size="xl" variant="inverse">
+            <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+          </Button>
         </div>
       </div>
     </section>

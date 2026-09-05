@@ -1,4 +1,5 @@
-import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
+import Link from "next/link";
+import { Button } from "@/components/ui/Button";
 
 const STEPS = [
   {
@@ -6,12 +7,12 @@ const STEPS = [
     body: "Resim, piyano, keman veya gitar — kendiniz ya da çocuğunuz için.",
   },
   {
-    title: "WhatsApp’tan yazın",
-    body: "Form yok. Yaş ve eğitim yeterli. Gerisini biz açarız.",
+    title: "Saati seçin",
+    body: "Açık ızgaradan yaşınıza uyan saati seçin. Uymuyorsa WhatsApp’tan yazın.",
   },
   {
-    title: "Akademi arar",
-    body: "Uygun bir saat ayarlanır. İlk ders ücretsiz tanışmadır.",
+    title: "Akademi teyit eder",
+    body: "Kayıt Takip’e düşer. İlk ders ücretsiz tanışmadır.",
   },
 ];
 
@@ -25,7 +26,7 @@ export function ProcessSection() {
         >
           Tanışma dersi
           <br />
-          üç mesajlık iş.
+          üç adımlık iş.
         </h2>
 
         <ol className="grid gap-12 md:grid-cols-3 md:gap-8">
@@ -41,7 +42,9 @@ export function ProcessSection() {
         </ol>
 
         <div className="mt-14">
-          <WhatsAppCta size="lg" />
+          <Button asChild size="lg">
+            <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+          </Button>
         </div>
       </div>
     </section>

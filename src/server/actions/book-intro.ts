@@ -84,7 +84,7 @@ export async function bookIntroLesson(input: unknown): Promise<BookIntroResult> 
     return { ok: false, error: "Seçilen saat ızgarayla uyuşmuyor. Sayfayı yenileyin." };
   }
 
-  const { error: rpcError } = await supabase.rpc("book_intro_lesson", {
+  const { data: bookingId, error: rpcError } = await supabase.rpc("book_intro_lesson", {
     p_student_name: parsed.data.student_name,
     p_student_age: parsed.data.student_age,
     p_parent_name: parsed.data.parent_name ?? "",
@@ -106,6 +106,11 @@ export async function bookIntroLesson(input: unknown): Promise<BookIntroResult> 
   const programName =
     (slot.program as { name?: string } | null)?.name ?? "eğitim";
   const when = formatSlotWhen(startsAt.toISOString());
+  const note = `Tanışma: ${programName} · ${when} · ${parsed.data.student_age} yaş`;
+
+  if (typeof bookingId === "string") {
+    await supabase.from("applications").update({ message: note }).eq("id", bookingId);
+  }
 
   await notifyAcademy(
     `Yeni tanışma: ${programName} · ${when}`,

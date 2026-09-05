@@ -10,6 +10,7 @@ interface SiteFooterProps {
 const NAV_LINKS = [
   { href: "/akademi", label: "Akademi" },
   { href: "/egitimler", label: "Eğitimler" },
+  { href: "/ucretsiz-tanisma-dersi", label: "Tanışma dersi" },
   { href: "/sss", label: "SSS" },
   { href: "/iletisim", label: "İletişim" },
 ];

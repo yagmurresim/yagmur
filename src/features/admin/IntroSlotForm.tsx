@@ -31,6 +31,7 @@ export function IntroSlotForm({ programs, slot }: IntroSlotFormProps) {
     weekday: String(slot?.weekday ?? 1),
     start_time: slot?.start_time?.slice(0, 5) ?? "16:00",
     duration_minutes: String(slot?.duration_minutes ?? 45),
+    lesson_format: slot?.lesson_format ?? "individual",
     age_min: String(slot?.age_min ?? 4),
     age_max: slot?.age_max != null ? String(slot.age_max) : "",
     capacity: String(slot?.capacity ?? 1),
@@ -51,6 +52,7 @@ export function IntroSlotForm({ programs, slot }: IntroSlotFormProps) {
           weekday: Number(values.weekday),
           start_time: values.start_time,
           duration_minutes: Number(values.duration_minutes),
+          lesson_format: values.lesson_format as "group" | "individual",
           age_min: Number(values.age_min),
           age_max: values.age_max ? Number(values.age_max) : null,
           capacity: Number(values.capacity),
@@ -97,6 +99,21 @@ export function IntroSlotForm({ programs, slot }: IntroSlotFormProps) {
               {p.name}
             </option>
           ))}
+        </select>
+      </div>
+
+      <div>
+        <label className="mb-1 block text-sm font-medium text-ink" htmlFor="slot-format">
+          Format
+        </label>
+        <select
+          id="slot-format"
+          value={values.lesson_format}
+          onChange={(e) => set("lesson_format", e.target.value)}
+          className={inputClass}
+        >
+          <option value="group">Grup</option>
+          <option value="individual">Birebir</option>
         </select>
       </div>
 

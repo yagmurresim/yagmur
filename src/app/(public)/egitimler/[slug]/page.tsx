@@ -6,7 +6,6 @@ import { buildProgramMetadata } from "@/lib/seo";
 import { programFormatLabel } from "@/lib/utils";
 import { toneFor } from "@/lib/program-tones";
 import { Button } from "@/components/ui/Button";
-import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -270,7 +269,9 @@ export default async function ProgramDetailPage({ params }: Props) {
             {program.short_description ?? intro.body}
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
-            <WhatsAppCta size="xl" programName={program.name} />
+            <Button asChild size="xl">
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+            </Button>
             <Button asChild size="xl" variant="secondary">
               <Link href="/egitimler">Diğer eğitimler</Link>
             </Button>
@@ -328,11 +329,13 @@ export default async function ProgramDetailPage({ params }: Props) {
             {program.name} eğitimine bakın.
           </h2>
           <p className="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
-            WhatsApp’tan yazın. Yaş ve {program.name.toLowerCase()} demeniz yeter.
-            İlk ders ücretsiz tanışmadır — kayıt o dersten sonra, isterseniz.
+            Açık saati seçin veya WhatsApp’tan yazın. Yaş ve {program.name.toLowerCase()}
+            demeniz yeter. İlk ders ücretsiz tanışmadır.
           </p>
           <div className="mt-8">
-            <WhatsAppCta size="xl" programName={program.name} />
+            <Button asChild size="xl">
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+            </Button>
           </div>
         </div>
       </section>

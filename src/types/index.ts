@@ -127,6 +127,7 @@ export interface IntroSlot {
   weekday: number;
   start_time: string;
   duration_minutes: number;
+  lesson_format: "group" | "individual";
   age_min: number;
   age_max: number | null;
   capacity: number;

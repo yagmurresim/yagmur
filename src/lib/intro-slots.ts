@@ -34,6 +34,26 @@ export function formatSlotWhen(iso: string): string {
   }).format(new Date(iso));
 }
 
+export function formatHourRange(iso: string, durationMinutes: number): string {
+  const start = new Date(iso);
+  const end = new Date(start.getTime() + durationMinutes * 60_000);
+  const fmt = new Intl.DateTimeFormat("tr-TR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Europe/Istanbul",
+  });
+  return `${fmt.format(start)}–${fmt.format(end)}`;
+}
+
+export function slotKind(
+  slot: { lesson_format?: "group" | "individual" | null; duration_minutes: number }
+): "group" | "individual" {
+  if (slot.lesson_format === "group" || slot.lesson_format === "individual") {
+    return slot.lesson_format;
+  }
+  return slot.duration_minutes >= 90 ? "group" : "individual";
+}
+
 function pad(n: number): string {
   return String(n).padStart(2, "0");
 }

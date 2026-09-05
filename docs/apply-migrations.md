@@ -15,6 +15,7 @@ Signup kapalı tutun. SQL Editor’da her dosyayı ayrı çalıştırın; bir ö
 7. `007_data_api_grants.sql` — explicit Data API GRANT matrisi + `is_admin()` EXECUTE
 8. `008_whatsapp_crm.sql` — staff lead kaydı: yaş opsiyonel, kaynak kanalı, takip indeksi
 9. `009_intro_slots.sql` — haftalık tanışma saati ızgarası + `applications.intro_slot_id`
+10. `010_intro_grid_seed.sql` — her gün grup (2 saat) ve birebir müzik (1 saat) ızgarası
 
 Sonra:
 
@@ -48,7 +49,7 @@ unpublish → yeni anon erişim kapanır
 
 ## Mevcut DB (eski 001 zaten uygulandıysa)
 
-`001` ve `002`’yi tekrar çalıştırmayın. Yalnızca henüz olmayan ileri dosyaları uygulayın (`003` → `009`).
+`001` ve `002`’yi tekrar çalıştırmayın. Yalnızca henüz olmayan ileri dosyaları uygulayın (`003` → `010`).
 
 ## Yeni tablo kuralı
 
@@ -59,7 +60,7 @@ unpublish → yeni anon erişim kapanır
 ## Uygulama deploy sırası
 
 ```
-001–009 COMMIT
+001–010 COMMIT
 → admin profil
 → RLS / GRANT smoke
 → app deploy

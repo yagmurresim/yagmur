@@ -20,7 +20,7 @@ export default async function AdminSaatlerPage() {
         <div>
           <h1 className="font-display text-3xl text-ink">Tanışma saatleri</h1>
           <p className="mt-1 text-ink-muted">
-            Haftalık ızgara. Sitede önümüzdeki iki hafta görünür.
+            Haftalık ızgara: grup 10–12 / 13–15 / 15–17 / 18–20, birebir müzik 10–20. Sitede iki hafta görünür.
           </p>
         </div>
         <Link
@@ -61,6 +61,9 @@ export default async function AdminSaatlerPage() {
                 <tr key={slot.id} className="hover:bg-gray-50">
                   <td className="px-4 py-3 font-medium text-ink">
                     {weekdayLabel(slot.weekday)} {formatTime(slot.start_time)}
+                    <span className="ml-2 text-xs font-normal text-ink-muted">
+                      {slot.lesson_format === "group" ? "Grup" : "Birebir"}
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-ink-muted">{slot.program_name ?? "—"}</td>
                   <td className="hidden px-4 py-3 text-ink-muted sm:table-cell">

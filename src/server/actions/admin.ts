@@ -461,6 +461,7 @@ const IntroSlotWriteSchema = z.object({
   weekday: z.coerce.number().int().min(1).max(7),
   start_time: z.string().regex(/^\d{2}:\d{2}$/),
   duration_minutes: z.coerce.number().int().min(15).max(180).default(45),
+  lesson_format: z.enum(["group", "individual"]).default("individual"),
   age_min: z.coerce.number().int().min(4).max(80),
   age_max: z.preprocess((v) => {
     if (v === "" || v === null || v === undefined) return null;
@@ -488,6 +489,7 @@ export async function createIntroSlot(
       weekday: parsed.weekday,
       start_time: parsed.start_time,
       duration_minutes: parsed.duration_minutes,
+      lesson_format: parsed.lesson_format,
       age_min: parsed.age_min,
       age_max: parsed.age_max,
       capacity: parsed.capacity,

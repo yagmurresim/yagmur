@@ -4,7 +4,7 @@ import { getPublishedPrograms } from "@/server/queries/programs";
 import { buildMetadata } from "@/lib/seo";
 import { programFormatLabel } from "@/lib/utils";
 import { toneFor } from "@/lib/program-tones";
-import { WhatsAppCta } from "@/components/contact/WhatsAppCta";
+import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = buildMetadata({
   title: "Eğitimler | Yağmur Sanat Akademisi",
@@ -114,11 +114,13 @@ export default async function EgitimlerPage() {
             Kararsızsanız gelin bakın.
           </h2>
           <p className="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-ink-muted">
-            WhatsApp’tan yaşınızı ve aklınızdaki eğitimi yazın. Ücretsiz tanışma dersi
+            Açık saati seçin veya WhatsApp’tan yazın. Ücretsiz tanışma dersi
             ayarlanır. Beğenmezseniz kayıt olmazsınız — o da bir cevap.
           </p>
           <div className="mt-8">
-            <WhatsAppCta size="lg" />
+            <Button asChild size="lg">
+              <Link href="/ucretsiz-tanisma-dersi">Tanışma dersi</Link>
+            </Button>
           </div>
         </div>
       </section>

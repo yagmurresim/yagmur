@@ -209,17 +209,26 @@ export function StudioCanvas() {
       raf = requestAnimationFrame(tick);
     };
 
-    const onMove = (e: PointerEvent) => {
-      if (reduce || e.pointerType === "touch") return;
+    const paintFromClient = (clientX: number, clientY: number) => {
       const rect = canvas.getBoundingClientRect();
       if (rect.width === 0) return;
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const x = clientX - rect.left;
+      const y = clientY - rect.top;
       if (x < -48 || y < -48 || x > rect.width + 48 || y > rect.height + 48) {
         last = null;
         return;
       }
       drawTo(x, y, performance.now());
+    };
+
+    const onMove = (e: PointerEvent) => {
+      if (reduce) return;
+      paintFromClient(e.clientX, e.clientY);
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      if (reduce || e.touches.length === 0) return;
+      paintFromClient(e.touches[0].clientX, e.touches[0].clientY);
     };
 
     const onLeave = () => {
@@ -231,12 +240,18 @@ export function StudioCanvas() {
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerdown", onMove, { passive: true });
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchstart", onTouchMove, { passive: true });
     window.addEventListener("pointerleave", onLeave);
 
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerdown", onMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchstart", onTouchMove);
       window.removeEventListener("pointerleave", onLeave);
     };
   }, [reduce]);
