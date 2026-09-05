@@ -70,6 +70,17 @@
     outline-offset: 3px;
   }
 
+  a[href],
+  button:not(:disabled),
+  [role="button"],
+  label[for],
+  select,
+  summary,
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: pointer;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

@@ -49,36 +49,81 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
   }, [occurrences, programSlug, format]);
 
   const days = useMemo(() => {
-    const map = new Map<string, { label: string; short: string; items: IntroOccurrence[] }>();
+    const map = new Map<
+      string,
+      { label: string; weekday: number; dayNum: number; items: IntroOccurrence[] }
+    >();
     for (const o of filtered) {
       const d = new Date(o.startsAt);
-      const key = new Intl.DateTimeFormat("en-CA", {
+      const parts = new Intl.DateTimeFormat("en-CA", {
         timeZone: "Europe/Istanbul",
         year: "numeric",
         month: "2-digit",
         day: "2-digit",
-      }).format(d);
-      const weekday = new Intl.DateTimeFormat("tr-TR", {
         weekday: "short",
-        timeZone: "Europe/Istanbul",
-      }).format(d);
-      const day = new Intl.DateTimeFormat("tr-TR", {
-        day: "numeric",
-        month: "short",
-        timeZone: "Europe/Istanbul",
-      }).format(d);
+      }).formatToParts(d);
+      const get = (type: string) => parts.find((p) => p.type === type)?.value ?? "";
+      const key = `${get("year")}-${get("month")}-${get("day")}`;
+      const week: Record<string, number> = {
+        Mon: 1,
+        Tue: 2,
+        Wed: 3,
+        Thu: 4,
+        Fri: 5,
+        Sat: 6,
+        Sun: 7,
+      };
       const long = new Intl.DateTimeFormat("tr-TR", {
         weekday: "long",
         day: "numeric",
         month: "long",
         timeZone: "Europe/Istanbul",
       }).format(d);
-      const entry = map.get(key) ?? { label: long, short: `${weekday}\n${day}`, items: [] };
+      const entry = map.get(key) ?? {
+        label: long,
+        weekday: week[get("weekday")] ?? 1,
+        dayNum: Number(get("day")),
+        items: [],
+      };
       entry.items.push(o);
       map.set(key, entry);
     }
     return [...map.entries()].sort(([a], [b]) => a.localeCompare(b));
   }, [filtered]);
+
+  const calendarWeeks = useMemo(() => {
+    if (days.length === 0) return [];
+    const byKey = new Map(days);
+    const first = days[0][0];
+    const last = days[days.length - 1][0];
+    const start = new Date(`${first}T12:00:00+03:00`);
+    const end = new Date(`${last}T12:00:00+03:00`);
+    const startWeekday = days[0][1].weekday;
+    start.setUTCDate(start.getUTCDate() - (startWeekday - 1));
+    const cells: Array<{ key: string; dayNum: number; inRange: boolean } | null>[] = [];
+    const cursor = new Date(start);
+    while (cursor <= end || cells.length === 0 || (cells[cells.length - 1]?.length ?? 0) < 7) {
+      if (cells.length === 0 || cells[cells.length - 1].length === 7) {
+        cells.push([]);
+      }
+      const key = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "Europe/Istanbul",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).format(cursor);
+      const hit = byKey.get(key);
+      const inSpan = key >= first && key <= last;
+      cells[cells.length - 1].push(
+        inSpan
+          ? { key, dayNum: hit?.dayNum ?? Number(key.slice(8)), inRange: Boolean(hit) }
+          : null
+      );
+      cursor.setUTCDate(cursor.getUTCDate() + 1);
+      if (cells.length > 6) break;
+    }
+    return cells;
+  }, [days]);
 
   const times = useMemo(() => {
     const day = days.find(([key]) => key === dayKey);
@@ -152,15 +197,18 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
       )}
 
       <fieldset>
-        <legend className="mb-3 text-sm font-medium text-ink">Eğitim</legend>
-        <div className="flex flex-wrap gap-2">
+        <legend className="mb-1 font-display text-2xl text-ink">
+          Tanışma dersi için eğitiminizi seçin
+        </legend>
+        <p className="mb-4 text-sm text-ink-muted">Resim, piyano, keman veya gitar.</p>
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
           {PROGRAMS.map((p) => (
             <button
               key={p.slug}
               type="button"
               onClick={() => pickProgram(p.slug)}
               className={cn(
-                "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                "cursor-pointer rounded-[14px] px-4 py-4 text-left text-[17px] font-medium transition-colors",
                 programSlug === p.slug
                   ? "bg-plum text-ivory"
                   : "bg-white text-ink ring-1 ring-line hover:ring-ink/30"
@@ -174,8 +222,11 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
 
       {program && program.formats.length > 1 && (
         <fieldset>
-          <legend className="mb-3 text-sm font-medium text-ink">Format</legend>
-          <div className="flex flex-wrap gap-2">
+          <legend className="mb-1 font-display text-2xl text-ink">Grup mu, birebir mi?</legend>
+          <p className="mb-4 text-sm text-ink-muted">
+            Grup iki saat, birebir bir saat.
+          </p>
+          <div className="grid grid-cols-2 gap-2">
             {program.formats.map((f) => (
               <button
                 key={f}
@@ -186,7 +237,7 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
                   setSelected("");
                 }}
                 className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                  "cursor-pointer rounded-[14px] px-4 py-4 text-[17px] font-medium transition-colors",
                   format === f
                     ? "bg-plum text-ivory"
                     : "bg-white text-ink ring-1 ring-line hover:ring-ink/30"
@@ -201,7 +252,8 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
 
       {format && (
         <fieldset>
-          <legend className="mb-3 text-sm font-medium text-ink">Gün</legend>
+          <legend className="mb-1 font-display text-2xl text-ink">Günü seçin</legend>
+          <p className="mb-4 text-sm text-ink-muted">Önümüzdeki iki hafta.</p>
           {days.length === 0 ? (
             <div className="rounded-[12px] border border-line bg-white p-5">
               <p className="text-[15px] text-ink-muted">
@@ -212,31 +264,49 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
               </div>
             </div>
           ) : (
-            <div className="-mx-1 flex gap-2 overflow-x-auto pb-1">
-              {days.map(([key, day]) => {
-                const [weekday, rest] = day.short.split("\n");
-                return (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => {
-                      setDayKey(key);
-                      setSelected("");
-                    }}
-                    className={cn(
-                      "flex min-w-[4.5rem] shrink-0 flex-col items-center rounded-[12px] px-3 py-3 text-center transition-colors",
-                      dayKey === key
-                        ? "bg-plum text-ivory"
-                        : "bg-white text-ink ring-1 ring-line hover:ring-ink/30"
-                    )}
-                  >
-                    <span className="text-[11px] font-medium uppercase tracking-wide opacity-70">
-                      {weekday}
-                    </span>
-                    <span className="mt-1 text-sm font-medium">{rest}</span>
-                  </button>
-                );
-              })}
+            <div className="overflow-hidden rounded-[16px] border border-line bg-white">
+              <div className="grid grid-cols-7 border-b border-line bg-paper-alt text-center text-[11px] font-medium uppercase tracking-wide text-ink-muted">
+                {["Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Paz"].map((d) => (
+                  <div key={d} className="px-1 py-2">
+                    {d}
+                  </div>
+                ))}
+              </div>
+              <div className="grid grid-cols-7">
+                {calendarWeeks.flat().map((cell, i) => {
+                  if (!cell) {
+                    return <div key={`empty-${i}`} className="min-h-[3.25rem] bg-paper-alt/40" />;
+                  }
+                  if (!cell.inRange) {
+                    return (
+                      <div
+                        key={cell.key}
+                        className="flex min-h-[3.25rem] items-center justify-center text-sm text-ink-muted/35"
+                      >
+                        {cell.dayNum}
+                      </div>
+                    );
+                  }
+                  return (
+                    <button
+                      key={cell.key}
+                      type="button"
+                      onClick={() => {
+                        setDayKey(cell.key);
+                        setSelected("");
+                      }}
+                      className={cn(
+                        "flex min-h-[3.25rem] cursor-pointer items-center justify-center text-[15px] font-medium transition-colors",
+                        dayKey === cell.key
+                          ? "bg-plum text-ivory"
+                          : "text-ink hover:bg-plum/8"
+                      )}
+                    >
+                      {cell.dayNum}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           )}
         </fieldset>
@@ -244,7 +314,8 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
 
       {dayKey && times.length > 0 && (
         <fieldset>
-          <legend className="mb-3 text-sm font-medium text-ink">Saat</legend>
+          <legend className="mb-1 font-display text-2xl text-ink">Saati seçin</legend>
+          <p className="mb-4 text-sm text-ink-muted">{dayLabel}</p>
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
             {times.map((o) => {
               const value = `${o.slot.id}|${o.startsAt}`;
@@ -254,7 +325,7 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
                   type="button"
                   onClick={() => setSelected(value)}
                   className={cn(
-                    "rounded-[12px] px-3 py-3 text-sm font-medium transition-colors",
+                    "cursor-pointer rounded-[12px] px-3 py-3.5 text-sm font-medium transition-colors",
                     selected === value
                       ? "bg-plum text-ivory"
                       : "bg-white text-ink ring-1 ring-line hover:ring-ink/30"
