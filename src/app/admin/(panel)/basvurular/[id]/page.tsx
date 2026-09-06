@@ -70,6 +70,16 @@ export default async function ApplicationDetailPage({ params }: Props) {
               {application.parent_name && (
                 <InfoRow label="Veli" value={application.parent_name} />
               )}
+              {application.student_age != null && application.student_age < 18 && (
+                <InfoRow
+                  label="Veli beyanı"
+                  value={
+                    application.guardian_declaration
+                      ? "Velisi/yasal temsilcisi olarak başvurduğunu beyan etti"
+                      : "—"
+                  }
+                />
+              )}
               <InfoRow label="Telefon" value={application.phone} />
               {application.email && <InfoRow label="E-posta" value={application.email} />}
               <InfoRow label="Eğitim" value={application.program_name ?? "—"} />
@@ -105,7 +115,10 @@ export default async function ApplicationDetailPage({ params }: Props) {
           </div>
 
           <div className="bg-white border border-line rounded-[10px] p-6">
-            <h2 className="font-medium text-ink mb-4">Notlar</h2>
+            <h2 className="font-medium text-ink mb-2">Notlar</h2>
+            <p className="mb-4 text-xs leading-relaxed text-ink-muted">
+              Sağlık, engellilik, teşhis veya başka özel nitelikli kişisel veri yazmayın.
+            </p>
             {notes.length === 0 ? (
               <p className="text-sm text-ink-muted mb-4">Henüz not eklenmemiş.</p>
             ) : (

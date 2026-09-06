@@ -45,16 +45,6 @@ const nextConfig: NextConfig = {
         destination: "/akademi",
         permanent: true,
       },
-      {
-        source: "/kvkk-aydinlatma-metni",
-        destination: "/iletisim",
-        permanent: true,
-      },
-      {
-        source: "/gizlilik",
-        destination: "/iletisim",
-        permanent: true,
-      },
     ];
   },
 };

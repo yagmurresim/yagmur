@@ -12,7 +12,11 @@ import {
   istanbulToday,
   slotKind,
 } from "@/lib/intro-slots";
-import { INTRO_KVKK_COPY } from "@/lib/kvkk";
+import {
+  INTRO_GUARDIAN_COPY,
+  INTRO_KVKK_VERSION,
+  KVKK_NOTICE_PATH,
+} from "@/lib/kvkk";
 import { cn } from "@/lib/utils";
 import type { IntroOccurrence } from "@/types";
 
@@ -54,7 +58,7 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
     student_age: "",
     parent_name: "",
     phone: "",
-    kvkk: false,
+    guardian: false,
   });
 
   const program = PROGRAMS.find((p) => p.slug === programSlug);
@@ -154,6 +158,8 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
 
   const picked = times.find((o) => `${o.slot.id}|${o.startsAt}` === selected);
   const dayLabel = days.find(([key]) => key === dayKey)?.[1].label;
+  const ageNum = Number(values.student_age);
+  const isMinor = Number.isFinite(ageNum) && ageNum > 0 && ageNum < 18;
 
   const goBack = () => {
     setError(null);
@@ -206,6 +212,14 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
       setError("Bir saat seçin.");
       return;
     }
+    if (isMinor && !values.parent_name.trim()) {
+      setError("18 yaşından küçük öğrenci için veli adı gerekli.");
+      return;
+    }
+    if (isMinor && !values.guardian) {
+      setError("Veli/yasal temsilci beyanını işaretleyin.");
+      return;
+    }
     const [slot_id, starts_at] = selected.split("|");
     startTransition(async () => {
       const result = await bookIntroLesson({
@@ -215,7 +229,7 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
         phone: values.phone,
         slot_id,
         starts_at,
-        kvkk: values.kvkk,
+        guardian_declaration: isMinor ? values.guardian : undefined,
         request_id: requestId,
       });
       if (!result.ok) {
@@ -439,28 +453,47 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
             value={values.student_age}
             onChange={(e) => setValues((v) => ({ ...v, student_age: e.target.value }))}
           />
+          {isMinor && (
+            <FormField
+              label="Veli / yasal temsilci ad soyad"
+              required
+              value={values.parent_name}
+              onChange={(e) => setValues((v) => ({ ...v, parent_name: e.target.value }))}
+            />
+          )}
           <FormField
-            label="Veli (çocuksa)"
-            value={values.parent_name}
-            onChange={(e) => setValues((v) => ({ ...v, parent_name: e.target.value }))}
-          />
-          <FormField
-            label="Telefon"
+            label={isMinor ? "Veli / yasal temsilci telefonu" : "Telefon"}
             type="tel"
             required
             value={values.phone}
             onChange={(e) => setValues((v) => ({ ...v, phone: e.target.value }))}
           />
-          <label className="flex items-start gap-3 text-sm leading-relaxed text-ink-muted sm:col-span-2">
-            <input
-              type="checkbox"
-              required
-              checked={values.kvkk}
-              onChange={(e) => setValues((v) => ({ ...v, kvkk: e.target.checked }))}
-              className="mt-1 accent-plum"
-            />
-            <span>{INTRO_KVKK_COPY}</span>
-          </label>
+          {isMinor && (
+            <label className="flex items-start gap-3 text-sm leading-relaxed text-ink-muted sm:col-span-2">
+              <input
+                type="checkbox"
+                required
+                checked={values.guardian}
+                onChange={(e) => setValues((v) => ({ ...v, guardian: e.target.checked }))}
+                className="mt-1 accent-plum"
+              />
+              <span>{INTRO_GUARDIAN_COPY}</span>
+            </label>
+          )}
+          <p className="text-sm leading-relaxed text-ink-muted sm:col-span-2">
+            Başvurunuz kapsamında verdiğiniz kişisel veriler, ücretsiz tanışma dersinin
+            planlanması ve sizinle iletişim kurulması amacıyla işlenir. Ayrıntılı bilgi
+            için{" "}
+            <a
+              href={KVKK_NOTICE_PATH}
+              className="font-medium text-plum hover:text-violet"
+              target="_blank"
+              rel="noreferrer"
+            >
+              KVKK Aydınlatma Metni
+            </a>
+            ’ni inceleyebilirsiniz. ({INTRO_KVKK_VERSION})
+          </p>
           <div className="sm:col-span-2">
             <Button type="submit" size="xl" disabled={isPending}>
               {isPending ? "Gönderiliyor…" : "Tanışma dersini ayarla"}

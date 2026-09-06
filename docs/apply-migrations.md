@@ -17,6 +17,7 @@ Signup kapalı tutun. SQL Editor’da her dosyayı ayrı çalıştırın; bir ö
 9. `009_intro_slots.sql` — haftalık tanışma saati ızgarası + `applications.intro_slot_id`
 10. `010_intro_grid_seed.sql` — her gün grup (2 saat) ve birebir müzik (1 saat) ızgarası
 11. `011_intro_month_horizon.sql` — rezervasyon bu ayla sınırlı; geçmiş günler kapalı
+12. `012_privacy_notice_and_guardian.sql` — 8-arg notice modeli ekler; eski satırlara dokunmaz; 9-arg 011 gövdesi durur. **Önce bu SQL, sonra 8-arg app.** 9-arg DROP ayrı 013.
 
 Sonra:
 

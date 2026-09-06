@@ -6,7 +6,6 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { checkApplicationRateLimit, getClientIP } from "@/lib/security/rate-limit";
 import { notifyAcademy } from "@/lib/notify";
 import { formatSlotWhen, ageBandLabel, occurrencesInCurrentMonth } from "@/lib/intro-slots";
-import { INTRO_KVKK_VERSION } from "@/lib/kvkk";
 
 const BookingSchema = z.object({
   student_name: z.string().trim().min(2).max(120),
@@ -15,10 +14,26 @@ const BookingSchema = z.object({
   phone: z.string().trim().min(10).max(30),
   slot_id: z.string().uuid(),
   starts_at: z.string().datetime(),
-  kvkk: z.literal(true),
+  guardian_declaration: z.boolean().optional(),
   request_id: z.string().uuid(),
+}).superRefine((data, ctx) => {
+  if (data.student_age < 18) {
+    if (!data.parent_name?.trim()) {
+      ctx.addIssue({
+        code: "custom",
+        message: "18 yaşından küçük öğrenci için veli adı gerekli.",
+        path: ["parent_name"],
+      });
+    }
+    if (data.guardian_declaration !== true) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Veli/yasal temsilci beyanını işaretleyin.",
+        path: ["guardian_declaration"],
+      });
+    }
+  }
 });
-// kvkk_version is never taken from the client — INTRO_KVKK_VERSION only.
 
 export type BookIntroResult =
   | { ok: true }
@@ -34,10 +49,10 @@ const RPC_ERRORS: Record<string, string> = {
   invalid_student_age: "Yaş 4–80 arası olmalı.",
   invalid_student_name: "Ad soyad gerekli.",
   invalid_phone: "Telefon gerekli.",
-  kvkk_consent_required: "KVKK onayı gerekli.",
   occurrence_too_far: "Bu saat henüz açık değil.",
-  invalid_kvkk_version: "KVKK sürümü geçersiz.",
   invalid_request_id: "İstek geçersiz.",
+  guardian_required: "18 yaşından küçük öğrenci için veli adı gerekli.",
+  guardian_declaration_required: "Veli/yasal temsilci beyanını işaretleyin.",
   idempotency_conflict: "Bu istek başka bir kayıtla çakıştı. Sayfayı yenileyin.",
 };
 
@@ -91,8 +106,7 @@ export async function bookIntroLesson(input: unknown): Promise<BookIntroResult> 
     p_phone: parsed.data.phone,
     p_slot_id: parsed.data.slot_id,
     p_occurrence: startsAt.toISOString(),
-    p_kvkk_consent: true,
-    p_kvkk_version: INTRO_KVKK_VERSION,
+    p_guardian_declaration: parsed.data.guardian_declaration === true,
     p_request_id: parsed.data.request_id,
   });
 
@@ -106,11 +120,6 @@ export async function bookIntroLesson(input: unknown): Promise<BookIntroResult> 
   const programName =
     (slot.program as { name?: string } | null)?.name ?? "eğitim";
   const when = formatSlotWhen(startsAt.toISOString());
-  const note = `Tanışma: ${programName} · ${when} · ${parsed.data.student_age} yaş`;
-
-  if (typeof bookingId === "string") {
-    await supabase.from("applications").update({ message: note }).eq("id", bookingId);
-  }
 
   await notifyAcademy(
     `Yeni tanışma: ${programName} · ${when}`,

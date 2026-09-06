@@ -85,7 +85,15 @@ export function SiteFooter({ settings }: SiteFooterProps) {
           <p>
             © {new Date().getFullYear()} {settings.brand_name}
           </p>
-          <p>Karşıyaka, İzmir</p>
+          <p className="flex flex-wrap gap-x-4 gap-y-1">
+            <Link href="/kvkk-aydinlatma-metni" className="hover:text-ivory">
+              KVKK aydınlatma
+            </Link>
+            <Link href="/gizlilik" className="hover:text-ivory">
+              Gizlilik
+            </Link>
+            <span>Karşıyaka, İzmir</span>
+          </p>
         </div>
       </div>
     </footer>

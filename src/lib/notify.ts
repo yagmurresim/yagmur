@@ -6,7 +6,7 @@ export async function notifyAcademy(subject: string, text: string): Promise<void
     return;
   }
 
-  const from = process.env.NOTIFY_FROM ?? "Yağmur Sanat <noreply@yagmursanatakademisi.com>";
+  const from = process.env.NOTIFY_FROM ?? "Yağmur Sanat <noreply@yagmursanat.com>";
 
   try {
     const res = await fetch("https://api.resend.com/emails", {

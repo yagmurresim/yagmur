@@ -9,12 +9,9 @@ const WINDOW_SECONDS = 3600;
 async function getRedisRateLimit(ip: string): Promise<RateLimitResult> {
   const url = process.env.UPSTASH_REDIS_REST_URL;
   const token = process.env.UPSTASH_REDIS_REST_TOKEN;
-  const isProd = process.env.NODE_ENV === "production";
 
   if (!url || !token) {
-    if (!isProd) return { success: true };
-    console.error("[rate-limit] Upstash Redis not configured.");
-    return { success: false };
+    return { success: true };
   }
 
   const key = `rl:apply:${ip}`;
@@ -26,9 +23,8 @@ async function getRedisRateLimit(ip: string): Promise<RateLimitResult> {
     });
 
     if (!incrRes.ok) {
-      if (!isProd) return { success: true };
       console.error("[rate-limit] INCR failed:", incrRes.status);
-      return { success: false };
+      return { success: true };
     }
 
     const { result: count } = (await incrRes.json()) as { result: number };
@@ -41,7 +37,7 @@ async function getRedisRateLimit(ip: string): Promise<RateLimitResult> {
           headers: { Authorization: `Bearer ${token}` },
         }
       );
-      if (!expireRes.ok && isProd) {
+      if (!expireRes.ok) {
         console.error("[rate-limit] EXPIRE failed:", expireRes.status);
       }
     }
@@ -51,9 +47,8 @@ async function getRedisRateLimit(ip: string): Promise<RateLimitResult> {
       remaining: Math.max(0, LIMIT - count),
     };
   } catch (err) {
-    if (!isProd) return { success: true };
     console.error("[rate-limit] Redis error:", err);
-    return { success: false };
+    return { success: true };
   }
 }
 

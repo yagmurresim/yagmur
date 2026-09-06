@@ -193,7 +193,6 @@ export async function createLead(
   await requireAdmin();
   const parsed = LeadWriteSchema.parse(data);
   const supabase = await createClient();
-  const now = new Date().toISOString();
 
   const { data: created, error } = await supabase
     .from("applications")
@@ -208,9 +207,7 @@ export async function createLead(
       source_channel: parsed.source_channel,
       source_page: "admin",
       status: "NEW",
-      kvkk_consent: true,
-      kvkk_version: "staff-1.0",
-      consented_at: now,
+      kvkk_consent: false,
       next_action_at: parsed.next_action_at ?? null,
     })
     .select("id")

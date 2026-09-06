@@ -141,7 +141,7 @@ export function ApplicationActions({
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            placeholder="Konuşulanlar, uygun saat, kim aradı…"
+            placeholder="Konuşulanlar, uygun saat, kim aradı… Sağlık, engellilik veya teşhis yazmayın."
             rows={3}
             maxLength={2000}
             className="w-full p-3 text-sm rounded-[8px] border border-line bg-white focus:outline-none focus:border-violet resize-y"

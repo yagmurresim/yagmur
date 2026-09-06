@@ -43,14 +43,14 @@ Ayrıntılı sıra: `docs/apply-migrations.md`. Uygulama, 001–007 COMMIT olmad
 
 ---
 
-## İletişim (WhatsApp)
+## İletişim ve tanışma dersi
 
-Sitede başvuru / iletişim formu yok. Lead WhatsApp ve telefonla gelir.
+Lead iki yoldan gelir: sitedeki tanışma formu veya WhatsApp / telefon.
 
-- [ ] Header CTA `wa.me/905545959575` açıyor
-- [ ] `/ucretsiz-tanisma-dersi` WhatsApp + telefon gösteriyor
+- [ ] Header CTA `/ucretsiz-tanisma-dersi` açıyor
+- [ ] `/ucretsiz-tanisma-dersi` form + WhatsApp yedek
 - [ ] `/iletisim` form yok; WhatsApp + telefon + Instagram + adres
-- [ ] Eğitim sayfalarındaki CTA WhatsApp
+- [ ] Eğitim sayfalarındaki CTA tanışma dersi
 - [ ] WhatsApp ön doldurulmuş mesaj doğru
 - [ ] `tel:+905545959575` arama başlatıyor
 
@@ -74,10 +74,19 @@ Public form kaldırıldığı için Upstash artık lansman zorunluluğu değil.
 
 ## Hukuki
 
-Public form ve KVKK/gizlilik sayfaları kaldırıldı (`/kvkk-aydinlatma-metni` ve `/gizlilik` → `/iletisim`). Site kişisel veri toplamaz; iletişim WhatsApp / telefon.
+Form açık rızaya dayanmıyor (KVKK m.5/2-c/e/f). KVKK kutusu yok; gönder üstünde aydınlatma linki. 18 yaş altı: veli adı + veli telefonu + temsil beyanı.
 
+- [x] Avukat aydınlatma + gizlilik metinlerini verdi (`web-intro-1.0`, 06.09.2026)
+- [x] `/kvkk-aydinlatma-metni` ve `/gizlilik` yayında (noindex)
+- [x] Form: KVKK kutusu yok; gönder üstünde aydınlatma linki; 18 yaş altı veli
+- [x] 012: veli beyanı RPC’de zorunlu; `privacy_notice_*` + `guardian_*` (SQL Editor’da uygulanacak)
+- [x] `legal/kvkk-web-intro-1.0.md` ve `legal/gizlilik-web-intro-1.0.md` arşiv (değiştirme)
+- [x] Footer’da iki link
+- [x] Veri sorumlusu: Yağmur Ataş
+- [x] KVKK iletişim: kvkk@yagmursanat.com (hesabın açılması akademiye ait)
+- [ ] Supabase / Vercel Türkiye SCC imkânı (m.9) — avukat/akademi
+- [ ] Vercel plan: Hobby ise Pro
+- [ ] 6 aylık başvuru imha mekanizması
+- [ ] WhatsApp DTA / Türkiye SCC teyidi
 - [ ] WhatsApp sohbetleri akademi telefonunda yönetiliyor
-- [ ] Admin → Takip: WhatsApp’tan yazan kişi elle ekleniyor
-- [ ] Durum + not + sonraki takip tarihi kaydediliyor
-- [ ] Kayıt satırından `wa.me` ve `tel:` açılıyor
 - [ ] Analitik / çerez banner kapalı kaldı

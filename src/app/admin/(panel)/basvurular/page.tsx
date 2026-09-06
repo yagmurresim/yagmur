@@ -153,8 +153,11 @@ export default async function AdminTakipPage({ searchParams }: Props) {
                     </td>
                     <td className="px-4 py-3 text-ink-muted hidden sm:table-cell">
                       <p>{app.program_name ?? "—"}</p>
-                      {app.message?.startsWith("Tanışma:") && (
-                        <p className="mt-0.5 text-xs">{app.message.replace(/^Tanışma:\s*/, "")}</p>
+                      {app.intro_occurrence_at && (
+                        <p className="mt-0.5 text-xs">
+                          {formatDateShort(app.intro_occurrence_at)}
+                          {app.student_age != null ? ` · ${app.student_age} yaş` : ""}
+                        </p>
                       )}
                     </td>
                     <td className="px-4 py-3">

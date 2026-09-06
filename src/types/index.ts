@@ -108,9 +108,13 @@ export interface Application {
   utm_source: string | null;
   utm_medium: string | null;
   utm_campaign: string | null;
-  kvkk_consent: boolean;
-  kvkk_version: string;
-  consented_at: string;
+  kvkk_consent: boolean | null;
+  kvkk_version: string | null;
+  consented_at: string | null;
+  privacy_notice_version: string | null;
+  privacy_notice_presented_at: string | null;
+  guardian_declaration: boolean | null;
+  guardian_declared_at: string | null;
   assigned_to: string | null;
   last_contacted_at: string | null;
   next_action_at: string | null;

@@ -147,7 +147,7 @@ export function LeadForm({ programs, compact = false }: LeadFormProps) {
         label="Not"
         value={values.message}
         onChange={(e) => set("message", e.target.value)}
-        placeholder="WhatsApp’ta ne konuşuldu, hangi saat uygun…"
+        placeholder="WhatsApp’ta ne konuşuldu, hangi saat uygun… Sağlık, engellilik veya teşhis yazmayın."
       />
     </>
   );
