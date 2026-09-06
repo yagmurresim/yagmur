@@ -12,11 +12,7 @@ import {
   istanbulToday,
   slotKind,
 } from "@/lib/intro-slots";
-import {
-  INTRO_GUARDIAN_COPY,
-  INTRO_KVKK_VERSION,
-  KVKK_NOTICE_PATH,
-} from "@/lib/kvkk";
+import { INTRO_GUARDIAN_COPY, KVKK_NOTICE_PATH } from "@/lib/kvkk";
 import { cn } from "@/lib/utils";
 import type { IntroOccurrence } from "@/types";
 
@@ -492,7 +488,7 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
             >
               KVKK Aydınlatma Metni
             </a>
-            ’ni inceleyebilirsiniz. ({INTRO_KVKK_VERSION})
+            ’ni inceleyebilirsiniz.
           </p>
           <div className="sm:col-span-2">
             <Button type="submit" size="xl" disabled={isPending}>

@@ -5,7 +5,6 @@ import {
   DATA_CONTROLLER_BUSINESS,
   DATA_CONTROLLER_NAME,
   INTRO_KVKK_EFFECTIVE,
-  INTRO_KVKK_VERSION,
   KVKK_EMAIL,
 } from "@/lib/kvkk";
 
@@ -22,8 +21,6 @@ export default function KvkkAydinlatmaPage() {
     <article className="bg-paper pt-32 pb-24 text-ink lg:pt-44 lg:pb-32">
       <div className="mx-auto max-w-[760px] px-6 lg:px-0">
         <p className="text-[13px] text-ink-muted">
-          Versiyon {INTRO_KVKK_VERSION}
-          <span className="mx-2">·</span>
           Yürürlük {INTRO_KVKK_EFFECTIVE}
         </p>
         <h1 className="font-display mt-4 text-[clamp(2.2rem,5vw,3.6rem)] leading-[0.95]">
