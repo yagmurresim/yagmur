@@ -306,7 +306,10 @@ $$;
 --     AND consented_at IS NOT NULL
 --   );
 --
--- privacy_notice_presented_at is the booking RPC clock, not DOM render proof.
+-- privacy_notice_presented_at = server submission clock for the canonical
+-- notice version in force at booking. Not proof the notice rendered in the
+-- browser. kvkk_consent is a leftover column; new 8-arg rows write FALSE
+-- and must not be read as a consent event.
 --
 -- After 012, before 013, both overloads must work (staging, service_role):
 --   9-arg adult  → success, kvkk_consent TRUE, privacy_notice_* NULL

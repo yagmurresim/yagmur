@@ -74,7 +74,9 @@ Public form kaldırıldığı için Upstash artık lansman zorunluluğu değil.
 
 ## Hukuki
 
-Form açık rızaya dayanmıyor (KVKK m.5/2-c/e/f). KVKK kutusu yok; gönder üstünde aydınlatma linki. 18 yaş altı: veli adı + veli telefonu + temsil beyanı.
+Form açık rızaya dayanmıyor (KVKK m.5/2-c/e/f). KVKK kutusu yok; gönder üstünde aydınlatma linki. 18 yaş altı: veli adı + veli telefonu + temsil beyanı. 2026/347 “okudum” kutusunu yasaklamaz; açık rızayı hizmet şartı yapmak yanlıştır. Checkbox kullanmamak tercihtir.
+
+`kvkk_consent` legacy kolondur; yeni web kaydında `false` yazılır, hukuki dayanak değildir. `privacy_notice_presented_at` RPC/submission saatidir, ekran kanıtı değil.
 
 - [x] Avukat aydınlatma + gizlilik metinlerini verdi (`web-intro-1.0`, 06.09.2026)
 - [x] `/kvkk-aydinlatma-metni` ve `/gizlilik` yayında (noindex)
@@ -84,9 +86,9 @@ Form açık rızaya dayanmıyor (KVKK m.5/2-c/e/f). KVKK kutusu yok; gönder üs
 - [x] Footer’da iki link
 - [x] Veri sorumlusu: Yağmur Ataş
 - [x] KVKK iletişim: kvkk@yagmursanat.com (hesabın açılması akademiye ait)
-- [ ] Supabase / Vercel Türkiye SCC imkânı (m.9) — avukat/akademi
-- [ ] Vercel plan: Hobby ise Pro
+- [ ] Supabase: Türkiye SCC (veri sorumlusu → işleyen) + 5 iş günü Kurum bildirimi
+- [ ] Vercel: hangi veri / hangi rol; m.9 mekanizması buna göre. Hobby ise Pro (ticari site)
 - [ ] 6 aylık başvuru imha mekanizması
-- [ ] WhatsApp DTA / Türkiye SCC teyidi
+- [ ] WhatsApp: formdaki numaraya akademi yazarsa da veri işlenir. DTA’daki TR SCC + imza/bildirim teyidi
 - [ ] WhatsApp sohbetleri akademi telefonunda yönetiliyor
 - [ ] Analitik / çerez banner kapalı kaldı
