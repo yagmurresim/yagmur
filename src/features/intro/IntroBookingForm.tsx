@@ -240,17 +240,19 @@ export function IntroBookingForm({ occurrences }: IntroBookingFormProps) {
     return (
       <div className="rounded-[16px] border border-line bg-white p-8">
         <h2 className="font-display text-3xl text-ink">Tanışma dersiniz not edildi</h2>
-        <p className="mt-3 max-w-[46ch] text-[16px] leading-relaxed text-ink-muted">
-          Akademi sizi arar veya WhatsApp’tan yazar, saati teyit etmek için.
-          Gelmeden bir şey ödemeniz gerekmez.
+        <p className="mt-3 max-w-[52ch] text-[16px] leading-relaxed text-ink-muted">
+          Akademimiz, tanışma dersinizin saatini kesinleştirmek için sizinle
+          telefon veya WhatsApp üzerinden iletişime geçecektir. Tanışma dersi
+          öncesinde herhangi bir ödeme yapmanız gerekmez.
         </p>
         <p className="mt-5 text-[15px] leading-relaxed text-ink">
-          İmbatlı Mahallesi, Yeni Girne No:205/B
+          Adres: İmbatlı Mahallesi, Girne Bulvarı No:205/B
           <br />
           Karşıyaka / İzmir
         </p>
         <p className="mt-2 text-[13px] text-ink-muted">
-          Gelmeden teyit bekleyin. Ders saatlerinde kapı dolu olabilir.
+          Ders saatlerimiz yoğun olabileceğinden, akademimize gelmeden önce
+          randevu saatinizin teyit edilmesini rica ederiz.
         </p>
       </div>
     );

@@ -53,18 +53,35 @@ export default async function UcretsizTanismaDersiPage() {
           </div>
 
           <aside className="lg:col-span-4 lg:col-start-9">
-            <h2 className="font-display text-2xl text-ink">Tanışma dersinde ne olur</h2>
+            <h2 className="font-display text-2xl text-ink">Tanışma dersinde neler olur?</h2>
             <p className="mt-4 text-[16px] leading-relaxed text-ink-muted">
-              Hoca sizinle veya çocuğunuzla tanışır. Ne kadar süre çalışabileceğinizi,
-              evde enstrüman olup olmadığını konuşursunuz. Amaç hemen kayıt almak
-              değil, uyum var mı bakmaktır. Uymadığını düşünürseniz kayıt olmazsınız.
+              Tanışma dersi; öğrencimizi tanımak, beklentilerini anlamak ve
+              kendisi için en uygun eğitim sürecini birlikte belirlemek amacıyla
+              yapılır.
+            </p>
+            <p className="mt-4 text-[16px] leading-relaxed text-ink-muted">
+              Eğitmenimiz sizinle veya çocuğunuzla tanışır; öğrencinin yaşı,
+              müzik geçmişi, ilgi alanları, hedefleri ve derslere ayırabileceği
+              çalışma süresi değerlendirilir. Gerekli durumlarda evde bir
+              enstrüman bulunup bulunmadığı ve enstrüman seçimi konusunda da
+              bilgi verilir.
+            </p>
+            <p className="mt-4 text-[16px] leading-relaxed text-ink-muted">
+              Bu görüşmenin amacı yalnızca kayıt oluşturmak değil, öğrenci ile
+              eğitmen arasındaki uyumu görmek ve doğru bir eğitim planı
+              oluşturmaktır. Tanışma dersinin ardından devam etmek isteyip
+              istemediğinize rahatlıkla karar verebilirsiniz.
+            </p>
+            <p className="mt-6 text-[16px] leading-relaxed text-ink">
+              Adres:
+              <br />
+              İmbatlı Mahallesi, Girne Bulvarı No:205/B
+              <br />
+              Karşıyaka / İzmir
             </p>
             <p className="mt-6 text-[16px] leading-relaxed text-ink-muted">
-              İmbatlı Mahallesi, Yeni Girne No:205/B, Karşıyaka. Gelmeden teyit
-              bekleyin — ders saatlerinde kapı dolu olabilir.
-            </p>
-            <p className="mt-6 text-[16px] leading-relaxed text-ink-muted">
-              Saat uymadıysa WhatsApp’tan yazın:
+              Randevu saatiniz size uygun değilse bizimle WhatsApp üzerinden
+              iletişime geçebilirsiniz.
             </p>
             <div className="mt-4">
               <WhatsAppCta size="md" variant="secondary" />

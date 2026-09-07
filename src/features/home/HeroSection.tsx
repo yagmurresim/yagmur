@@ -38,10 +38,13 @@ export function HeroSection({ settings }: HeroSectionProps) {
             keşfet.
           </h1>
 
-          <p className="mt-8 max-w-[46ch] text-[17px] leading-relaxed text-ink-muted lg:text-[18px]">
-            Karşıyaka İmbatlı’da resim, piyano, keman ve gitar. MEB onaylı kurs;
-            4 yaşından yetişkine. Ücretsiz tanışma dersi için siteden saat seçin
-            veya WhatsApp’tan yazın.
+          <p className="mt-8 max-w-[54ch] text-[17px] leading-relaxed text-ink-muted lg:text-[18px]">
+            Değerli Sanatseverler, Karşıyaka’da bulunan MEB onaylı
+            kursumuzda; 5 yaşından yetişkinlere kadar her yaş grubu için resim,
+            piyano, keman ve gitar eğitimleri sunmaktayız. Sizleri ücretsiz
+            tanışma derslerimize içtenlikle davet ediyoruz. Randevunuzu web
+            sitemizden oluşturabilir veya WhatsApp hattımız üzerinden bizimle
+            iletişime geçebilirsiniz. Sanatla kalın...
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">

@@ -114,16 +114,17 @@ const PROGRAM_INTROS: Record<
     body: string;
     approach: string;
     who: string;
+    more?: string[];
     details: string[];
     prep?: string;
   }
 > = {
   "resim-kursu": {
     heading: "Karşıyaka’da grup resim dersi",
-    body: "Resim dersi grup halinde yapılır. Çocuk da yetişkin de gelir; masalar yaşa ve seviyeye göre ayrılır. İlk iş “güzel resim” üretmek değildir: görmeyi öğrenmek, sonra onu kâğıda veya tuvale geçirmektir.",
+    body: "Resim derslerimiz; çocuklardan yetişkinlere kadar her öğrencimizin kendi yaş motor becerilerine ve seviyelerine özel olarak oluşturulmuş gruplar eşliğinde gerçekleştirilmektedir. Eğitimlerimizdeki önceliğimiz yalnızca “güzel bir resim” ortaya çıkarmak değil; öğrencilerimize sağlam bir teknik eğitim sunarak sanatsal bir bakış kazandırmaktır. Her yaş grubunun kendi dinamiğine uygun ortamlarda ders işlediği akademimizde, öğrencilerimizin içlerindeki yaratıcılığı özgürce geliştirmelerine ve hayal güçlerini tuvale doğru teknikle aktarmalarına rehberlik ediyoruz.",
     approach:
-      "Derslerde kurşun kalem, kömür, suluboya ve akrilik dönüşümlü kullanılır. Kompozisyon, oran, ışık ve doku yavaş yavaş eklenir. Hoca her masada durur; grubun temposu ortak, her elinki ayrıdır. Dönem sonunda seçilen işler sergiye çıkar.",
-    who: "Hiç fırça tutmamış 4 yaşındaki çocuk da gelir, lise portföyü hazırlayan da, iş çıkışı resim yapmak isteyen yetişkin de. Güzel sanatlar lisesi veya fakültesine girecekler için sınav tekniği ve portföy, dersin içinde desteklenir. Ayrı bir paket satılmaz.",
+      "Bu sanatsal yolculukta öğrencilerimiz; karakalem, suluboya, kuruboya, pastel boya, tuval üzeri akrilik boya ve yağlı boya gibi zengin teknikleri yetenekleriyle harmanlamayı öğrenmektedir. Eğitim dönemi boyunca büyük bir emek ve yaratıcılıkla ortaya konan tüm bu kıymetli eserler ise, dönem sonunda düzenlediğimiz sergimizde sanatseverlerin beğenisine sunulmakta ve öğrencilerimizin başarıları gururla taçlandırılmaktadır.",
+    who: "",
     details: [
       "Grup dersi",
       "4 yaşından yetişkine",
@@ -136,45 +137,70 @@ const PROGRAM_INTROS: Record<
   },
   "piyano-kursu": {
     heading: "Karşıyaka’da birebir piyano dersi",
-    body: "Piyano dersi birebir yapılır. Hoca o günün temposuna, elin büyüklüğüne ve kulağın durumuna göre gider. Yeni başlayanlar nota ve duruştan; devam edenler repertuvar, pedal ve yorumdan ilerler.",
+    body: "Piyano eğitiminde her öğrencinin yaşı, gelişim düzeyi, müzikal birikimi ve öğrenme hızı farklıdır. Bu nedenle derslerimiz birebir yapılır ve eğitim süreci öğrencinin ihtiyaçlarına göre planlanır. İlk dersten itibaren doğru oturuş, el ve parmak kullanımı, nota okuma, ritim ve temel müzik bilgisi üzerinde özenle durulur.",
     approach:
-      "İlk aylar el duruşu, ritim ve basit ezgilerdir. Sonra iki elin bağımsızlığı, gam, arpej ve kısa parçalar gelir. Hedef hızlı çalmak değil; temiz basmak, dinlemek ve parçayı bitirmektir. Dönem sonunda isteyen konserde çalar.",
-    who: "4–6 yaşında oyunla tanışan çocuklar, okul çağında düzenli çalışanlar ve yetişkinlikte sıfırdan başlayanlar. Yetişkin öğrencide tempo daha yavaş, parça seçimi daha kişisel olur.",
+      "Başlangıç aşamasında öğrencinin piyanoyla doğru bir ilişki kurması hedeflenir. Zamanla iki elin koordinasyonu, parmak bağımsızlığı, gam ve arpejler, deşifre, pedal kullanımı ve eser çalışmaları programa dâhil edilir. Teknik gelişim, yalnızca notaları doğru çalmak için değil; temiz bir tuşe, doğru ifade ve müzikal duyarlılık kazanmak için ele alınır.",
+    who: "Çocuklarda eğitim; yaşa uygun, merak duygusunu canlı tutan ve düzenli çalışma alışkanlığı kazandıran bir yöntemle yürütülür. Genç ve yetişkin öğrencilerde ise program; öğrencinin hedefleri, sevdiği eserler ve mevcut seviyesi doğrultusunda şekillendirilir.",
+    more: [
+      "Daha önce hiç piyano çalmamış yetişkinler de eğitime sıfırdan başlayabilir.",
+      "Amacımız öğrencinin yalnızca bir eseri çalabilmesi değil; notayı okuyabilen, ritmi anlayan, doğru teknik kullanan ve müziği yorumlayabilen bir piyanistlik temeli kazanmasıdır. Öğrencilerimiz, gelişim düzeylerine göre dönem sonu konserlerinde sahne deneyimi kazanma fırsatı bulur.",
+    ],
     details: [
       "Birebir ders",
-      "4 yaşından yetişkine",
-      "MEB onaylı program, resmî sertifika",
-      "Nota, teknik, yorum",
-      "Dönem sonu konser",
+      "Her yaş ve seviyeye uygun eğitim",
+      "Nota, ritim ve deşifre çalışmaları",
+      "Doğru oturuş, el ve parmak tekniği",
+      "Tuşe, pedal ve müzikal yorum",
+      "Kişiye özel eser ve repertuvar çalışmaları",
+      "Dönem sonu konser deneyimi",
     ],
   },
   "keman-kursu": {
     heading: "Karşıyaka’da birebir veya grup keman dersi",
-    body: "Keman, duruş ve kulak işidir. Ders birebir veya küçük grup olarak açılır. Yeni başlayan yay tutuşu, çene ve sol elle tanışır; devam edenler pozisyon, titreşim ve ifade üzerine çalışır.",
+    body: "Keman eğitimi; doğru duruş, dengeli yay kullanımı, temiz ses üretimi ve iyi bir müzik kulağının birlikte geliştirilmesini gerektirir. Derslerimiz öğrencinin yaşı, seviyesi ve öğrenme hızına göre birebir veya küçük grup şeklinde planlanır.",
     approach:
-      "İlk iş enstrümanı vücuda yerleştirmektir: omuz, çene, sol el, yay. Ses temizlenmeden parça şişirilmez. Grup dersinde birlikte çalmak, birebirde ayrıntı öne çıkar. Hangisinin size uyduğu tanışma dersinde konuşulur.",
-    who: "Çocuklar genelde 5–6 yaş civarında başlar; yetişkin de gelir. Enstrümanı olmayanlar için ilk dönemde ne alınacağı akademide konuşulur — tanışma dersinden önce mağazaya gitmeniz gerekmez.",
+      "Başlangıç aşamasında kemanın doğru tutulması, omuz ve çene yerleşimi, sol elin doğal konumu ve temel yay tekniği üzerinde titizlikle durulur. Öğrenci, en başından itibaren doğru alışkanlıklar kazanarak ilerler. Nota okuma, ritim, yay yönleri ve parmak çalışmaları teknik eğitimin temelini oluşturur.",
+    who: "İlerleyen aşamalarda entonasyon, yay hâkimiyeti, pozisyon geçişleri, müzikal ifade, deşifre ve eser çalışmaları programa dâhil edilir. Uygun seviyeye ulaşıldığında vibrato ve daha ileri teknik çalışmalarla öğrencinin ses kalitesi ve yorum gücü geliştirilir.",
+    more: [
+      "Çocuklarda eğitim, yaş ve fiziksel gelişime uygun ölçüde bir keman seçilerek yürütülür. Genç ve yetişkin öğrenciler de daha önce müzik eğitimi almamış olsalar dahi başlangıç seviyesinden eğitime başlayabilir. Enstrümanı bulunmayan öğrencilerimize, doğru keman ve ekipman seçimi konusunda eğitim başlamadan önce rehberlik edilir.",
+      "Grup derslerinde öğrenciler birlikte çalma, birbirini dinleme, ortak ritmi koruma ve müzikal uyum becerileri kazanırken; birebir derslerde teknik ayrıntılar ve öğrencinin kişisel gelişimi üzerinde daha yoğun çalışılır.",
+      "Amacımız yalnızca eser çalabilen değil; doğru teknik kullanan, temiz ses üreten, müziği dinleyen ve yorumlayabilen öğrenciler yetiştirmektir. Öğrencilerimiz, gelişim düzeylerine göre dönem sonu konserlerinde sahne deneyimi kazanma fırsatı bulur.",
+    ],
     details: [
-      "Birebir ve grup",
-      "Her seviye",
-      "MEB onaylı program, resmî sertifika",
-      "Yay, duruş, kulak",
-      "Dönem sonu konser",
+      "Birebir veya küçük grup dersleri",
+      "Her yaş ve seviyeye uygun eğitim",
+      "Doğru keman tutuşu ve duruş",
+      "Yay tekniği ve temiz ses çalışmaları",
+      "Nota, ritim ve deşifre eğitimi",
+      "Entonasyon ve sol el tekniği",
+      "Pozisyon, vibrato ve ileri teknik çalışmalar",
+      "Eser ve müzikal yorum çalışmaları",
+      "Dönem sonu konser deneyimi",
     ],
   },
   "gitar-kursu": {
     heading: "Karşıyaka’da birebir veya grup gitar dersi",
-    body: "Gitar dersi birebir veya grup olarak yapılır. Akustik veya elektro — hangisini istediğiniz tanışma dersinde netleşir. Yeni başlayan akor ve ritme; devam edenler parmak stili, solo ve repertuvara gider.",
+    body: "Gitar eğitimi, doğru teknikle başladığında hem müzikal gelişimi hem de çalma alışkanlığını sağlam bir temele oturtur. Derslerimiz öğrencinin yaşı, seviyesi, müzik zevki ve hedefleri doğrultusunda birebir veya grup olarak planlanır.",
     approach:
-      "İlk iş sol elin basması, sağ elin ritmi tutmasıdır. Nota okuma isteyene öğretilir; herkesin yolu nota üzerinden geçmek zorunda değildir. Grupta birlikte çalmak, birebirde sizin parçanız. Dönem sonunda isteyen sahnede çalar.",
-    who: "Çocuk, genç, yetişkin. Kendi şarkısını çalmak isteyen de gelir, düzenli teknik isteyen de. Enstrümanı olmayanlara ilk gitarı seçerken yardımcı olunur.",
+      "Başlangıç düzeyinde doğru oturuş ve gitar tutuşu, sağ ve sol el koordinasyonu, temel parmak çalışmaları, ritim, akorlar ve nota bilgisi üzerinde durulur. Öğrencinin ilk günden itibaren gereksiz kasılmadan, temiz ses üreterek ve doğru el pozisyonuyla çalması hedeflenir.",
+    who: "İlerleyen aşamalarda akor geçişleri, arpej, gam, ritim kalıpları, pena ve parmak teknikleri, deşifre, eşlik ve eser çalışmaları programa dâhil edilir. Öğrencinin seviyesine ve müzikal ilgisine göre klasik, akustik veya elektro gitar alanında repertuvar çalışmaları yapılabilir.",
+    more: [
+      "Birebir derslerde öğrencinin teknik ihtiyaçlarına ve kişisel hedeflerine daha ayrıntılı biçimde odaklanılır.",
+      "Grup derslerinde ise birlikte çalma, ritim duygusu, müzikal uyum ve birbirini dinleme becerileri geliştirilir.",
+      "Çocuk, genç ve yetişkin öğrenciler daha önce herhangi bir müzik eğitimi almamış olsalar da başlangıç seviyesinden eğitime katılabilir. Enstrümanı bulunmayan öğrencilerimize; yaş, fiziksel yapı ve eğitim hedeflerine uygun gitar seçimi konusunda rehberlik edilir.",
+      "Amacımız öğrencinin yalnızca sevdiği birkaç parçayı çalması değil; doğru teknik kullanan, ritmi anlayan, müziği dinleyen ve zaman içinde kendi başına çalışabilecek bir müzikal altyapı kazanmasıdır. Öğrencilerimiz gelişim düzeylerine göre dönem sonu konserlerinde sahne deneyimi kazanma fırsatı bulur.",
+    ],
     details: [
-      "Birebir ve grup",
-      "Her seviye",
-      "MEB onaylı program, resmî sertifika",
-      "Akor, ritim, parmak",
-      "Akustik veya elektro",
-      "Dönem sonu konser",
+      "Birebir veya grup dersleri",
+      "Her yaş ve seviyeye uygun eğitim",
+      "Doğru oturuş ve gitar tutuşu",
+      "Sağ ve sol el tekniği",
+      "Akor, ritim ve arpej çalışmaları",
+      "Nota, deşifre ve temel müzik bilgisi",
+      "Pena ve parmak teknikleri",
+      "Gam, eşlik ve eser çalışmaları",
+      "Kişiye uygun repertuvar çalışmaları",
+      "Dönem sonu konser deneyimi",
     ],
   },
 };
@@ -296,6 +322,11 @@ export default async function ProgramDetailPage({ params }: Props) {
             {intro.who && (
               <p className="mt-4 text-[16px] leading-relaxed text-ink-muted">{intro.who}</p>
             )}
+            {intro.more?.map((paragraph) => (
+              <p key={paragraph} className="mt-4 text-[16px] leading-relaxed text-ink-muted">
+                {paragraph}
+              </p>
+            ))}
           </div>
           <div className="lg:col-span-5 lg:col-start-8">
             <p className="mb-3 text-[13px] font-medium text-ink-muted">Bu eğitimde</p>
